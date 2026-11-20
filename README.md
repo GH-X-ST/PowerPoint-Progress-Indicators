@@ -2,7 +2,7 @@
 
 这是基于 Olaf Nöhring 发布的 Progress Indicator 1.960 独立维护的中文 VBA 加载项。它读取 PowerPoint 文稿中的章节和页序，在每页生成章节导航。放映时，点击章节名可跳到该章首页，点击页标可跳到对应的幻灯片。[上游项目](https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac)
 
-下载并解压 CN.11.1 发布包，选择 `ProgressIndicators_v1960_3264b_SB_CN11_1.ppam` 安装。同名 `.pptm` 是可在 PowerPoint 中打开的维护文稿。[下载 CN.11.1](https://github.com/GH-X-ST/powerpoint-progress-indicators-cn/releases/download/CN.11.1/ProgressIndicators-CN.11.1.zip)
+下载并解压 CN.11.1 发布包，选择 `ProgressIndicators_v1960_3264b_SB_CN11_1.ppam` 安装。同名 `.pptm` 是可在 PowerPoint 中打开的维护文稿。[下载 CN.11.1](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.1/ProgressIndicators-CN.11.1.zip)
 
 ## 导航样式
 

@@ -706,7 +706,7 @@
               <button id="btnStyle_serif_editorial_small" label="小号" tag="serif_editorial:small" onAction="PI_ModernPreset"/>
             </menu>
             <menuSeparator id="sepStyle_polyu_layered" title="层次"/>
-            <menu id="btnStyle_polyu_layered" label="深红层叠" screentip="深红当前章与连接条无缝相接，外缘带柔和投影。圆角页标占每章中间的 80%。当前页标发光，其余页标厚度为当前的 48%，透明度为 70%。上下停靠时，小号章体高 16 pt。">
+            <menu id="btnStyle_polyu_layered" label="深红层叠" screentip="深红当前章与连接条无缝相接。其他章节沿用轻盈层次的底色，页标透明度为 50%。当前章内，当前页标发光，其余页标透明度为 70%。非当前页标厚度为当前的 48%，每章的圆角页标居中占章宽的 80%。上下停靠时，小号章体高 16 pt。">
               <button id="btnStyle_polyu_layered_large" label="大号" tag="polyu_layered" onAction="PI_ModernPreset"/>
               <button id="btnStyle_polyu_layered_medium" label="中号" tag="polyu_layered:medium" onAction="PI_ModernPreset"/>
               <button id="btnStyle_polyu_layered_small" label="小号" tag="polyu_layered:small" onAction="PI_ModernPreset"/>

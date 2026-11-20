@@ -235,6 +235,13 @@ Function DeserializeProgressOptions(s As String) As ProgressDotsOptions
                       theOptions.SectionBlockHeight = PI_CRIMSON_SMALL_BODY_HEIGHT
                   End If
               End If
+              If UBound(words) >= 105 Then
+                  theOptions.InactiveSectionBarTransparency = CInt(words(105))
+              ElseIf theOptions.CrimsonType = 1 Then
+                  theOptions.InactiveSectionBarTransparency = 50
+                  If words(25) = "212;215;219" Then theOptions.seenTextColorBG = DeserializeColor("222;222;227")
+                  If words(26) = "230;232;236" Then theOptions.unseenTextColorBG = DeserializeColor("242;242;247")
+              End If
 
 
 550       End If
@@ -436,6 +443,7 @@ Function getDefaultOptions() As ProgressDotsOptions
               .PanelShadow = gblPanelShadow
               .PresetSize = gblPresetSize
               .CrimsonType = gblCrimsonType
+              .InactiveSectionBarTransparency = gblInactiveSectionBarTransparency
               .BandHeightMode = gblBandHeightMode
               
               
@@ -463,7 +471,7 @@ Sub InitializePIVersion()
           'Version for settings-format saved in presentation
 10        gblIndicatorSettingsVersion = "Version20231115_1200"
 20        gblProgramVersionBase = "1.960"   'this is checked at online version check, see cmdWebCheck_Click in frmHelp
-30        gblProgramVersion = gblProgramVersionBase & " CN.11.6 32b/64b" & " / Settings: " & gblIndicatorSettingsVersion
+30        gblProgramVersion = gblProgramVersionBase & " CN.11.7 32b/64b" & " / Settings: " & gblIndicatorSettingsVersion
           
 End Sub
 
@@ -1128,6 +1136,7 @@ Sub optionsToRibbon(theOptions As ProgressDotsOptions)
           gblPanelShadow = theOptions.PanelShadow
           gblPresetSize = theOptions.PresetSize
           gblCrimsonType = theOptions.CrimsonType
+          gblInactiveSectionBarTransparency = theOptions.InactiveSectionBarTransparency
           gblBandHeightMode = theOptions.BandHeightMode
           gblFlatRuleMode = theOptions.FlatRuleMode
           gblFlatRuleWidth = theOptions.FlatRuleWidth
@@ -1276,7 +1285,8 @@ Function SerializeProgressOptions(theOptions As ProgressDotsOptions) As String
               SerializeProgressOptions = SerializeProgressOptions & " " & .CounterMode & " " & .DensityMode & " " & _
                   Trim$(Str$(.MinMarkerLength)) & " " & .TitleOverflow & " " & .TitleAlignment & " " & .TitleCase & " " & _
                   .FlatRuleMode & " " & Trim$(Str$(.FlatRuleWidth)) & " " & SerializeColor(.FlatRuleColor) & " " & .MarkerKind & " " & .PanelShadow
-              SerializeProgressOptions = SerializeProgressOptions & " " & .PresetSize & " " & .CrimsonType & " " & .BandHeightMode
+              SerializeProgressOptions = SerializeProgressOptions & " " & .PresetSize & " " & .CrimsonType & " " & .BandHeightMode & _
+                      " " & .InactiveSectionBarTransparency
 
                                   
 50        End With
@@ -1364,7 +1374,8 @@ Function SerializeProgressOptionsRibbon() As String
           SerializeProgressOptionsRibbon = SerializeProgressOptionsRibbon & " " & gblCounterMode & " " & gblDensityMode & " " & _
               Trim$(Str$(gblMinMarkerLength)) & " " & gblTitleOverflow & " " & gblTitleAlignment & " " & gblTitleCase & " " & _
               gblFlatRuleMode & " " & Trim$(Str$(gblFlatRuleWidth)) & " " & gblFlatRuleColor & " " & gblMarkerKind & " " & gblPanelShadow
-          SerializeProgressOptionsRibbon = SerializeProgressOptionsRibbon & " " & gblPresetSize & " " & gblCrimsonType & " " & gblBandHeightMode
+          SerializeProgressOptionsRibbon = SerializeProgressOptionsRibbon & " " & gblPresetSize & " " & gblCrimsonType & " " & gblBandHeightMode & _
+              " " & gblInactiveSectionBarTransparency
 
 exit_proc:
 40        Exit Function

@@ -600,7 +600,7 @@
   "衬线栏题与栏线组成编辑版面，逐页刻度按五页分组。": "Serif headings and column rules form an editorial layout. Slide ticks are grouped in fives.",
   "层次": "Layers",
   "深红层叠": "Crimson Layers",
-  "深红当前章与连接条无缝相接，外缘带柔和投影。圆角页标占每章中间的 80%。当前页标发光，其余页标厚度为当前的 48%，透明度为 70%。上下停靠时，小号章体高 16 pt。": "The crimson section and strip join seamlessly with a soft outer shadow. Rounded markers span the middle 80% of each section. The current marker glows. Other markers are 48% as thick and 70% transparent. Small panels are 16 pt high at the top or bottom.",
+  "深红当前章与连接条无缝相接。其他章节沿用轻盈层次的底色，页标透明度为 50%。当前章内，当前页标发光，其余页标透明度为 70%。非当前页标厚度为当前的 48%，每章的圆角页标居中占章宽的 80%。上下停靠时，小号章体高 16 pt。": "The crimson section joins the strip. Other sections use the Light Layers backgrounds and 50% marker transparency. The current marker glows. Other markers in the same section are 70% transparent. Inactive markers are 48% as thick as the current marker. Markers span the middle 80% of each section. Small panels are 16 pt high at the top or bottom.",
   "轻盈层次": "Light Layers",
   "轻影章节面各自成片，内置细小圆节点；当前章节带下沿标识。": "Each section has its own softly shadowed panel and small dots. A line along the lower edge marks the current section.",
   "极简": "Minimal",

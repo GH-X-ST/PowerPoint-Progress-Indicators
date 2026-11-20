@@ -193,6 +193,7 @@ Type ProgressDotsOptions
     PanelShadow As Integer
     PresetSize As Integer
     CrimsonType As Integer
+    InactiveSectionBarTransparency As Integer
     BandHeightMode As Integer
 End Type
 
@@ -201,6 +202,7 @@ Private Const PI_EXACT_BAND As Integer = 2
 Public Const PI_SMALL_BODY_HEIGHT As Double = 13
 Public Const PI_CRIMSON_SMALL_BODY_HEIGHT As Double = 16
 Private Const PI_CRIMSON_MARKER_SPAN As Double = 0.8
+Private Const PI_CRIMSON_NONCURRENT_PAGE_TRANSPARENCY As Integer = 70
 Private Const PI_INACTIVE_SEGMENT_HEIGHT As Double = 0.48
 
 ' The extra array slot stores the end sentinel after 100 sections.
@@ -947,6 +949,7 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
           Dim dblSpaceIndicatorAdjust As Double
           Dim dblIndicatorSqueeze  As Double
 
+          Dim currentSection As Long
           Dim sectionIs As Integer  '0= Seen, 1= Active, 2= UNseen
           Dim visibleSectionOrdinal As Long, sectionBarColor As Long
           
@@ -1294,6 +1297,7 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
                       ' select correct color
 940                   If gblLastPIslideNum >= sectinfo.lngArySecStart(sectNum) And gblLastPIslideNum < sectinfo.lngArySecStart(sectNum + 1) Then
 950                       sectionIs = 1 '0 = Seen, 1= Active, 2= Unseen
+                          currentSection = sectNum
 960                       .TextRange.Font.Color = lngCurTxtColF   'ColorToRGB(theOptions.XXXX)
 970                       If theOptions.useTextColorBG_Current = 1 Then
 980                           newShape2.Fill.BackColor.RGB = lngCurTxtColB
@@ -1795,7 +1799,7 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
               If Len(mPITraceFile) > 0 Then PI_Trace "navigation.text"
               PI_FinalizeNavigationText oGroupShape, theOptions
               If Len(mPITraceFile) > 0 Then PI_Trace "navigation.glow"
-              PI_FinalizeNavigationGlow oGroupShape, theOptions, CLng(slideNumVisible)
+              PI_FinalizeNavigationGlow oGroupShape, theOptions, CLng(slideNumVisible), currentSection
               Set mPILastDrawResult = oGroupShape
           ElseIf numShapes = 1 Then
               Set oGroupShape = renderPresentation.Slides(slideNum).Shapes(firstShape)
@@ -1804,7 +1808,7 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
               If Len(mPITraceFile) > 0 Then PI_Trace "navigation.text"
               PI_FinalizeNavigationText oGroupShape, theOptions
               If Len(mPITraceFile) > 0 Then PI_Trace "navigation.glow"
-              PI_FinalizeNavigationGlow oGroupShape, theOptions, CLng(slideNumVisible)
+              PI_FinalizeNavigationGlow oGroupShape, theOptions, CLng(slideNumVisible), currentSection
               Set mPILastDrawResult = oGroupShape
 2440      End If
           'END Group all the new shapes.
@@ -3973,13 +3977,13 @@ Private Sub PI_SizePageMarker(ByVal marker As Shape, opts As ProgressDotsOptions
 End Sub
 
 Private Sub PI_FinalizeNavigationGlow(ByVal navigation As Shape, opts As ProgressDotsOptions, _
-                                       ByVal visibleIndex As Long)
+                                       ByVal visibleIndex As Long, ByVal currentSection As Long)
     Dim index As Long, role As String, isCurrent As Boolean
     Dim relativePage As Integer, transparency As Double
     If opts.FlatBar <> 1 Then Exit Sub
     If navigation.Type = msoGroup Then
         For index = 1 To navigation.GroupItems.Count
-            PI_FinalizeNavigationGlow navigation.GroupItems.Item(index), opts, visibleIndex
+            PI_FinalizeNavigationGlow navigation.GroupItems.Item(index), opts, visibleIndex, currentSection
         Next index
     Else
         role = LCase$(navigation.Tags("PI_ROLE"))
@@ -3991,13 +3995,21 @@ Private Sub PI_FinalizeNavigationGlow(ByVal navigation As Shape, opts As Progres
                 PI_SizePageMarker navigation, opts, relativePage
             End If
             PI_BarApplyGlow navigation, opts, isCurrent
-            If opts.LayeredNavigation = 1 And PI_UsesSectionBand(opts) Then
+            If opts.CrimsonType = 1 Or (opts.LayeredNavigation = 1 And PI_UsesSectionBand(opts)) Then
                 ' Apply opacity after the final fill color, outline, and dock transform.
                 Select Case relativePage
-                    Case -1: transparency = opts.transparencyIndicatorSeen / 100
-                    Case 0: transparency = opts.transparencyIndicatorActive / 100
-                    Case 1: transparency = opts.transparencyIndicatorUnseen / 100
+                    Case -1: transparency = opts.transparencyIndicatorSeen
+                    Case 0: transparency = opts.transparencyIndicatorActive
+                    Case 1: transparency = opts.transparencyIndicatorUnseen
                 End Select
+                If opts.CrimsonType = 1 And relativePage <> 0 Then
+                    ' Explicit past/future opacity edits apply across chapters.
+                    If CLng(navigation.Tags("PI_SECTION")) <> currentSection And _
+                            transparency = PI_CRIMSON_NONCURRENT_PAGE_TRANSPARENCY Then
+                        transparency = opts.InactiveSectionBarTransparency
+                    End If
+                End If
+                transparency = transparency / 100
                 If LCase$(navigation.Tags("PI_OUTLINED")) = "yes" Then
                     navigation.Line.Transparency = transparency
                 Else
@@ -4027,6 +4039,7 @@ End Sub
 Private Sub PI_SetBandDefaults()
     gblPresetSize = 0
     gblCrimsonType = 0
+    gblInactiveSectionBarTransparency = 0
     gblBandHeightMode = 0
     gblTitleAlignment = 0
     gblTitleCase = 0
@@ -4267,7 +4280,7 @@ Private Function PI_StyleRecipe(ByVal styleID As String) As String
         Case "serif_editorial"
             PI_StyleRecipe = "layered=0|fontName=Times New Roman|sectionGap=4|height=38|textSize=12.5|textGap=4|seenBackground=#E4E0DA|currentBackground=#FFFFFF|unseenBackground=#F8F5EF|seenForeground=#3F372F|currentForeground=#5C3F2B|unseenForeground=#3F372F|numbering=1|currentBold=1|barHeight=6|roundness=0|accentMode=4|accentColor=#8C6749|accentWidth=1|markerKind=2|flatRuleMode=3"
         Case "polyu_layered"
-            PI_StyleRecipe = "shadowBlur=10|glow=1|glowRadius=4|glowTransparency=55|contrast=1|markerKind=0|flatRuleMode=0|barHeight=2.5|layered=1|shadowTransparency=62|shadowDistance=2.5|depthStep=0.8|flatRuleColor=#858F9A|flatRuleWidth=0.85|seenBackground=#D4D7DB|seenBarTransparency=70|unseenBarTransparency=70|fontName=Inter Medium|currentBold=1|crimsonType=1"
+            PI_StyleRecipe = "shadowBlur=10|glow=1|glowRadius=4|glowTransparency=55|contrast=1|markerKind=0|flatRuleMode=0|barHeight=2.5|layered=1|shadowTransparency=62|shadowDistance=2.5|depthStep=0.8|flatRuleColor=#858F9A|flatRuleWidth=0.85|seenBackground=#DEDEE3|unseenBackground=#F2F2F7|inactiveSectionBarTransparency=50|seenBarTransparency=70|unseenBarTransparency=70|fontName=Inter Medium|currentBold=1|crimsonType=1"
         Case "quiet_layered"
             PI_StyleRecipe = "seenBackground=#DEDEE3|currentBackground=#FFFFFF|unseenBackground=#F2F2F7|seenForeground=#3C3C43|currentForeground=#9E1F38|unseenForeground=#3C3C43|shadowBlur=2|shadowTransparency=64|shadowDistance=1.3|depthStep=0.25|accentMode=1|glow=1|markerKind=3|flatRuleMode=0|barHeight=5|futureOutline=1|panelShadow=1|sectionGap=4"
         Case "minimal_underline"
@@ -4372,6 +4385,7 @@ Private Sub PI_ApplyStyleValues(ByVal values As String)
                 Case "shadowTransparency": gblLayerShadowTransparency = Val(value)
                 Case "shadowDistance": gblLayerShadowDistance = Val(value)
                 Case "depthStep": gblLayerDepthStep = Val(value)
+                Case "inactiveSectionBarTransparency": gblInactiveSectionBarTransparency = Val(value)
                 Case "seenBarTransparency": gblTransparencyIndicatorSeen = Val(value)
                 Case "currentBarTransparency": gblTransparencyIndicatorActive = Val(value)
                 Case "unseenBarTransparency": gblTransparencyIndicatorUnseen = Val(value)

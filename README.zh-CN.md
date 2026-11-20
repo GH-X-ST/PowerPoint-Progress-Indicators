@@ -9,7 +9,7 @@
   <sub><a href="https://github.com/AdamWilsonLab/progress_indicators">上游 GitHub 仓库（AdamWilsonLab/progress_indicators）</a> · <a href="https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac">Olaf Nöhring 的项目页</a></sub>
 </p>
 
-<p align="center"><sub>Windows 桌面版 PowerPoint &nbsp;|&nbsp; CN.11.6 / EN.11.6</sub></p>
+<p align="center"><sub>Windows 桌面版 PowerPoint &nbsp;|&nbsp; CN.11.7 / EN.11.7</sub></p>
 
 <img src="docs/assets/native/crimson-layers.webp" alt="深红层叠进度条：当前在 Design 章的第 3 页，章名下方的第三个页标发亮。" width="100%" />
 
@@ -42,8 +42,8 @@
 
 | 下载 | 解压后在 PowerPoint 中选择 |
 | --- | --- |
-| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.6/ProgressIndicators-CN.11.6.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/cn-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/cn-light.svg" /><img src="docs/assets/badges/cn-light.svg" alt="下载 CN.11.6 压缩包" width="164" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_CN11_6.ppam` |
-| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.6/ProgressIndicators-EN.11.6.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/en-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/en-light.svg" /><img src="docs/assets/badges/en-light.svg" alt="下载 EN.11.6 压缩包" width="164" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_EN11_6.ppam` |
+| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.7/ProgressIndicators-CN.11.7.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/cn-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/cn-light.svg" /><img src="docs/assets/badges/cn-light.svg" alt="下载 CN.11.7 压缩包" width="164" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_CN11_7.ppam` |
+| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.7/ProgressIndicators-EN.11.7.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/en-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/en-light.svg" /><img src="docs/assets/badges/en-light.svg" alt="下载 EN.11.7 压缩包" width="164" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_EN11_7.ppam` |
 
 1. 在 Windows 桌面版 PowerPoint 中打开 **文件 > 选项 > 加载项**。
 2. 在窗口底部的 **管理** 列表中选择 **PowerPoint 加载项**，点击 **转到**。如果列表里已启用旧版或另一种语言的版本，先取消勾选。
@@ -142,7 +142,7 @@
   <img src="docs/assets/native/surfaces-light.webp" alt="独立章节阴影、裁切背景字、两侧渐变的对照。背景字示例中 Research 和 Results 的大字只显示在各自色块里。" width="100%" />
 </picture>
 
-页首的 **深红层叠** 将当前章和底部的红色连接条连成一体。相邻的色块逐层相叠，越靠近当前章就越靠前。当前章名用 Inter SemiBold，其他章名用 Inter Medium。当前页的标记较厚，带有辉光。其余页标都是细条，透明度为 70%，包括当前章内的其他页。在制作和放映电脑上都安装这两种字重，才能看到预设原有的字形。[下载 Inter](https://rsms.me/inter/)
+页首的 **深红层叠** 将当前章和底部的红色连接条连成一体。相邻的色块逐层相叠，越靠近当前章就越靠前。当前章名用 Inter SemiBold，其他章名用 Inter Medium。当前页的标记较厚，带有辉光。当前章的其他页标是细条，透明度为 70%。已讲和未讲章节沿用**轻盈层次**的两种灰色底色，页标透明度为 50%。在制作和放映电脑上都安装这两种字重，才能看到预设原有的字形。[下载 Inter](https://rsms.me/inter/)
 
 <details>
 <summary>给当前章加一道线，或在相邻章节之间加分隔线</summary>
@@ -501,10 +501,10 @@ VBA 模块、窗体和功能区 XML 在 `source/` 中。修改预设参数时，
 ```powershell
 uv venv --python 3.12 .venv
 uv pip install --python .venv\Scripts\python.exe -r requirements-build.txt
-.\.venv\Scripts\python.exe build_package.py --output-dir rebuild --version-token CN11_6 --report rebuild\package-validation.json
+.\.venv\Scripts\python.exe build_package.py --output-dir rebuild --version-token CN11_7 --report rebuild\package-validation.json
 ```
 
-输出文件是 `rebuild/ProgressIndicators_v1960_3264b_SB_CN11_6.pptm`。要得到可安装的 `.ppam`，用发布脚本调用 Windows 桌面版 PowerPoint 另存这份文稿。[中文版构建与发布说明](BUILD_zh-CN.txt)
+输出文件是 `rebuild/ProgressIndicators_v1960_3264b_SB_CN11_7.pptm`。要得到可安装的 `.ppam`，用发布脚本调用 Windows 桌面版 PowerPoint 另存这份文稿。[中文版构建与发布说明](BUILD_zh-CN.txt)
 
 <a id="license"></a>
 <a id="许可证与署名"></a>

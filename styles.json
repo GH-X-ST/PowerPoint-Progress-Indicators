@@ -1,5 +1,5 @@
 {
-  "version": "CN.11.6",
+  "version": "CN.11.7",
   "common": {
     "layered": 0,
     "height": 34,
@@ -253,7 +253,7 @@
       "id": "polyu_layered",
       "name": "深红层叠",
       "family": "层次",
-      "description": "深红当前章与连接条无缝相接，外缘带柔和投影。圆角页标占每章中间的 80%。当前页标发光，其余页标厚度为当前的 48%，透明度为 70%。上下停靠时，小号章体高 16 pt。",
+      "description": "深红当前章与连接条无缝相接。其他章节沿用轻盈层次的底色，页标透明度为 50%。当前章内，当前页标发光，其余页标透明度为 70%。非当前页标厚度为当前的 48%，每章的圆角页标居中占章宽的 80%。上下停靠时，小号章体高 16 pt。",
       "values": {
         "shadowBlur": 10,
         "glow": 1,
@@ -269,7 +269,9 @@
         "depthStep": 0.8,
         "flatRuleColor": "#858F9A",
         "flatRuleWidth": 0.85,
-        "seenBackground": "#D4D7DB",
+        "seenBackground": "#DEDEE3",
+        "unseenBackground": "#F2F2F7",
+        "inactiveSectionBarTransparency": 50,
         "seenBarTransparency": 70,
         "unseenBarTransparency": 70,
         "fontName": "Inter Medium",

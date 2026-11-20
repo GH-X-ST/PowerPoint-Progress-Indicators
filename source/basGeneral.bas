@@ -58,6 +58,7 @@ Public gblPanelShadow As Integer
 Public gblPresetSize As Integer
 Public gblCrimsonType As Integer
 Public gblInactiveSectionBarTransparency As Integer
+Public Const PI_STYLE_CONFIG_REVISION As Integer = 2
 Public gblBandHeightMode As Integer
 Public gblFlatRuleMode As Integer
 Public gblFlatRuleWidth As Double
@@ -801,7 +802,7 @@ Private Function PI_ValidStoredConfig(ByVal config As String) As Boolean
     If InStr(config, vbCr) > 0 Or InStr(config, vbLf) > 0 Or InStr(config, vbTab) > 0 Then Exit Function
     fields = Split(config, " ")
     Select Case UBound(fields)
-        Case 99, 101, 103, 104, 105
+        Case 99, 101, 103, 104, 105, 106
         Case Else: Exit Function
     End Select
     If fields(0) <> gblIndicatorSettingsVersion Then Exit Function
@@ -844,6 +845,8 @@ Private Function PI_ValidStoredConfig(ByVal config As String) As Boolean
                         If number < 0 Or number >= UBound(gblvarShapeListIDs) Then Exit Function
                     Case 14, 15, 17, 19 To 24, 28, 45, 47, 48, 56, 60, 64, 67, 79 To 82, 87, 89, 96, 101, 103
                         If number <> 0 And number <> 1 Then Exit Function
+                    Case 106
+                        If number <> PI_STYLE_CONFIG_REVISION Then Exit Function
                     Case 102, 104
                         If number < 0 Or number > 2 Or number <> Fix(number) Then Exit Function
                     Case 33

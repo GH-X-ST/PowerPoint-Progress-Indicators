@@ -202,7 +202,7 @@ Private Const PI_EXACT_BAND As Integer = 2
 Public Const PI_SMALL_BODY_HEIGHT As Double = 13
 Public Const PI_CRIMSON_SMALL_BODY_HEIGHT As Double = 16
 Private Const PI_CRIMSON_MARKER_SPAN As Double = 0.8
-Private Const PI_CRIMSON_NONCURRENT_PAGE_TRANSPARENCY As Integer = 70
+Public Const PI_CRIMSON_NONCURRENT_PAGE_TRANSPARENCY As Integer = 85
 Private Const PI_INACTIVE_SEGMENT_HEIGHT As Double = 0.48
 
 ' The extra array slot stores the end sentinel after 100 sections.
@@ -4002,10 +4002,11 @@ Private Sub PI_FinalizeNavigationGlow(ByVal navigation As Shape, opts As Progres
                     Case 0: transparency = opts.transparencyIndicatorActive
                     Case 1: transparency = opts.transparencyIndicatorUnseen
                 End Select
-                If opts.CrimsonType = 1 And relativePage <> 0 Then
-                    ' Explicit past/future opacity edits apply across chapters.
-                    If CLng(navigation.Tags("PI_SECTION")) <> currentSection And _
-                            transparency = PI_CRIMSON_NONCURRENT_PAGE_TRANSPARENCY Then
+                If opts.CrimsonType = 1 And relativePage <> 0 And _
+                        opts.InactiveSectionBarTransparency <> PI_CRIMSON_NONCURRENT_PAGE_TRANSPARENCY Then
+                    ' Only an explicitly configured section override needs the chapter lookup.
+                    If transparency = PI_CRIMSON_NONCURRENT_PAGE_TRANSPARENCY And _
+                            CLng(navigation.Tags("PI_SECTION")) <> currentSection Then
                         transparency = opts.InactiveSectionBarTransparency
                     End If
                 End If
@@ -4280,7 +4281,7 @@ Private Function PI_StyleRecipe(ByVal styleID As String) As String
         Case "serif_editorial"
             PI_StyleRecipe = "layered=0|fontName=Times New Roman|sectionGap=4|height=38|textSize=12.5|textGap=4|seenBackground=#E4E0DA|currentBackground=#FFFFFF|unseenBackground=#F8F5EF|seenForeground=#3F372F|currentForeground=#5C3F2B|unseenForeground=#3F372F|numbering=1|currentBold=1|barHeight=6|roundness=0|accentMode=4|accentColor=#8C6749|accentWidth=1|markerKind=2|flatRuleMode=3"
         Case "polyu_layered"
-            PI_StyleRecipe = "shadowBlur=10|glow=1|glowRadius=4|glowTransparency=55|contrast=1|markerKind=0|flatRuleMode=0|barHeight=2.5|layered=1|shadowTransparency=62|shadowDistance=2.5|depthStep=0.8|flatRuleColor=#858F9A|flatRuleWidth=0.85|seenBackground=#DEDEE3|unseenBackground=#F2F2F7|inactiveSectionBarTransparency=50|seenBarTransparency=70|unseenBarTransparency=70|fontName=Inter Medium|currentBold=1|crimsonType=1"
+            PI_StyleRecipe = "shadowBlur=10|glow=1|glowRadius=4|glowTransparency=55|contrast=1|markerKind=0|flatRuleMode=0|barHeight=2.5|layered=1|shadowTransparency=62|shadowDistance=2.5|depthStep=0.8|flatRuleColor=#858F9A|flatRuleWidth=0.85|seenBackground=#DEDEE3|unseenBackground=#F2F2F7|inactiveSectionBarTransparency=85|seenBarTransparency=85|unseenBarTransparency=85|fontName=Inter Medium|currentBold=1|crimsonType=1"
         Case "quiet_layered"
             PI_StyleRecipe = "seenBackground=#DEDEE3|currentBackground=#FFFFFF|unseenBackground=#F2F2F7|seenForeground=#3C3C43|currentForeground=#9E1F38|unseenForeground=#3C3C43|shadowBlur=2|shadowTransparency=64|shadowDistance=1.3|depthStep=0.25|accentMode=1|glow=1|markerKind=3|flatRuleMode=0|barHeight=5|futureOutline=1|panelShadow=1|sectionGap=4"
         Case "minimal_underline"

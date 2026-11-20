@@ -314,7 +314,7 @@ def main():
 
         source_dir = prepare_english(source_dir, ROOT, args.output_dir / "en")
     version = args.version_token or (
-        "EN11_7" if args.language == "en" else "CN11_7"
+        "EN11_8" if args.language == "en" else "CN11_8"
     )
     base_dir = RESOURCE_ROOT / "original/ProgressIndicators_v1960_3264b"
     reports = []

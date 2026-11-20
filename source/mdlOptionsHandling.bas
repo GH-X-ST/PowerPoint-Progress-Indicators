@@ -238,9 +238,15 @@ Function DeserializeProgressOptions(s As String) As ProgressDotsOptions
               If UBound(words) >= 105 Then
                   theOptions.InactiveSectionBarTransparency = CInt(words(105))
               ElseIf theOptions.CrimsonType = 1 Then
-                  theOptions.InactiveSectionBarTransparency = 50
+                  theOptions.InactiveSectionBarTransparency = PI_CRIMSON_NONCURRENT_PAGE_TRANSPARENCY
                   If words(25) = "212;215;219" Then theOptions.seenTextColorBG = DeserializeColor("222;222;227")
                   If words(26) = "230;232;236" Then theOptions.unseenTextColorBG = DeserializeColor("242;242;247")
+              End If
+              If theOptions.CrimsonType = 1 And UBound(words) < 106 Then
+                  ' Earlier presets used 70% for other slides and 50% for other sections.
+                  If theOptions.transparencyIndicatorSeen = 70 Then theOptions.transparencyIndicatorSeen = PI_CRIMSON_NONCURRENT_PAGE_TRANSPARENCY
+                  If theOptions.transparencyIndicatorUnseen = 70 Then theOptions.transparencyIndicatorUnseen = PI_CRIMSON_NONCURRENT_PAGE_TRANSPARENCY
+                  If theOptions.InactiveSectionBarTransparency = 50 Then theOptions.InactiveSectionBarTransparency = PI_CRIMSON_NONCURRENT_PAGE_TRANSPARENCY
               End If
 
 
@@ -471,7 +477,7 @@ Sub InitializePIVersion()
           'Version for settings-format saved in presentation
 10        gblIndicatorSettingsVersion = "Version20231115_1200"
 20        gblProgramVersionBase = "1.960"   'this is checked at online version check, see cmdWebCheck_Click in frmHelp
-30        gblProgramVersion = gblProgramVersionBase & " CN.11.7 32b/64b" & " / Settings: " & gblIndicatorSettingsVersion
+30        gblProgramVersion = gblProgramVersionBase & " CN.11.8 32b/64b" & " / Settings: " & gblIndicatorSettingsVersion
           
 End Sub
 
@@ -1286,7 +1292,7 @@ Function SerializeProgressOptions(theOptions As ProgressDotsOptions) As String
                   Trim$(Str$(.MinMarkerLength)) & " " & .TitleOverflow & " " & .TitleAlignment & " " & .TitleCase & " " & _
                   .FlatRuleMode & " " & Trim$(Str$(.FlatRuleWidth)) & " " & SerializeColor(.FlatRuleColor) & " " & .MarkerKind & " " & .PanelShadow
               SerializeProgressOptions = SerializeProgressOptions & " " & .PresetSize & " " & .CrimsonType & " " & .BandHeightMode & _
-                      " " & .InactiveSectionBarTransparency
+                      " " & .InactiveSectionBarTransparency & " " & PI_STYLE_CONFIG_REVISION
 
                                   
 50        End With
@@ -1375,7 +1381,7 @@ Function SerializeProgressOptionsRibbon() As String
               Trim$(Str$(gblMinMarkerLength)) & " " & gblTitleOverflow & " " & gblTitleAlignment & " " & gblTitleCase & " " & _
               gblFlatRuleMode & " " & Trim$(Str$(gblFlatRuleWidth)) & " " & gblFlatRuleColor & " " & gblMarkerKind & " " & gblPanelShadow
           SerializeProgressOptionsRibbon = SerializeProgressOptionsRibbon & " " & gblPresetSize & " " & gblCrimsonType & " " & gblBandHeightMode & _
-              " " & gblInactiveSectionBarTransparency
+              " " & gblInactiveSectionBarTransparency & " " & PI_STYLE_CONFIG_REVISION
 
 exit_proc:
 40        Exit Function

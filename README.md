@@ -9,7 +9,7 @@
   <sub><a href="https://github.com/AdamWilsonLab/progress_indicators">Upstream GitHub repository (AdamWilsonLab/progress_indicators)</a> | <a href="https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac">Olaf Nöhring's project page</a></sub>
 </p>
 
-<p align="center"><sub>PowerPoint for Windows &nbsp;|&nbsp; EN.11.7 / CN.11.7</sub></p>
+<p align="center"><sub>PowerPoint for Windows &nbsp;|&nbsp; EN.11.8 / CN.11.8</sub></p>
 
 <img src="docs/assets/native/crimson-layers.webp" alt="Five section tabs span the slide. Design is red, and its third marker glows white." width="100%" />
 
@@ -38,8 +38,8 @@ Download the ZIP for the language you want on the PowerPoint ribbon. Both packag
 
 | Download | File to open in PowerPoint |
 | --- | --- |
-| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.7/ProgressIndicators-EN.11.7.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/en-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/en-light.svg" /><img src="docs/assets/badges/en-light.svg" alt="Download the English edition (ZIP)" width="164" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_EN11_7.ppam` |
-| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.7/ProgressIndicators-CN.11.7.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/cn-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/cn-light.svg" /><img src="docs/assets/badges/cn-light.svg" alt="Download the Simplified Chinese edition (ZIP)" width="164" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_CN11_7.ppam` |
+| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.8/ProgressIndicators-EN.11.8.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/en-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/en-light.svg" /><img src="docs/assets/badges/en-light.svg" alt="Download the English edition (ZIP)" width="164" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_EN11_8.ppam` |
+| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.8/ProgressIndicators-CN.11.8.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/cn-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/cn-light.svg" /><img src="docs/assets/badges/cn-light.svg" alt="Download the Simplified Chinese edition (ZIP)" width="164" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_CN11_8.ppam` |
 
 1. Extract the ZIP. In PowerPoint for Windows, open **File > Options > Add-ins**.
 2. At the bottom of the dialog, set **Manage** to **PowerPoint Add-ins** and click **Go**.
@@ -171,7 +171,7 @@ On a top bar, **Cropped Backdrop Text (Top) > Backdrop Text for Other Sections**
   <img src="docs/assets/native/surfaces-light.webp" alt="Three bars show separate panel shadows, large cropped names behind Research and Results, and a gradient with teal before Design and brown after." width="100%" />
 </picture>
 
-**Crimson Layers** joins the current section to a 1 pt strip. Where two sections meet, the one closer to the current section casts its shadow on the other. The current slide has a thicker marker with a glow. The other markers in the current section are 70% transparent. Earlier and later sections use the same gray backgrounds as **Light Layers**, with thin markers at 50% transparency. To adjust the strip or soften the shadows, open **Layered Navigation**. To match the lettering in the screenshot, install Inter SemiBold for the current section and Inter Medium for the others on the computers used to edit and present the slides. [Inter fonts](https://rsms.me/inter/)
+**Crimson Layers** joins the current section to a 1 pt strip. Where two sections meet, the one closer to the current section casts its shadow on the other. The current slide has a thicker marker with a glow. Every other slide marker is thin and 85% transparent, including the others in the current section. Earlier and later sections use the same gray backgrounds as **Light Layers**. To adjust the strip or soften the shadows, open **Layered Navigation**. To match the lettering in the screenshot, install Inter SemiBold for the current section and Inter Medium for the others on the computers used to edit and present the slides. [Inter fonts](https://rsms.me/inter/)
 
 <details>
 <summary>Use colors from the presentation theme</summary>
@@ -481,12 +481,12 @@ uv pip install --python .venv\Scripts\python.exe -r requirements-build.txt
 .\.venv\Scripts\python.exe build_package.py --language en --output-dir rebuild --report rebuild/package-validation.json
 ```
 
-The build creates `rebuild/ProgressIndicators_v1960_3264b_SB_EN11_7.pptm`. The English VBA and Ribbon XML are in `rebuild/en/source/` and the translated preset catalog is in `rebuild/en/styles.json`.
+The build creates `rebuild/ProgressIndicators_v1960_3264b_SB_EN11_8.pptm`. The English VBA and Ribbon XML are in `rebuild/en/source/` and the translated preset catalog is in `rebuild/en/styles.json`.
 
 To package the `.ppam`, continue in the same PowerShell window. This step uses desktop PowerPoint and needs permission to run the presentation's macros. Choose a new output file.
 
 ```powershell
-$name = 'ProgressIndicators_v1960_3264b_SB_EN11_7'
+$name = 'ProgressIndicators_v1960_3264b_SB_EN11_8'
 $sourceDeck = (Resolve-Path "rebuild\$name.pptm").Path
 $releaseDir = Join-Path (Get-Location) 'rebuild\distribution'
 $ppam = Join-Path $releaseDir "$name.ppam"

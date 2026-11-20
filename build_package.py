@@ -303,18 +303,27 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--source-dir", type=Path, default=ROOT / "source")
     parser.add_argument("--output-dir", type=Path, default=ROOT / "output")
-    parser.add_argument("--version-token", default="CN11_1",
-                        help="Filename suffix following SB_, for example CN11.")
+    parser.add_argument("--language", choices=("zh-CN", "en"), default="zh-CN")
+    parser.add_argument("--version-token",
+                        help="Override the edition's default filename suffix.")
     parser.add_argument("--report", type=Path, default=ROOT / "package-validation.json")
     args = parser.parse_args()
+    source_dir = args.source_dir
+    if args.language == "en":
+        from english_sources import prepare_english
+
+        source_dir = prepare_english(source_dir, ROOT, args.output_dir / "en")
+    version = args.version_token or (
+        "EN11_1" if args.language == "en" else "CN11_1"
+    )
     base_dir = RESOURCE_ROOT / "original/ProgressIndicators_v1960_3264b"
     reports = []
     for extension in ("ppam", "pptm"):
         base = base_dir / f"ProgressIndicators_v1960_3264b.{extension}"
         output = args.output_dir / (
-            f"ProgressIndicators_v1960_3264b_SB_{args.version_token}.{extension}"
+            f"ProgressIndicators_v1960_3264b_SB_{version}.{extension}"
         )
-        reports.append(build_package(base, args.source_dir, output))
+        reports.append(build_package(base, source_dir, output))
     args.report.write_text(json.dumps(reports, indent=2, ensure_ascii=False), encoding="utf-8")
     print(json.dumps([{key: value for key, value in item.items() if key != "vba"} | {
         "modules": item["vba"]["module_count"], "source_codepage": item["vba"]["source_codepage"]}

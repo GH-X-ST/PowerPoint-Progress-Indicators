@@ -661,63 +661,223 @@
           <button id="btnRenderStats" label="上次生成统计" onAction="PI_ShowRenderStats" screentip="查看实际生成耗时和复用情况"/>
         </group>
         <group id="grpModernStyles" label="设计样式" autoScale="true">
-          <menu id="mnuModernStyles" label="样式预设" itemSize="normal" screentip="40 套轻量参数组合的导航设计" supertip="保持停靠边、侧栏宽度、显示绑定、绘制范围、均长模式、计数与密度。沿当前边铺满，不添加字体、图片库或动画资源。只更新视觉参数，随后点击预览或生成。">
+          <menu id="mnuModernStyles" label="样式预设" itemSize="normal" screentip="40 款导航预设，每款均有三种尺寸" supertip="展开预设后选择大号、中号或小号。大号沿用原预设尺寸。导航沿所选边铺满，保留侧栏宽度、显示绑定、绘制范围、均长模式、计数与密度。选择尺寸后，点击“预览”或“生成”。">
             <menuSeparator id="sepStyle_universal_theme" title="通用"/>
-            <button id="btnStyle_universal_theme" label="通用主题" tag="universal_theme" onAction="PI_ModernPreset" screentip="主题色标出当前栏，连续细轨上的粗游标定位当前页。"/>
+            <menu id="btnStyle_universal_theme" label="通用主题" screentip="主题色标出当前栏，连续细轨上的粗游标定位当前页。">
+              <button id="btnStyle_universal_theme_large" label="大号" tag="universal_theme" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_universal_theme_medium" label="中号" tag="universal_theme:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_universal_theme_small" label="小号" tag="universal_theme:small" onAction="PI_ModernPreset"/>
+            </menu>
             <menuSeparator id="sepStyle_expressive_pill" title="圆角与分段"/>
-            <button id="btnStyle_expressive_pill" label="表现型胶囊" tag="expressive_pill" onAction="PI_ModernPreset" screentip="独立胶囊承载章节，圆点标页，实心与空心区分已讲和未讲。"/>
-            <button id="btnStyle_bento_segments" label="Bento 分段" tag="bento_segments" onAction="PI_ModernPreset" screentip="圆角模块分隔章节，编号与方块页标形成双层网格。"/>
-            <button id="btnStyle_glass_dock" label="轻透胶囊" tag="glass_dock" onAction="PI_ModernPreset" screentip="半透明胶囊之间留空，圆节点在每个胶囊内标记页进度。"/>
-            <button id="btnStyle_soft_minimal" label="柔和极简" tag="soft_minimal" onAction="PI_ModernPreset" screentip="柔和圆角分区使用低面积的连续轨道，当前页加粗。"/>
+            <menu id="btnStyle_expressive_pill" label="表现型胶囊" screentip="独立胶囊承载章节，圆点标页，实心与空心区分已讲和未讲。">
+              <button id="btnStyle_expressive_pill_large" label="大号" tag="expressive_pill" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_expressive_pill_medium" label="中号" tag="expressive_pill:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_expressive_pill_small" label="小号" tag="expressive_pill:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_bento_segments" label="Bento 分段" screentip="圆角模块分隔章节，编号与方块页标形成双层网格。">
+              <button id="btnStyle_bento_segments_large" label="大号" tag="bento_segments" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_bento_segments_medium" label="中号" tag="bento_segments:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_bento_segments_small" label="小号" tag="bento_segments:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_glass_dock" label="轻透胶囊" screentip="半透明胶囊之间留空，圆节点在每个胶囊内标记页进度。">
+              <button id="btnStyle_glass_dock_large" label="大号" tag="glass_dock" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_glass_dock_medium" label="中号" tag="glass_dock:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_glass_dock_small" label="小号" tag="glass_dock:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_soft_minimal" label="柔和极简" screentip="柔和圆角分区使用低面积的连续轨道，当前页加粗。">
+              <button id="btnStyle_soft_minimal_large" label="大号" tag="soft_minimal" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_soft_minimal_medium" label="中号" tag="soft_minimal:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_soft_minimal_small" label="小号" tag="soft_minimal:small" onAction="PI_ModernPreset"/>
+            </menu>
             <menuSeparator id="sepStyle_hard_offset" title="排版与图形"/>
-            <button id="btnStyle_hard_offset" label="硬边错位" tag="hard_offset" onAction="PI_ModernPreset" screentip="错位实色底板承托章节卡，方块页标用实心和空心区分进度。"/>
-            <button id="btnStyle_retro_terminal" label="复古终端" tag="retro_terminal" onAction="PI_ModernPreset" screentip="等宽章节索引由分隔线划开；方块模拟终端的字符位置。"/>
-            <button id="btnStyle_serif_editorial" label="衬线编辑" tag="serif_editorial" onAction="PI_ModernPreset" screentip="衬线栏题与栏线组成编辑版面，逐页刻度按五页分组。"/>
+            <menu id="btnStyle_hard_offset" label="硬边错位" screentip="错位实色底板承托章节卡，方块页标用实心和空心区分进度。">
+              <button id="btnStyle_hard_offset_large" label="大号" tag="hard_offset" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_hard_offset_medium" label="中号" tag="hard_offset:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_hard_offset_small" label="小号" tag="hard_offset:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_retro_terminal" label="复古终端" screentip="等宽章节索引由分隔线划开；方块模拟终端的字符位置。">
+              <button id="btnStyle_retro_terminal_large" label="大号" tag="retro_terminal" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_retro_terminal_medium" label="中号" tag="retro_terminal:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_retro_terminal_small" label="小号" tag="retro_terminal:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_serif_editorial" label="衬线编辑" screentip="衬线栏题与栏线组成编辑版面，逐页刻度按五页分组。">
+              <button id="btnStyle_serif_editorial_large" label="大号" tag="serif_editorial" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_serif_editorial_medium" label="中号" tag="serif_editorial:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_serif_editorial_small" label="小号" tag="serif_editorial:small" onAction="PI_ModernPreset"/>
+            </menu>
             <menuSeparator id="sepStyle_polyu_layered" title="层次"/>
-            <button id="btnStyle_polyu_layered" label="深红层叠" tag="polyu_layered" onAction="PI_ModernPreset" screentip="深红当前章与连接条无缝相接，柔和投影沿外轮廓向外晕开。当前页的细圆角横条发光，其余页条均为 70% 透明。"/>
-            <button id="btnStyle_quiet_layered" label="轻盈层次" tag="quiet_layered" onAction="PI_ModernPreset" screentip="轻影章节面各自成片，内置细小圆节点；当前章节带下沿标识。"/>
+            <menu id="btnStyle_polyu_layered" label="深红层叠" screentip="深红当前章与连接条无缝相接，柔和投影沿外轮廓向外晕开。当前页的细圆角横条发光，其余页条均为 70% 透明。">
+              <button id="btnStyle_polyu_layered_large" label="大号" tag="polyu_layered" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_polyu_layered_medium" label="中号" tag="polyu_layered:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_polyu_layered_small" label="小号" tag="polyu_layered:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_quiet_layered" label="轻盈层次" screentip="轻影章节面各自成片，内置细小圆节点；当前章节带下沿标识。">
+              <button id="btnStyle_quiet_layered_large" label="大号" tag="quiet_layered" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_quiet_layered_medium" label="中号" tag="quiet_layered:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_quiet_layered_small" label="小号" tag="quiet_layered:small" onAction="PI_ModernPreset"/>
+            </menu>
             <menuSeparator id="sepStyle_minimal_underline" title="极简"/>
-            <button id="btnStyle_minimal_underline" label="极简下沿线" tag="minimal_underline" onAction="PI_ModernPreset" screentip="垂直细线划开栏目，下沿突出当前章，粗细轨道表示页进度。"/>
-            <button id="btnStyle_minimal_topline" label="极简上沿线" tag="minimal_topline" onAction="PI_ModernPreset" screentip="上沿定位当前栏，等距长短刻度逐页推进。"/>
+            <menu id="btnStyle_minimal_underline" label="极简下沿线" screentip="垂直细线划开栏目，下沿突出当前章，粗细轨道表示页进度。">
+              <button id="btnStyle_minimal_underline_large" label="大号" tag="minimal_underline" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_minimal_underline_medium" label="中号" tag="minimal_underline:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_minimal_underline_small" label="小号" tag="minimal_underline:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_minimal_topline" label="极简上沿线" screentip="上沿定位当前栏，等距长短刻度逐页推进。">
+              <button id="btnStyle_minimal_topline_large" label="大号" tag="minimal_topline" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_minimal_topline_medium" label="中号" tag="minimal_topline:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_minimal_topline_small" label="小号" tag="minimal_topline:small" onAction="PI_ModernPreset"/>
+            </menu>
             <menuSeparator id="sepStyle_material_tonal" title="调性"/>
-            <button id="btnStyle_material_tonal" label="柔和调性" tag="material_tonal" onAction="PI_ModernPreset" screentip="浅色调圆角版块之间留空，当前面加深，圆节点显示页状态。"/>
-            <button id="btnStyle_material_filled" label="实色强调" tag="material_filled" onAction="PI_ModernPreset" screentip="实色当前模块配宽幅直角页段，后续章节留出模块间隙。"/>
+            <menu id="btnStyle_material_tonal" label="柔和调性" screentip="浅色调圆角版块之间留空，当前面加深，圆节点显示页状态。">
+              <button id="btnStyle_material_tonal_large" label="大号" tag="material_tonal" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_material_tonal_medium" label="中号" tag="material_tonal:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_material_tonal_small" label="小号" tag="material_tonal:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_material_filled" label="实色强调" screentip="实色当前模块配宽幅直角页段，后续章节留出模块间隙。">
+              <button id="btnStyle_material_filled_large" label="大号" tag="material_filled" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_material_filled_medium" label="中号" tag="material_filled:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_material_filled_small" label="小号" tag="material_filled:small" onAction="PI_ModernPreset"/>
+            </menu>
             <menuSeparator id="sepStyle_fluent_soft" title="柔影与轮廓"/>
-            <button id="btnStyle_fluent_soft" label="柔影侧标" tag="fluent_soft" onAction="PI_ModernPreset" screentip="侧边强调与整块柔影区分章节面，细轨加粗的位置标记当前页。"/>
-            <button id="btnStyle_fluent_outline" label="精细轮廓" tag="fluent_outline" onAction="PI_ModernPreset" screentip="章节和未讲页都使用轮廓；小方块逐格填实。"/>
+            <menu id="btnStyle_fluent_soft" label="柔影侧标" screentip="侧边强调与整块柔影区分章节面，细轨加粗的位置标记当前页。">
+              <button id="btnStyle_fluent_soft_large" label="大号" tag="fluent_soft" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_fluent_soft_medium" label="中号" tag="fluent_soft:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_fluent_soft_small" label="小号" tag="fluent_soft:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_fluent_outline" label="精细轮廓" screentip="章节和未讲页都使用轮廓；小方块逐格填实。">
+              <button id="btnStyle_fluent_outline_large" label="大号" tag="fluent_outline" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_fluent_outline_medium" label="中号" tag="fluent_outline:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_fluent_outline_small" label="小号" tag="fluent_outline:small" onAction="PI_ModernPreset"/>
+            </menu>
             <menuSeparator id="sepStyle_editorial_numbered" title="编辑排版"/>
-            <button id="btnStyle_editorial_numbered" label="编号编辑风" tag="editorial_numbered" onAction="PI_ModernPreset" screentip="编号栏头与细栏线构成目录，长短页刻度沿栏目推进。"/>
-            <button id="btnStyle_swiss_mono" label="黑白网格" tag="swiss_mono" onAction="PI_ModernPreset" screentip="黑白反转突出当前网格，直角页段与章节边线共享直角结构。"/>
+            <menu id="btnStyle_editorial_numbered" label="编号编辑风" screentip="编号栏头与细栏线构成目录，长短页刻度沿栏目推进。">
+              <button id="btnStyle_editorial_numbered_large" label="大号" tag="editorial_numbered" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_editorial_numbered_medium" label="中号" tag="editorial_numbered:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_editorial_numbered_small" label="小号" tag="editorial_numbered:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_swiss_mono" label="黑白网格" screentip="黑白反转突出当前网格，直角页段与章节边线共享直角结构。">
+              <button id="btnStyle_swiss_mono_large" label="大号" tag="swiss_mono" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_swiss_mono_medium" label="中号" tag="swiss_mono:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_swiss_mono_small" label="小号" tag="swiss_mono:small" onAction="PI_ModernPreset"/>
+            </menu>
             <menuSeparator id="sepStyle_contrast_light" title="高对比"/>
-            <button id="btnStyle_contrast_light" label="高对比浅色" tag="contrast_light" onAction="PI_ModernPreset" screentip="亮底重框划分章节，通过方格轮廓、实心和反色区分三种状态。"/>
-            <button id="btnStyle_contrast_dark" label="高对比深色" tag="contrast_dark" onAction="PI_ModernPreset" screentip="暗底高对比章节框搭配圆节点，未讲页以空心表示。"/>
+            <menu id="btnStyle_contrast_light" label="高对比浅色" screentip="亮底重框划分章节，通过方格轮廓、实心和反色区分三种状态。">
+              <button id="btnStyle_contrast_light_large" label="大号" tag="contrast_light" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_contrast_light_medium" label="中号" tag="contrast_light:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_contrast_light_small" label="小号" tag="contrast_light:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_contrast_dark" label="高对比深色" screentip="暗底高对比章节框搭配圆节点，未讲页以空心表示。">
+              <button id="btnStyle_contrast_dark_large" label="大号" tag="contrast_dark" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_contrast_dark_medium" label="中号" tag="contrast_dark:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_contrast_dark_small" label="小号" tag="contrast_dark:small" onAction="PI_ModernPreset"/>
+            </menu>
             <menuSeparator id="sepStyle_glass_light" title="半透明材质"/>
-            <button id="btnStyle_glass_light" label="浅色半透明" tag="glass_light" onAction="PI_ModernPreset" screentip="带浅色边框和柔影的半透明独立面板，以圆节点标记页位。"/>
-            <button id="btnStyle_glass_smoke" label="深色半透明" tag="glass_smoke" onAction="PI_ModernPreset" screentip="带细框和阴影的深色半透明面板内，当前页游标沿细轨移动。"/>
+            <menu id="btnStyle_glass_light" label="浅色半透明" screentip="带浅色边框和柔影的半透明独立面板，以圆节点标记页位。">
+              <button id="btnStyle_glass_light_large" label="大号" tag="glass_light" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_glass_light_medium" label="中号" tag="glass_light:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_glass_light_small" label="小号" tag="glass_light:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_glass_smoke" label="深色半透明" screentip="带细框和阴影的深色半透明面板内，当前页游标沿细轨移动。">
+              <button id="btnStyle_glass_smoke_large" label="大号" tag="glass_smoke" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_glass_smoke_medium" label="中号" tag="glass_smoke:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_glass_smoke_small" label="小号" tag="glass_smoke:small" onAction="PI_ModernPreset"/>
+            </menu>
             <menuSeparator id="sepStyle_neon_dark" title="技术视觉"/>
-            <button id="btnStyle_neon_dark" label="暗色荧光" tag="neon_dark" onAction="PI_ModernPreset" screentip="暗色分栏上的圆节点按页点亮，当前节点有光晕。"/>
-            <button id="btnStyle_blueprint" label="蓝图线框" tag="blueprint" onAction="PI_ModernPreset" screentip="十字对位标记定位章节端点，稠密的长短页刻度呈现工程图读数。"/>
+            <menu id="btnStyle_neon_dark" label="暗色荧光" screentip="暗色分栏上的圆节点按页点亮，当前节点有光晕。">
+              <button id="btnStyle_neon_dark_large" label="大号" tag="neon_dark" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_neon_dark_medium" label="中号" tag="neon_dark:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_neon_dark_small" label="小号" tag="neon_dark:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_blueprint" label="蓝图线框" screentip="十字对位标记定位章节端点，稠密的长短页刻度呈现工程图读数。">
+              <button id="btnStyle_blueprint_large" label="大号" tag="blueprint" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_blueprint_medium" label="中号" tag="blueprint:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_blueprint_small" label="小号" tag="blueprint:small" onAction="PI_ModernPreset"/>
+            </menu>
             <menuSeparator id="sepStyle_duotone_gradient" title="渐变"/>
-            <button id="btnStyle_duotone_gradient" label="双色调渐变" tag="duotone_gradient" onAction="PI_ModernPreset" screentip="双侧色阶表达章节距离，连续页轨用厚度区分已讲、当前和未讲。"/>
-            <button id="btnStyle_distance_gradient" label="距离渐淡" tag="distance_gradient" onAction="PI_ModernPreset" screentip="细线划开渐变色域，节点沿章节排列，用填充和光晕提示位置。"/>
+            <menu id="btnStyle_duotone_gradient" label="双色调渐变" screentip="双侧色阶表达章节距离，连续页轨用厚度区分已讲、当前和未讲。">
+              <button id="btnStyle_duotone_gradient_large" label="大号" tag="duotone_gradient" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_duotone_gradient_medium" label="中号" tag="duotone_gradient:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_duotone_gradient_small" label="小号" tag="duotone_gradient:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_distance_gradient" label="距离渐淡" screentip="细线划开渐变色域，节点沿章节排列，用填充和光晕提示位置。">
+              <button id="btnStyle_distance_gradient_large" label="大号" tag="distance_gradient" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_distance_gradient_medium" label="中号" tag="distance_gradient:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_distance_gradient_small" label="小号" tag="distance_gradient:small" onAction="PI_ModernPreset"/>
+            </menu>
             <menuSeparator id="sepStyle_paper_warm" title="材质与硬边"/>
-            <button id="btnStyle_paper_warm" label="暖纸柔影" tag="paper_warm" onAction="PI_ModernPreset" screentip="带柔影的纸页用索引卡折角线分区，逐页刻度与衬线标题对齐。"/>
-            <button id="btnStyle_bold_graphic" label="硬边图形" tag="bold_graphic" onAction="PI_ModernPreset" screentip="粗框模块与较大的方形页标形成两级尺度。"/>
+            <menu id="btnStyle_paper_warm" label="暖纸柔影" screentip="带柔影的纸页用索引卡折角线分区，逐页刻度与衬线标题对齐。">
+              <button id="btnStyle_paper_warm_large" label="大号" tag="paper_warm" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_paper_warm_medium" label="中号" tag="paper_warm:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_paper_warm_small" label="小号" tag="paper_warm:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_bold_graphic" label="硬边图形" screentip="粗框模块与较大的方形页标形成两级尺度。">
+              <button id="btnStyle_bold_graphic_large" label="大号" tag="bold_graphic" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_bold_graphic_medium" label="中号" tag="bold_graphic:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_bold_graphic_small" label="小号" tag="bold_graphic:small" onAction="PI_ModernPreset"/>
+            </menu>
             <menuSeparator id="sepAward_0" title="框景与标注"/>
-            <button id="btnStyle_stage_window" label="舞台方窗" tag="stage_window" onAction="PI_ModernPreset" screentip="矩形取景框围合栏目，框内成排小窗标页，当前窗以实心强调。" supertip="PAC NYC, 2024, D&amp;AD Wood Pencil. PORTO ROCHA."/>
-            <button id="btnStyle_engineering_register" label="工程定位" tag="engineering_register" onAction="PI_ModernPreset" screentip="十字对位点界定章节，逐页刻度每五页伸长一次。" supertip="Jiazhi Studio, 2024, D&amp;AD Yellow Pencil. L3 Branding."/>
-            <button id="btnStyle_civic_corners" label="都市围框" tag="civic_corners" onAction="PI_ModernPreset" screentip="四角界标围合章节，圆形页节点在方框内部构成第二层导航。" supertip="NYPhil, 2022, D&amp;AD Graphite Pencil. Ogilvy New York."/>
-            <button id="btnStyle_community_cells" label="分区字格" tag="community_cells" onAction="PI_ModernPreset" screentip="编号章节格包含方形页格；填充变化发生在读者所在的单元内。" supertip="Kulturhavna – An identity shaped by people, 2025, European Design Awards Gold, Brand Logo. Anti."/>
+            <menu id="btnStyle_stage_window" label="舞台方窗" screentip="矩形取景框围合栏目，框内成排小窗标页，当前窗以实心强调。" supertip="PAC NYC, 2024, D&amp;AD Wood Pencil. PORTO ROCHA.">
+              <button id="btnStyle_stage_window_large" label="大号" tag="stage_window" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_stage_window_medium" label="中号" tag="stage_window:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_stage_window_small" label="小号" tag="stage_window:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_engineering_register" label="工程定位" screentip="十字对位点界定章节，逐页刻度每五页伸长一次。" supertip="Jiazhi Studio, 2024, D&amp;AD Yellow Pencil. L3 Branding.">
+              <button id="btnStyle_engineering_register_large" label="大号" tag="engineering_register" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_engineering_register_medium" label="中号" tag="engineering_register:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_engineering_register_small" label="小号" tag="engineering_register:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_civic_corners" label="都市围框" screentip="四角界标围合章节，圆形页节点在方框内部构成第二层导航。" supertip="NYPhil, 2022, D&amp;AD Graphite Pencil. Ogilvy New York.">
+              <button id="btnStyle_civic_corners_large" label="大号" tag="civic_corners" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_civic_corners_medium" label="中号" tag="civic_corners:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_civic_corners_small" label="小号" tag="civic_corners:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_community_cells" label="分区字格" screentip="编号章节格包含方形页格；填充变化发生在读者所在的单元内。" supertip="Kulturhavna – An identity shaped by people, 2025, European Design Awards Gold, Brand Logo. Anti.">
+              <button id="btnStyle_community_cells_large" label="大号" tag="community_cells" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_community_cells_medium" label="中号" tag="community_cells:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_community_cells_small" label="小号" tag="community_cells:small" onAction="PI_ModernPreset"/>
+            </menu>
             <menuSeparator id="sepAward_4" title="编辑与档案"/>
-            <button id="btnStyle_quiet_colophon" label="静默书目" tag="quiet_colophon" onAction="PI_ModernPreset" screentip="衬线书目栏使用轻量界线；近似发丝的页轨在当前页加粗。" supertip="Langenbachhof 1813, 2016, European Design Awards Bronze, Brand Identity – Complete Systems. designconcepts."/>
-            <button id="btnStyle_specimen_index" label="字样索引" tag="specimen_index" onAction="PI_ModernPreset" screentip="双行标尺与编号样本栏对应，章节内的刻度标出页位。" supertip="Typo 9010, 2016, European Design Awards Bronze, Artistic Catalogue Layout. Briefcase Type Foundry / Petra-D / Typo9010."/>
-            <button id="btnStyle_botanical_labels" label="轻字标本" tag="botanical_labels" onAction="PI_ModernPreset" screentip="轻字标题配索引标签端线，点状页标像逐项排列的标本。" supertip="The Cork Book, 2018, European Design Awards Bronze, Book Layout. Studio FM milano."/>
-            <button id="btnStyle_archive_label" label="档案标签" tag="archive_label" onAction="PI_ModernPreset" screentip="等宽编号和短折角端线模仿档案卡，实心或空心方格表示取阅进度。" supertip="EPHEMERA - The Graphic Design of the MAK Library and Works on Paper Collection, 2018, European Design Awards Gold, Artistic Catalogue Layout. 3007."/>
+            <menu id="btnStyle_quiet_colophon" label="静默书目" screentip="衬线书目栏使用轻量界线；近似发丝的页轨在当前页加粗。" supertip="Langenbachhof 1813, 2016, European Design Awards Bronze, Brand Identity – Complete Systems. designconcepts.">
+              <button id="btnStyle_quiet_colophon_large" label="大号" tag="quiet_colophon" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_quiet_colophon_medium" label="中号" tag="quiet_colophon:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_quiet_colophon_small" label="小号" tag="quiet_colophon:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_specimen_index" label="字样索引" screentip="双行标尺与编号样本栏对应，章节内的刻度标出页位。" supertip="Typo 9010, 2016, European Design Awards Bronze, Artistic Catalogue Layout. Briefcase Type Foundry / Petra-D / Typo9010.">
+              <button id="btnStyle_specimen_index_large" label="大号" tag="specimen_index" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_specimen_index_medium" label="中号" tag="specimen_index:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_specimen_index_small" label="小号" tag="specimen_index:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_botanical_labels" label="轻字标本" screentip="轻字标题配索引标签端线，点状页标像逐项排列的标本。" supertip="The Cork Book, 2018, European Design Awards Bronze, Book Layout. Studio FM milano.">
+              <button id="btnStyle_botanical_labels_large" label="大号" tag="botanical_labels" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_botanical_labels_medium" label="中号" tag="botanical_labels:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_botanical_labels_small" label="小号" tag="botanical_labels:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_archive_label" label="档案标签" screentip="等宽编号和短折角端线模仿档案卡，实心或空心方格表示取阅进度。" supertip="EPHEMERA - The Graphic Design of the MAK Library and Works on Paper Collection, 2018, European Design Awards Gold, Artistic Catalogue Layout. 3007.">
+              <button id="btnStyle_archive_label_large" label="大号" tag="archive_label" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_archive_label_medium" label="中号" tag="archive_label:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_archive_label_small" label="小号" tag="archive_label:small" onAction="PI_ModernPreset"/>
+            </menu>
             <menuSeparator id="sepAward_8" title="色带与图形节奏"/>
-            <button id="btnStyle_coastal_bands" label="海岸色带" tag="coastal_bands" onAction="PI_ModernPreset" screentip="色带与细分界保留连贯的地平线，页轨通过粗细显示行进位置。" supertip="Klaipėda city visual identity, 2023, European Design Awards Gold, Brand Identity – Complete Systems. The Critical."/>
-            <button id="btnStyle_swimlane_outline" label="泳道单线" tag="swimlane_outline" onAction="PI_ModernPreset" screentip="泳道边界围住一条连续页轨，当前页加粗为游标。" supertip="Pula - Pola City Pools, 2020, European Design Awards Gold, Signage &amp; Wayfinding. Studio Tumpic/Prenc."/>
-            <button id="btnStyle_newspaper_columns" label="报刊分栏" tag="newspaper_columns" onAction="PI_ModernPreset" screentip="细栏线、衬线栏题和粗上沿组织栏目，长短刻度指示页位。" supertip="The Guardian branding, 2018, D&amp;AD Wood Pencil. The Guardian."/>
-            <button id="btnStyle_cabinet_grid" label="柜格序列" tag="cabinet_grid" onAction="PI_ModernPreset" screentip="分格柜体内嵌直角格条；实心、反白和空框表现各页状态。" supertip="IMA – Every Thing Sorted, 2024, D&amp;AD Wood Pencil. Bedow."/>
+            <menu id="btnStyle_coastal_bands" label="海岸色带" screentip="色带与细分界保留连贯的地平线，页轨通过粗细显示行进位置。" supertip="Klaipėda city visual identity, 2023, European Design Awards Gold, Brand Identity – Complete Systems. The Critical.">
+              <button id="btnStyle_coastal_bands_large" label="大号" tag="coastal_bands" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_coastal_bands_medium" label="中号" tag="coastal_bands:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_coastal_bands_small" label="小号" tag="coastal_bands:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_swimlane_outline" label="泳道单线" screentip="泳道边界围住一条连续页轨，当前页加粗为游标。" supertip="Pula - Pola City Pools, 2020, European Design Awards Gold, Signage &amp; Wayfinding. Studio Tumpic/Prenc.">
+              <button id="btnStyle_swimlane_outline_large" label="大号" tag="swimlane_outline" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_swimlane_outline_medium" label="中号" tag="swimlane_outline:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_swimlane_outline_small" label="小号" tag="swimlane_outline:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_newspaper_columns" label="报刊分栏" screentip="细栏线、衬线栏题和粗上沿组织栏目，长短刻度指示页位。" supertip="The Guardian branding, 2018, D&amp;AD Wood Pencil. The Guardian.">
+              <button id="btnStyle_newspaper_columns_large" label="大号" tag="newspaper_columns" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_newspaper_columns_medium" label="中号" tag="newspaper_columns:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_newspaper_columns_small" label="小号" tag="newspaper_columns:small" onAction="PI_ModernPreset"/>
+            </menu>
+            <menu id="btnStyle_cabinet_grid" label="柜格序列" screentip="分格柜体内嵌直角格条；实心、反白和空框表现各页状态。" supertip="IMA – Every Thing Sorted, 2024, D&amp;AD Wood Pencil. Bedow.">
+              <button id="btnStyle_cabinet_grid_large" label="大号" tag="cabinet_grid" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_cabinet_grid_medium" label="中号" tag="cabinet_grid:medium" onAction="PI_ModernPreset"/>
+              <button id="btnStyle_cabinet_grid_small" label="小号" tag="cabinet_grid:small" onAction="PI_ModernPreset"/>
+            </menu>
           </menu>
           <button id="btnFullWidth" label="铺满当前边" onAction="PI_FullWidth" screentip="沿所选边完整铺满章节与连接条" supertip="沿边起点和终点边距设为 0，导航长度自动使用整条页面边，连接条同步铺满。上下停靠沿页面宽度，左右停靠沿页面高度。不改变停靠边、距边位置、均长模式或配色。"/>
           <editBox id="edtSectionRoundness" label="色块圆角 (%)" getText="PI_GeneralGetValue" onChange="PI_GeneralSetValue" getEnabled="PI_GeneralEnabled" sizeString="000.0" screentip="平面章节底板的圆角比例" supertip="输入 0 至 50。仅在层叠导航关闭时生效。0 保持原有无缝直角色块；连续层叠轮廓始终维持直角连接。"/>

@@ -191,6 +191,8 @@ Type ProgressDotsOptions
     FlatRuleColor As ColorType
     MarkerKind As Integer
     PanelShadow As Integer
+    PresetSize As Integer
+    CrimsonType As Integer
 End Type
 
 ' The extra array slot stores the end sentinel after 100 sections.
@@ -275,6 +277,7 @@ Private mPICaptures As Long
 Private mPILastSummary As String
 Private mPIRunStarted As Double
 Private mPIRunPresentation As Presentation
+Private mPINativePresentation As Presentation
 Private mPIRenderWindow As DocumentWindow
 Private mPIOriginalView As PpViewType
 Private mPIOriginalSlideId As Long
@@ -411,7 +414,7 @@ End Sub
 ' Date: 2017-06-21
 ' ----------------------------------------------------------------
 Sub Auto_Open()
-          If gblbIndicatorUpdateRunning Then Exit Sub
+          If gblbIndicatorUpdateRunning Or mPISilent Then Exit Sub
 10        On Error GoTo ErrorHandler
 20        If gblbolDebug = True Then LogInfo "Sub Auto_Open"         'Debug: Write active procedure to log
           
@@ -565,7 +568,7 @@ Function CheckSlideHidden(intSlideNumber As Integer) As Boolean
           End If
 20        If gblbolDebug = True Then LogInfo "Fct CheckSlideHidden: " & intSlideNumber         'Debug: Write active procedure to log
               
-30        With ActivePresentation
+30        With PI_RenderPresentation()
 40            CheckSlideHidden = .Slides(intSlideNumber).SlideShowTransition.Hidden
 50        End With
           
@@ -610,7 +613,7 @@ Function CheckSlideSkipped(intSlideNumber As Integer) As Boolean
           
           Dim i As Integer
 30        CheckSlideSkipped = False   'default
-40        With ActivePresentation.Slides(intSlideNumber)
+40        With PI_RenderPresentation().Slides(intSlideNumber)
 50            If .Comments.Count > 0 Then
 60                For i = 1 To .Comments.Count
 70                    If .Comments.Item(i).Text = gblstrMessageIgnore Then
@@ -667,7 +670,7 @@ Function CheckSlideRepeat(intSlideNumber As Integer) As Boolean
           'If ActivePresentation.Slides.Count >= intSlideNumber Then
 
 30        CheckSlideRepeat = False   'default
-40        With ActivePresentation.Slides(intSlideNumber)
+40        With PI_RenderPresentation().Slides(intSlideNumber)
 50            If .Comments.Count > 0 Then
 60                For i = 1 To .Comments.Count
 70                    If .Comments.Item(i).Text = gblstrMessageRepeat Then
@@ -799,6 +802,7 @@ End Sub
 ' ----------------------------------------------------------------
 Sub DelProgressBarOnSlide(slideNum As Long, shapeTag As String)
     Dim presentation As Presentation, targetSlide As Slide, index As Long
+    PI_RequireNativeTarget
     Set presentation = PI_RenderPresentation()
     Set targetSlide = presentation.Slides(slideNum)
     For index = targetSlide.Shapes.Count To 1 Step -1
@@ -830,7 +834,7 @@ Function GetSlideIndex(slideNum As Long)
           Dim strIndx As String
 
           'get ID,Index and Title from slidenumber
-30        With ActivePresentation.Slides(slideNum)
+30        With PI_RenderPresentation().Slides(slideNum)
 40            strID = CStr(.SlideID)
 50            strIndx = CStr(.SlideIndex)
 60            If .Shapes.HasTitle Then strTitle = .Shapes.title.TextFrame.TextRange _
@@ -946,9 +950,13 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
           Dim bandShape As Shape
           Dim bandMode As Boolean
           Dim titleTop As Double, dotsTop As Double, bandHeight As Double
+          Dim splitBand As Boolean, bodyHeight As Double, bodyTop As Double, rowTop As Double
+          Dim rowHeight As Double, counterTop As Double
           Dim titleHeight As Double, bandPadding As Double, titlePadding As Double
           Dim renderDotSize As Double, renderDotTop As Double, dotPadding As Double
+          Dim dotAlong As Double, dotAcross As Double, ovalSlot As Double
           Dim renderBarWidth As Double, renderBarHeight As Double
+          Dim sizedMarkers As Boolean, slotCount As Long, slotIndex As Long
           Dim barSlotWidth As Double, barGap As Double, barAreaLeft As Double, barAreaWidth As Double
           Dim markerRowHeight As Double
           Dim flatBarMode As Boolean
@@ -985,6 +993,7 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
 30        strCustomImage_Current = ""
           Set mPILastDrawResult = Nothing
           Set renderPresentation = PI_RenderPresentation()
+          PI_RequireNativeTarget
 40        strCustomImage_Seen = gblCustomImage_Seen
 50        strCustomImage_Active = gblCustomImage_Active
 60        strCustomImage_UnSeen = gblCustomImage_UnSeen
@@ -995,6 +1004,7 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
           bandMode = PI_UsesSectionBand(theOptions)
           layeredMode = (bandMode And theOptions.LayeredNavigation = 1)
           flatBarMode = (theOptions.FlatBar = 1)
+          sizedMarkers = flatBarMode And (theOptions.PresetSize > 0 Or theOptions.MarkerKind = 3)
           markerRowHeight = PI_MarkerHeight(theOptions)
           navigationLeft = theOptions.LeftMargin
           mPIRenderCanvasWidth = PI_RenderAxisLength(theOptions, renderPresentation)
@@ -1008,7 +1018,21 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
           End If
           If bandMode Then
               PI_BandGeometry theOptions, titleTop, dotsTop, bandHeight
+              splitBand = (theOptions.PresetSize > 0 And theOptions.DockEdge < 2)
+              bodyTop = theOptions.yMargin
+              bodyHeight = bandHeight
+              If splitBand Then
+                  bodyHeight = PI_CompactBodyHeight(theOptions)
+                  rowHeight = markerRowHeight + PI_CounterRowHeight(theOptions)
+                  rowTop = theOptions.yMargin
+                  If theOptions.SectionPlacement = 0 Then
+                      rowTop = theOptions.yMargin + bandHeight - rowHeight
+                  Else
+                      bodyTop = rowTop + rowHeight
+                  End If
+              End If
               titleHeight = PI_BandTitleHeight(theOptions.textHeight)
+              If theOptions.PresetSize = 2 And theOptions.DockEdge < 2 Then titleHeight = bodyHeight
               bandPadding = theOptions.SectionBandPadding
           Else
               titleTop = theOptions.yMargin + (theOptions.SectionPlacement * markerRowHeight + 1) + (theOptions.SectionPlacement * intSectionIndicatorGap)
@@ -1189,6 +1213,10 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
                           Set bandShape = renderPresentation.Slides(slideNum).Shapes.AddShape( _
                               msoShapeRectangle, dbllabelLeft_test, theOptions.yMargin, dbllabelWidth_test, bandHeight)
                       End If
+                      If splitBand And Not layeredMode Then
+                          bandShape.Top = bodyTop
+                          bandShape.Height = bodyHeight
+                      End If
                       bandShape.Tags.Add shapeTag, "yes"
                       bandShape.Tags.Add "PI_ROLE", "section-band"
                       bandShape.Tags.Add "PI_SECTION", CStr(sectNum)
@@ -1269,7 +1297,16 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
                       ' --- END color active/current SECTION ---
 1270                  If gblbolDebug = True Then LogInfo ",IS: align: " & .TextRange.Paragraphs.ParagraphFormat.Alignment
 1280              End With
-                  If theOptions.CurrentTitleBold = 1 Then
+                  If theOptions.CrimsonType = 1 And StrComp(theOptions.fontName, "Inter Medium", vbTextCompare) = 0 Then
+                      With newShape2.TextFrame.TextRange.Font
+                          .Bold = msoFalse
+                          If sectionIs = 1 And theOptions.CurrentTitleBold = 1 Then
+                              .Name = "Inter SemiBold"
+                          Else
+                              .Name = theOptions.fontName
+                          End If
+                      End With
+                  ElseIf theOptions.CurrentTitleBold = 1 Then
                       newShape2.TextFrame.TextRange.Font.Bold = (sectionIs = 1)
                   End If
                   If bandMode Then
@@ -1300,30 +1337,46 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
                               theOptions, sectinfo, sectionIs, sectNum, bandHeight, _
                               railLeft, railWidth, shapeTag, strLinkTitle
                       End If
+                      If splitBand Then
+                          bandShape.Tags.Add "PI_BODY_PT", Trim$(Str$(bodyHeight))
+                          bandShape.Tags.Add "PI_ROW_PT", Trim$(Str$(rowHeight))
+                          If layeredMode Then PI_AddCompactRegion renderPresentation.Slides(slideNum), theOptions, _
+                              dbllabelLeft_test, bodyTop, dbllabelWidth_test, bodyHeight, sectNum, sectionIs, _
+                              bandPosition, "section-body", shapeTag, strLinkTitle, False
+                          PI_AddCompactRegion renderPresentation.Slides(slideNum), theOptions, _
+                              dbllabelLeft_test, rowTop, dbllabelWidth_test, rowHeight, sectNum, sectionIs, _
+                              bandPosition, "section-marker-row", shapeTag, strLinkTitle, Not layeredMode
+                      End If
                       PI_BandTextContrast newShape2, theOptions, sectionIs, bandPosition, slideNum
                       PI_AddBandBackdrop renderPresentation.Slides(slideNum), bandShape, newShape2, _
                           theOptions, strSectionNameToShow, sectionIs, sectNum, shapeTag, strLinkTitle
                       If sectionIs = 1 Then PI_AddSectionAccent renderPresentation.Slides(slideNum), _
-                          theOptions, dbllabelLeft_test, dbllabelWidth_test, bandHeight, sectNum, shapeTag, strLinkTitle
+                          theOptions, dbllabelLeft_test, dbllabelWidth_test, bodyHeight, sectNum, shapeTag, strLinkTitle
                   End If
                   sectionBarColor = newShape2.TextFrame.TextRange.Font.Color.RGB
                   If bandMode And theOptions.FlatRuleMode > 0 Then
                       PI_AddFlatRules renderPresentation.Slides(slideNum), theOptions, _
-                          dbllabelLeft_test, dbllabelWidth_test, bandHeight, sectNum, _
+                          dbllabelLeft_test, dbllabelWidth_test, bodyHeight, sectNum, _
                           visibleSectionOrdinal, sectionIs, sectionBarColor, shapeTag
                   End If
                   If theOptions.CounterMode > 0 And sectionIs = 1 And _
                       theOptions.PIStyle <> "Indicator only" And theOptions.ignoreSections = "Full" Then
+                      counterTop = titleTop + titleHeight
+                      If splitBand Then
+                          counterTop = rowTop
+                          If theOptions.SectionPlacement <> 0 Then counterTop = dotsTop + markerRowHeight
+                      End If
                       Set counter = PI_AddCounter(renderPresentation.Slides(slideNum), sectinfo, theOptions, _
                           slideNumVisible, sectNum, dbllabelLeft_test, dbllabelWidth_test, _
-                          titleTop + titleHeight, sectionBarColor, shapeTag)
+                          counterTop, sectionBarColor, shapeTag)
                   End If
                   collapsedSection = False
                   If flatBarMode And theOptions.PIStyle = "Full" And sectionIs <> 1 Then
                       If theOptions.DensityMode = 2 Then collapsedSection = True
                       If theOptions.DensityMode = 1 Then
                           barSlotWidth = dbllabelWidth_test / numDotsInSection
-                          barGap = PI_BarClamp(theOptions.FlatBarGap, 0, barSlotWidth / 2)
+                          barSlotWidth = barSlotWidth * (1 - 0.05 * theOptions.PresetSize)
+                          barGap = PI_BarClamp(theOptions.FlatBarGap * (1 - 0.25 * theOptions.PresetSize), 0, barSlotWidth / 2)
                           collapsedSection = (barSlotWidth - barGap < PI_BarClamp(theOptions.MinMarkerLength, 2, 20))
                       End If
                   End If
@@ -1373,7 +1426,23 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
               '---START INDICATOR V2------------------------------------
               'calucaltions needed for Indicator V3 !
 
-              If mPIReadLayout Then
+              If sizedMarkers Then
+                  barAreaLeft = dbllabelLeft_test
+                  barAreaWidth = dbllabelWidth_test
+                  If theOptions.ignoreIndicator = "Active Section" And sectionIs = 1 And Not bandMode Then
+                      barAreaLeft = theOptions.LeftMargin
+                      barAreaWidth = mPIRenderCanvasWidth - theOptions.LeftMargin - theOptions.RightMargin
+                  End If
+                  slotCount = numDotsInSection
+                  slotIndex = numDotsCount
+                  If collapsedSection Then
+                      slotCount = 1
+                      slotIndex = 1
+                  End If
+                  PI_PresetMarkerGeometry theOptions, barAreaLeft, barAreaWidth, slotIndex, slotCount, _
+                      CLng(dotNum) - slideNumVisible, markerRowHeight, dblLeft_newC2, renderBarWidth, renderBarHeight
+                  renderDotTop = dotsTop + (markerRowHeight - renderBarHeight) / 2
+              ElseIf mPIReadLayout Then
                   With mPIMarkerSlots(dotNum)
                       dblLeft_newC2 = .axisStart
                       renderDotTop = .crossStart
@@ -1479,18 +1548,36 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
                       Set indicator2 = renderPresentation.Slides(slideNum).Shapes.AddShape( _
                           intShapetypeNr, dblLeft_newC2, renderDotTop, renderBarWidth, renderBarHeight)
                       If theOptions.MarkerKind = 0 Then indicator2.Adjustments.Item(1) = PI_BarClamp(theOptions.FlatBarRoundness, 0, 50) / 100
-                      If theOptions.MarkerKind > 0 Then
+                      If theOptions.MarkerKind > 0 And Not sizedMarkers Then
                           indicator2.Tags.Add "PI_GLYPH_SIZE", Trim$(Str$(renderBarWidth)) & "|" & _
                               Trim$(Str$(renderBarHeight)) & "|" & Trim$(Str$(barSlotWidth))
                       End If
                       indicator2.Fill.Solid
 1650              ElseIf gblshowCustomImage = 0 Then
+                      dotAlong = renderDotSize
+                      dotAcross = renderDotSize
+                      If intShapetypeNr = msoShapeOval Then
+                          barAreaLeft = dbllabelLeft_test
+                          barAreaWidth = dbllabelWidth_test
+                          If theOptions.ignoreIndicator = "Active Section" And sectionIs = 1 And Not bandMode Then
+                              barAreaLeft = theOptions.LeftMargin
+                              barAreaWidth = mPIRenderCanvasWidth - theOptions.LeftMargin - theOptions.RightMargin
+                          End If
+                          ovalSlot = barAreaWidth / numDotsInSection
+                          dotAcross = theOptions.dotSize
+                          renderDotTop = dotsTop
+                          If dotAcross > ovalSlot Then
+                              dotAlong = ovalSlot
+                              dblLeft_newC2 = barAreaLeft + (numDotsCount - 1) * ovalSlot
+                          End If
+                      End If
 1660                  Set indicator2 = renderPresentation.Slides(slideNum).Shapes.AddShape( _
                           intShapetypeNr, _
                           dblLeft_newC2, _
                           renderDotTop, _
-                          renderDotSize, _
-                          renderDotSize)
+                          dotAlong, _
+                          dotAcross)
+                      If intShapetypeNr = msoShapeOval Then indicator2.Tags.Add "PI_MARKER", "oval"
 1670              Else
                       ' which image to show?
 1680                  Select Case dotNum
@@ -1751,17 +1838,61 @@ End Sub
 ' Author: Olaf Noehring ( https://datenbank-projekt.de )
 ' Date: 2017-06-21
 ' ----------------------------------------------------------------
+Private Sub PI_BindNativeTarget(ByRef fields() As String)
+    Dim index As Long, pair() As String, active As Presentation
+#If Mac Then
+    Const pathCompare As Long = vbBinaryCompare
+#Else
+    Const pathCompare As Long = vbTextCompare
+#End If
+    Set active = Application.ActivePresentation
+    For index = 7 To UBound(fields)
+        pair = Split(fields(index), "=", 2)
+        If pair(0) = "targetDeck" Then
+            If Len(active.Path) = 0 Or StrComp(active.FullName, pair(1), pathCompare) <> 0 Then
+                Err.Raise vbObjectError + 3088, "PI_BindNativeTarget", _
+                    "Expected active presentation: " & pair(1) & ". Actual: " & active.FullName
+            End If
+        End If
+    Next index
+    Set mPINativePresentation = active
+    PI_RequireNativeTarget
+End Sub
+
+Private Function PI_NativeTargetActive() As Boolean
+    If Not mPISilent Then
+        PI_NativeTargetActive = True
+    ElseIf Application.Windows.Count > 0 Then
+        PI_NativeTargetActive = (Application.ActivePresentation Is mPINativePresentation)
+    End If
+End Function
+
+Private Sub PI_RequireNativeTarget()
+    If Not PI_NativeTargetActive() Then
+        Err.Raise vbObjectError + 3088, "PI_RequireNativeTarget", _
+            "The active presentation changed. Generation stopped."
+    End If
+End Sub
+
 Private Function PI_RenderPresentation() As Presentation
-    If mPIRunPresentation Is Nothing Then
-        Set PI_RenderPresentation = ActivePresentation
-    Else
+    If Not (mPIRunPresentation Is Nothing) Then
         Set PI_RenderPresentation = mPIRunPresentation
+    ElseIf Not (mPINativePresentation Is Nothing) Then
+        Set PI_RenderPresentation = mPINativePresentation
+    Else
+        Set PI_RenderPresentation = ActivePresentation
     End If
 End Function
 
 Private Sub PI_PrepareRenderWindow()
     Dim selected As SlideRange, current As Slide, index As Long
+    PI_RequireNativeTarget
     Set mPIRenderWindow = ActiveWindow
+    If mPISilent Then
+        If Not (mPIRenderWindow.Presentation Is mPINativePresentation) Then
+            Err.Raise vbObjectError + 3088, "PI_PrepareRenderWindow", "The active window belongs to a different presentation."
+        End If
+    End If
     mPIOriginalView = mPIRenderWindow.ViewType
     mPIOriginalSlideId = 0
     mPIOriginalSelectionCount = 0
@@ -1791,7 +1922,7 @@ End Sub
 Private Sub PI_RestoreRenderWindow()
     Dim index As Long, selectedIndexes() As Long
     On Error Resume Next
-    If mPIWindowPrepared Then
+    If mPIWindowPrepared And PI_NativeTargetActive() Then
         mPIRenderWindow.Activate
         mPIRenderWindow.ViewType = ppViewSlide
         If mPIOriginalSlideId > 0 Then
@@ -1820,6 +1951,7 @@ End Sub
 Private Sub PI_YieldRender()
     If Len(mPITraceFile) > 0 Then PI_Trace "events.pump.begin"
     DoEvents
+    PI_RequireNativeTarget
     If Len(mPITraceFile) > 0 Then PI_Trace "events.pump.end"
     If mPIRenderWindow Is Nothing Then Exit Sub
     If Not (ActiveWindow Is mPIRenderWindow) Then mPIRenderWindow.Activate
@@ -2015,6 +2147,7 @@ End Sub
 
 Private Sub PI_FinalizeTextShape(ByVal title As Shape, opts As ProgressDotsOptions)
     Dim role As String, original As String, lower As Long, upper As Long, middle As Long
+    Dim compactLine As Boolean
     role = LCase$(title.Tags("PI_ROLE"))
     If role <> "section-title" And role <> "section-counter" Then Exit Sub
     Select Case opts.TitleAlignment
@@ -2025,6 +2158,11 @@ Private Sub PI_FinalizeTextShape(ByVal title As Shape, opts As ProgressDotsOptio
     If role = "section-counter" Then Exit Sub
     original = title.AlternativeText
     If opts.TitleCase = 1 Then original = UCase$(original)
+    compactLine = (opts.PresetSize = 2 And opts.DockEdge < 2 And PI_UsesSectionBand(opts))
+    If compactLine Then
+        original = Replace(original, vbCrLf, " ")
+        original = Replace(Replace(Replace(original, vbCr, " "), vbLf, " "), Chr$(11), " ")
+    End If
     title.TextFrame2.TextRange.Text = original
     If Len(original) = 0 Then Exit Sub
     If opts.TitleOverflow = 0 Then
@@ -2034,42 +2172,57 @@ Private Sub PI_FinalizeTextShape(ByVal title As Shape, opts As ProgressDotsOptio
     End If
     title.TextFrame2.AutoSize = msoAutoSizeNone
     title.TextFrame2.TextRange.Font.Size = opts.textHeight
+    If compactLine Then
+        ' Fixed leading in PowerPoint places glyph ascenders above the 7 pt row.
+        If title.Height <= opts.textHeight + 0.01 Then
+            title.TextFrame2.VerticalAnchor = msoAnchorTop
+            title.TextFrame2.MarginTop = opts.textHeight / 7
+        End If
+        With title.TextFrame2.TextRange.ParagraphFormat
+            .SpaceBefore = 0
+            .SpaceAfter = 0
+            .LineRuleWithin = msoFalse
+            .SpaceWithin = title.Height
+        End With
+    End If
     If opts.TitleOverflow <> 2 Then
-        PI_FitFullTitle title
+        PI_FitFullTitle title, compactLine
         Exit Sub
     End If
-    If PI_TitleFits(title) Then Exit Sub
+    If PI_TitleFits(title, compactLine) Then Exit Sub
     lower = 0
     upper = Len(original)
     Do While lower < upper
         middle = (lower + upper + 1) \ 2
         title.TextFrame2.TextRange.Text = PI_SafeTextPrefix(original, middle) & ChrW$(&H2026)
-        If PI_TitleFits(title) Then
+        If PI_TitleFits(title, compactLine) Then
             lower = middle
         Else
             upper = middle - 1
         End If
     Loop
     title.TextFrame2.TextRange.Text = PI_SafeTextPrefix(original, lower) & ChrW$(&H2026)
-    If Not PI_TitleFits(title) Then PI_FitFullTitle title
+    If Not PI_TitleFits(title, compactLine) Then PI_FitFullTitle title, compactLine
 End Sub
 
-Private Sub PI_FitFullTitle(ByVal title As Shape)
+Private Sub PI_FitFullTitle(ByVal title As Shape, ByVal compactLine As Boolean)
     Dim availableWidth As Double, availableHeight As Double, textScale As Double
     Dim lower As Long, upper As Long, middle As Long, estimate As Long
     With title.TextFrame2
         availableWidth = title.Width - .MarginLeft - .MarginRight
         availableHeight = title.Height - .MarginTop - .MarginBottom
-        If PI_TitleFits(title) Then Exit Sub
+        If PI_TitleFits(title, compactLine) Then Exit Sub
         textScale = 1
         If .TextRange.BoundWidth > availableWidth Then textScale = availableWidth / .TextRange.BoundWidth
-        If .TextRange.BoundHeight * textScale > availableHeight Then textScale = availableHeight / .TextRange.BoundHeight
+        If Not compactLine Then
+            If .TextRange.BoundHeight * textScale > availableHeight Then textScale = availableHeight / .TextRange.BoundHeight
+        End If
         ' The requested size already overflowed. Search quarter-point sizes below it.
         upper = -Int(-.TextRange.Font.Size * 4) - 1
         estimate = Fix(.TextRange.Font.Size * textScale * 4)
         If estimate < 4 Then estimate = 4
         .TextRange.Font.Size = estimate / 4
-        If PI_TitleFits(title) Then
+        If PI_TitleFits(title, compactLine) Then
             ' A smaller font can use fewer lines than the original measurement.
             lower = estimate
         Else
@@ -2079,7 +2232,7 @@ Private Sub PI_FitFullTitle(ByVal title As Shape)
         Do While lower < upper
             middle = (lower + upper + 1) \ 2
             .TextRange.Font.Size = middle / 4
-            If PI_TitleFits(title) Then
+            If PI_TitleFits(title, compactLine) Then
                 lower = middle
             Else
                 upper = middle - 1
@@ -2089,13 +2242,13 @@ Private Sub PI_FitFullTitle(ByVal title As Shape)
     End With
 End Sub
 
-Private Function PI_TitleFits(ByVal title As Shape) As Boolean
+Private Function PI_TitleFits(ByVal title As Shape, ByVal compactLine As Boolean) As Boolean
     Dim availableWidth As Double, availableHeight As Double
     With title.TextFrame2
         availableWidth = title.Width - .MarginLeft - .MarginRight
         availableHeight = title.Height - .MarginTop - .MarginBottom
         PI_TitleFits = (.TextRange.BoundWidth <= availableWidth + 0.1 And _
-            .TextRange.BoundHeight <= availableHeight + 0.1)
+            (compactLine Or .TextRange.BoundHeight <= availableHeight + 0.1))
     End With
 End Function
 
@@ -2245,6 +2398,7 @@ End Sub
 Private Function PI_DrawWithReuse(ByVal targetSlide As Slide, sections As ProgressDotsSectionInfo, _
                                   opts As ProgressDotsOptions, ByVal visibleIndex As Long) As Shape
     Dim key As String
+    PI_RequireNativeTarget
     mPIStoreLayout = PI_CanReuse(opts)
     If mPIStoreLayout Then key = PI_ReuseKey(targetSlide, sections, opts)
     mPIReadLayout = (mPIStoreLayout And key = mPILayoutKey)
@@ -2266,6 +2420,7 @@ End Function
 
 Private Sub PI_RemoveOtherNavigation(ByVal targetSlide As Slide, ByVal keep As Shape, ByVal shapeTag As String)
     Dim index As Long, candidate As Shape, keepId As Long
+    PI_RequireNativeTarget
     keepId = keep.Id
     For index = targetSlide.Shapes.Count To 1 Step -1
         Set candidate = targetSlide.Shapes(index)
@@ -2288,7 +2443,7 @@ Private Sub PI_AddHardShadow(ByVal band As Shape, opts As ProgressDotsOptions, B
        across = PI_BarClamp(offset, 0, band.Height / 3)
        band.LockAspectRatio = msoFalse
        band.Width = band.Width - along
-       band.Height = band.Height - across
+       If opts.PresetSize = 0 Or opts.DockEdge >= 2 Then band.Height = band.Height - across
 80     Set duplicates = band.Duplicate
 90     Set shadow = duplicates.Item(1)
 100     shadow.Left = band.Left + along
@@ -2361,6 +2516,7 @@ Private Sub PI_PreflightNavigation(ByVal presentation As Presentation, sections 
 End Sub
 
 Private Sub PI_StartUndoBoundary()
+    PI_RequireNativeTarget
     On Error Resume Next
     CallByName Application, "StartNewUndoEntry", VbMethod
     On Error GoTo 0
@@ -2374,6 +2530,7 @@ Private Sub PI_FirstError(ByVal procedureName As String, ByVal lineNumber As Lon
     mPIFirstDescription = description
     If Len(mPITraceFile) > 0 Then PI_Trace "error " & procedureName & "@" & CStr(lineNumber) & " #" & CStr(number)
     mPIFirstStage = procedureName & "@" & CStr(lineNumber) & " / " & mPIStage
+    If Not PI_NativeTargetActive() Then Exit Sub
     If mPISlide > 0 And Not mPIRunPresentation Is Nothing Then mPIShapes = mPIRunPresentation.Slides(mPISlide).Shapes.Count
 End Sub
 
@@ -2438,6 +2595,8 @@ Public Function PI_NativeGenerate(ByVal request As String) As String
     mPISurfaceHits = 0
     mPIResultStatus = "error"
     On Error GoTo NativeError
+    fields = Split(request, "|")
+    PI_BindNativeTarget fields
     If gblIndicatorSettingsVersion = "" Then Initialize
     previous = getDefaultOptions()
     savedStart = gbliDrawStart
@@ -2448,11 +2607,10 @@ Public Function PI_NativeGenerate(ByVal request As String) As String
     savedLast = gblLastPI
     savedPage = gblLastPIslideNum
     shouldRestore = True
-    saved = ReadPersistensPISettings()
+    saved = ReadPersistensPISettings(mPINativePresentation)
     opts = previous
     If Len(saved) > 0 Then opts = DeserializeProgressOptions(saved)
     optionsToRibbon opts
-    fields = Split(request, "|")
     gblDockEdge = CInt(fields(1))
     If fields(0) <> "@document" Then PI_ApplyNamedPreset fields(0), opts
     gblEvenSpaceSecOrInd = fields(2)
@@ -2463,6 +2621,7 @@ Public Function PI_NativeGenerate(ByVal request As String) As String
     For optionIndex = 7 To UBound(fields)
         pair = Split(fields(optionIndex), "=", 2)
         Select Case pair(0)
+            Case "targetDeck": ' Bound before the presentation settings were read.
             Case "display": gblstrIndicatorStyle = pair(1)
             Case "density": gblDensityMode = CInt(pair(1))
             Case "counter": gblCounterMode = CInt(pair(1))
@@ -2480,6 +2639,7 @@ Public Function PI_NativeGenerate(ByVal request As String) As String
     gblShowPreview = 0
     opts = getDefaultOptions()
     MakeProgressBar opts
+    If mPIResultStatus = "ok" Then PI_RequireNativeTarget
 NativeComplete:
     If shouldRestore Then
         shouldRestore = False
@@ -2494,6 +2654,7 @@ NativeComplete:
     End If
     If Len(mPITraceFile) > 0 Then PI_Trace "run.end " & mPIResultStatus
     mPITraceFile = ""
+    Set mPINativePresentation = Nothing
     mPISilent = False
     mPICancelAfter = 0
     mPICancelFile = ""
@@ -2512,7 +2673,7 @@ End Function
 Sub MakeProgressBar(theOptions As ProgressDotsOptions)
     Dim sectinfo As ProgressDotsSectionInfo, slideOptions As ProgressDotsOptions
     Dim slideNum As Long, startSlide As Long, endSlide As Long, visibleIndex As Long, drawn As Long
-    Dim targetSlide As Slide, drawnGroup As Shape
+    Dim renderDeck As Presentation, targetSlide As Slide, drawnGroup As Shape
     Dim preview As Boolean, visible As Boolean, repeated As Boolean, target As Boolean
     Dim started As Double, lastNotice As Double, elapsed As Double, estimated As Double
     Dim cancelled As Boolean, failureNumber As Long, failureDescription As String, ownsLock As Boolean
@@ -2524,12 +2685,14 @@ Sub MakeProgressBar(theOptions As ProgressDotsOptions)
 130     mPISlide = 0
 140     mPISection = 0
 150     mPIStage = "preflight"
+155     PI_RequireNativeTarget
 160     If Application.Presentations.Count = 0 Then Exit Sub
-170     If ActivePresentation.Slides.Count = 0 Then Exit Sub
-180     PI_ValidateDocumentCapacity ActivePresentation, theOptions
+165     Set renderDeck = PI_RenderPresentation()
+170     If renderDeck.Slides.Count = 0 Then Exit Sub
+180     PI_ValidateDocumentCapacity renderDeck, theOptions
 190     If gbliDrawEnd < gbliDrawStart Then Err.Raise vbObjectError + 3024, "MakeProgressBar", PI_Zh("8D7759CB987578014E0D80FD59274E8E7ED3675F987578013002")
 
-210     If Not PI_ValidateDisplayBinding(theOptions, ActivePresentation) Then
+210     If Not PI_ValidateDisplayBinding(theOptions, renderDeck) Then
 220         gblShowPreview = 0
         Exit Sub
     End If
@@ -2537,7 +2700,7 @@ Sub MakeProgressBar(theOptions As ProgressDotsOptions)
 260         gblbIndicatorUpdateRunning = True
 270         ownsLock = True
     End If
-290     Set mPIRunPresentation = ActivePresentation
+290     Set mPIRunPresentation = renderDeck
     If Len(mPITraceFile) > 0 Then PI_Trace "window.prepare.begin"
 300     PI_PrepareRenderWindow
     If Len(mPITraceFile) > 0 Then PI_Trace "window.prepare.end"
@@ -2575,6 +2738,7 @@ Sub MakeProgressBar(theOptions As ProgressDotsOptions)
 600     undoBoundaryStarted = True
 
 620     For slideNum = 1 To endSlide
+625         PI_RequireNativeTarget
 630         mPISlide = slideNum
 640         mPIStage = "slide policy"
 650         If mPISilent Then
@@ -2638,6 +2802,7 @@ Sub MakeProgressBar(theOptions As ProgressDotsOptions)
 1160             lastNotice = Timer
 1170             PI_YieldRender
         End If
+        PI_RequireNativeTarget
     If Len(mPITraceFile) > 0 Then PI_Trace "page.end"
     Next slideNum
 
@@ -2651,7 +2816,7 @@ RenderComplete:
     If Len(mPITraceFile) > 0 Then PI_Trace "window.restore.begin"
 1260     PI_RestoreRenderWindow
     If Len(mPITraceFile) > 0 Then PI_Trace "window.restore.end"
-1270     If undoBoundaryStarted Then PI_StartUndoBoundary
+1270     If undoBoundaryStarted And PI_NativeTargetActive() Then PI_StartUndoBoundary
 1280     If ownsLock Then gblbIndicatorUpdateRunning = False
     On Error GoTo 0
 1300     mPIDrawn = drawn
@@ -2885,18 +3050,21 @@ Function RemoveSection(strSectionName As String)
           Dim curTitle As String
           Dim slideNum As Long
           Dim strJoker As String
+          Dim renderDeck As Presentation
+          Set renderDeck = PI_RenderPresentation()
 30        strJoker = "@progress_dots_remove_all_sections@"    'use this as option to remove all sections at once
           
           ' Find slide with sectionname
 40        If gblbolDebug = True Then LogInfo "Scanning for section to remove..."
 
-50        For slideNum = 1 To ActivePresentation.Slides.Count
-60            curTitle = ActivePresentation.Slides(slideNum).Tags.Item(gblstrMessageTagTitle)
+50        For slideNum = 1 To renderDeck.Slides.Count
+60            curTitle = renderDeck.Slides(slideNum).Tags.Item(gblstrMessageTagTitle)
 70            If (curTitle = strSectionName Or strSectionName = strJoker) Then
                   ' Delete the sectiontitle from slide tag.
                   '            curSlide.Tags.Delete gblstrMessageTagTitle
-                  'Debug.Print ActivePresentation.Slides(slideNum).Tags.Value(slideNum)
-80                ActivePresentation.Slides(slideNum).Tags.Delete (gblstrMessageTagTitle)
+                  'Debug.Print renderDeck.Slides(slideNum).Tags.Value(slideNum)
+75                PI_RequireNativeTarget
+80                renderDeck.Slides(slideNum).Tags.Delete (gblstrMessageTagTitle)
 90                RemoveSection = "success"
 100           End If
 110           If gblbolDebug = True Then LogInfo "Removed section: " & curTitle & " / " & strSectionName & " on slide " & slideNum
@@ -2941,6 +3109,8 @@ Function SectionsBase() As ProgressDotsSectionInfo
           Dim curTitle As String
           '    Dim i As Integer
           
+          Dim renderDeck As Presentation
+          Set renderDeck = PI_RenderPresentation()
 30        bolNotThis = False
           
           ' Initialize the 0th group.
@@ -2951,8 +3121,8 @@ Function SectionsBase() As ProgressDotsSectionInfo
 60        sectionNum = 0
 70        If gblbolDebug = True Then LogInfo "Scanning for sections..."
 
-80        For slideNum = 1 To ActivePresentation.Slides.Count
-90            curTitle = ActivePresentation.Slides(slideNum).Tags.Item(gblstrMessageTagTitle)
+80        For slideNum = 1 To renderDeck.Slides.Count
+90            curTitle = renderDeck.Slides(slideNum).Tags.Item(gblstrMessageTagTitle)
 100           If gblbolDebug = True Then LogInfo slideNum & " " & curTitle
               
 110           If (curTitle <> "") Then
@@ -3018,7 +3188,7 @@ Function SectionsBase() As ProgressDotsSectionInfo
 590       Next slideNum
        
           ' If only one section (or no section) update the values
-600       If sectionNum = 0 And ActivePresentation.Slides.Count >= 1 Then
+600       If sectionNum = 0 And renderDeck.Slides.Count >= 1 Then
 610           If gblbolDebug = True Then LogInfo "only one or no section was found!"
 620           sectionNum = 1
 630           SectionsBase.strArySecTitles(1) = SectionsBase.strArySecTitles(0)       'Title is empty if no user-defined sections
@@ -3037,7 +3207,7 @@ Function SectionsBase() As ProgressDotsSectionInfo
 720       End If
           
           ' Record the end slide as the "next" section start -- this makes calculations easier.
-730       SectionsBase.lngArySecStart(sectionNum + 1) = ActivePresentation.Slides.Count + 1
+730       SectionsBase.lngArySecStart(sectionNum + 1) = renderDeck.Slides.Count + 1
               
           'add another ; for find contents more easy
 740       SectionsBase.strSecTotalInvisibleComplete = SectionsBase.strSecTotalInvisibleComplete & ";"
@@ -3092,9 +3262,11 @@ Sub SectionsDetails(sectinfo As ProgressDotsSectionInfo)
           Dim intTestvalue As Integer
           Dim sectNum As Integer
 
+          Dim renderDeck As Presentation
+          Set renderDeck = PI_RenderPresentation()
 30        bolIndicatorOnThisSlide = False
           
-40        totalSlides = ActivePresentation.Slides.Count
+40        totalSlides = renderDeck.Slides.Count
 50        totalSlidesHidden = CharCount(sectinfo.strSecTotalInvisibleComplete, ";") - 1 'because one ending ; as well
           
 60        totalSectionsNew = 0
@@ -3309,14 +3481,17 @@ Function UsePPTSectionsList()
               
           Dim i As Long
         
+          Dim renderDeck As Presentation
+          Set renderDeck = PI_RenderPresentation()
 30        If gblbolDebug = True Then LogInfo "Scanning for PPT sections to use ..."
-40        With ActivePresentation.SectionProperties
+40        With renderDeck.SectionProperties
 50            For i = 1 To .Count
 60                If gblbolDebug = True Then LogInfo "Name: " & .Name(i) & "; firstslide: " & .FirstSlide(i) & "; slidecount: " & .SlidesCount(i)
 70                If .FirstSlide(i) <> -1 Then             '.firstslide(i) is -1 if a section had no slides
                       'SetSection .Name(i), .FirstSlide(i)
                       'much easier:
-80                    ActivePresentation.Slides(.FirstSlide(i)).Tags.Add gblstrMessageTagTitle, .Name(i)
+75                    PI_RequireNativeTarget
+80                    renderDeck.Slides(.FirstSlide(i)).Tags.Add gblstrMessageTagTitle, .Name(i)
 90                End If
 100           Next i
 110       End With
@@ -3569,6 +3744,7 @@ Public Sub PI_BarSetValue(control As IRibbonControl, text As String)
     Select Case control.id
         Case "edtFlatBarHeight"
             gblFlatBarHeight = value
+            If gblMarkerKind = 3 Then gbldblIndicatorSize = value
         Case "edtFlatBarGap"
             gblFlatBarGap = value
         Case "edtFlatBarRoundness"
@@ -3595,12 +3771,83 @@ Public Function PI_BarClamp(ByVal value As Double, ByVal minimum As Double, ByVa
 End Function
 
 Public Function PI_MarkerHeight(opts As ProgressDotsOptions) As Double
-    If opts.FlatBar = 1 Then
+    If opts.FlatBar = 1 And opts.MarkerKind = 3 Then
+        PI_MarkerHeight = opts.dotSize
+    ElseIf opts.FlatBar = 1 Then
         PI_MarkerHeight = PI_BarClamp(opts.FlatBarHeight, 0.5, 12)
     Else
         PI_MarkerHeight = opts.dotSize
     End If
 End Function
+
+Private Sub PI_GlyphDimensions(ByVal kind As Integer, ByVal height As Double, ByVal slot As Double, _
+                               ByVal gap As Double, ByVal ordinal As Long, ByVal pageDelta As Long, _
+                               ByRef along As Double, ByRef across As Double)
+    Dim stateScale As Double
+    along = slot - PI_BarClamp(gap, 0, slot / 2)
+    across = height
+    Select Case kind
+        Case 0
+            If across > along / 3 Then across = along / 3
+        Case 1
+            If pageDelta <> 0 Then across = across * 0.48
+        Case 2
+            If along > height * 0.32 Then along = height * 0.32
+            If pageDelta = 0 Then
+                along = PI_BarClamp(along * 2.8, 0, slot)
+            ElseIf (ordinal - 1) Mod 5 <> 0 Then
+                across = across * 0.63
+            End If
+        Case 3, 5
+            stateScale = 1
+            If pageDelta < 0 Then stateScale = 0.54
+            If pageDelta > 0 Then stateScale = 0.78
+            If along > height Then along = height
+            If kind = 5 Then across = along
+            along = along * stateScale
+            across = across * stateScale
+        Case 4
+            along = slot
+            If pageDelta < 0 Then across = across * 0.5
+            If pageDelta > 0 Then across = across * 0.25
+    End Select
+End Sub
+
+Private Sub PI_PresetMarkerGeometry(opts As ProgressDotsOptions, ByVal sectionLeft As Double, _
+                        ByVal sectionWidth As Double, ByVal ordinal As Long, ByVal count As Long, _
+                        ByVal pageDelta As Long, ByVal rowHeight As Double, _
+                        ByRef left As Double, ByRef width As Double, ByRef height As Double)
+    Dim blend As Double, largeHeight As Double, slot As Double, largeCenter As Double
+    Dim smallSlot As Double, smallWidth As Double, firstWidth As Double, lastWidth As Double
+    Dim smallCenter As Double, firstCenter As Double, lastCenter As Double, unusedHeight As Double
+    blend = opts.PresetSize / 2
+    largeHeight = rowHeight / (1 - blend / 2)
+    slot = sectionWidth / count
+    PI_GlyphDimensions opts.MarkerKind, largeHeight, slot, opts.FlatBarGap, ordinal, pageDelta, width, height
+    largeCenter = sectionLeft + (ordinal - 0.5) * slot
+    left = largeCenter - width / 2
+    If blend = 0 Then Exit Sub
+
+    smallSlot = 0.9 * slot
+    If count = 1 Then
+        smallWidth = 0.9 * sectionWidth
+        smallCenter = sectionLeft + sectionWidth / 2
+    Else
+        ' The first and last visible strokes, including outlines, set the limits of the row.
+        PI_GlyphDimensions opts.MarkerKind, largeHeight / 2, smallSlot, opts.FlatBarGap / 2, _
+                           ordinal, pageDelta, smallWidth, unusedHeight
+        PI_GlyphDimensions opts.MarkerKind, largeHeight / 2, smallSlot, opts.FlatBarGap / 2, _
+                           1, pageDelta + 1 - ordinal, firstWidth, unusedHeight
+        PI_GlyphDimensions opts.MarkerKind, largeHeight / 2, smallSlot, opts.FlatBarGap / 2, _
+                           count, pageDelta + count - ordinal, lastWidth, unusedHeight
+        firstCenter = sectionLeft + 0.05 * sectionWidth + firstWidth / 2
+        lastCenter = sectionLeft + 0.95 * sectionWidth - lastWidth / 2
+        smallCenter = firstCenter + (lastCenter - firstCenter) * (ordinal - 1) / (count - 1)
+    End If
+    width = width + blend * (smallWidth - width)
+    height = height * (1 - blend / 2)
+    left = largeCenter + blend * (smallCenter - largeCenter) - width / 2
+End Sub
 
 Public Sub PI_BarApplyGlow(ByVal target As Shape, opts As ProgressDotsOptions, ByVal isCurrent As Boolean)
     Dim effect As Object, failureNumber As Long, failureDescription As String
@@ -3682,7 +3929,9 @@ Private Sub PI_FinalizeNavigationGlow(ByVal navigation As Shape, opts As Progres
         If role = "indicator" Or role = "indicator-summary" Then
             relativePage = Sgn(CLng(Val(navigation.Tags("PI_PAGE"))) - visibleIndex)
             isCurrent = (role = "indicator" And relativePage = 0)
-            If opts.MarkerKind > 0 Then PI_SizePageMarker navigation, opts, relativePage
+            If opts.PresetSize = 0 And opts.MarkerKind > 0 And opts.MarkerKind <> 3 Then
+                PI_SizePageMarker navigation, opts, relativePage
+            End If
             PI_BarApplyGlow navigation, opts, isCurrent
             If opts.LayeredNavigation = 1 And PI_UsesSectionBand(opts) Then
                 ' Apply opacity after the final fill color, outline, and dock transform.
@@ -3717,6 +3966,8 @@ Public Sub PI_BandPreset(control As IRibbonControl)
 End Sub
 
 Private Sub PI_SetBandDefaults()
+    gblPresetSize = 0
+    gblCrimsonType = 0
     gblTitleAlignment = 0
     gblTitleCase = 0
     gblMarkerKind = 0
@@ -3808,10 +4059,12 @@ End Sub
 
 Private Function PI_StyleAxisLength() As Double
     If Application.Presentations.Count = 0 Then Exit Function
+    Dim renderDeck As Presentation
+    Set renderDeck = PI_RenderPresentation()
     If gblDockEdge = 2 Or gblDockEdge = 3 Then
-        PI_StyleAxisLength = ActivePresentation.PageSetup.SlideHeight
+        PI_StyleAxisLength = renderDeck.PageSetup.SlideHeight
     Else
-        PI_StyleAxisLength = ActivePresentation.PageSetup.SlideWidth
+        PI_StyleAxisLength = renderDeck.PageSetup.SlideWidth
     End If
 End Function
 
@@ -3851,15 +4104,42 @@ Public Sub PI_LayerGetValue(control As IRibbonControl, ByRef value)
 End Sub
 
 Private Sub PI_ApplyNamedPreset(ByVal styleID As String, previous As ProgressDotsOptions)
-    Dim values As String
+    Dim values As String, parts() As String, presetSize As Integer
+    parts = Split(styleID, ":")
+    If UBound(parts) > 0 Then
+        Select Case parts(1)
+            Case "medium": presetSize = 1
+            Case "small": presetSize = 2
+            Case Else: Err.Raise 5, "PI_ApplyNamedPreset", "Unknown preset size: " & parts(1)
+        End Select
+        styleID = parts(0)
+    End If
     values = PI_StyleRecipe(styleID)
     If Len(values) = 0 Then Err.Raise 5, "PI_ApplyNamedPreset", "Unknown preset: " & styleID
     PI_SetBandDefaults
     PI_ApplyStyleValues PI_StyleCommon()
     PI_ApplyStyleValues values
+    PI_ApplyPresetSize presetSize
     PI_RestoreStylePolicy previous
     gblEvenSpaceSecOrInd = previous.EvenSpaceSecOrInd
     PI_SetFullWidth PI_StyleAxisLength()
+End Sub
+
+Private Sub PI_ApplyPresetSize(ByVal presetSize As Integer)
+    Dim blend As Double, largeHeight As Double, titleTop As Double, dotsTop As Double
+    Dim largeOptions As ProgressDotsOptions
+    If gblMarkerKind = 3 Then gbldblIndicatorSize = gblFlatBarHeight
+    If presetSize = 0 Then Exit Sub
+    blend = presetSize / 2
+    largeOptions = getDefaultOptions()
+    largeOptions.DockEdge = 0
+    PI_BandGeometry largeOptions, titleTop, dotsTop, largeHeight
+    If largeOptions.LayeredNavigation = 0 Then largeHeight = largeHeight - PI_BarClamp(largeOptions.HardShadowOffset, 0, largeHeight / 3)
+    gblPresetSize = presetSize
+    gblSectionBlockHeight = largeHeight + blend * (7 - largeHeight)
+    gbldblFontSize = gbldblFontSize + blend * (7 - gbldblFontSize)
+    gblFlatBarHeight = gblFlatBarHeight * (1 - blend / 2)
+    gbldblIndicatorSize = gbldblIndicatorSize * (1 - blend / 2)
 End Sub
 
 Public Sub PI_ModernPreset(control As IRibbonControl)
@@ -3903,7 +4183,7 @@ Private Function PI_StyleRecipe(ByVal styleID As String) As String
         Case "serif_editorial"
             PI_StyleRecipe = "layered=0|fontName=Times New Roman|sectionGap=4|height=38|textSize=12.5|textGap=4|seenBackground=#E4E0DA|currentBackground=#FFFFFF|unseenBackground=#F8F5EF|seenForeground=#3F372F|currentForeground=#5C3F2B|unseenForeground=#3F372F|numbering=1|currentBold=1|barHeight=6|roundness=0|accentMode=4|accentColor=#8C6749|accentWidth=1|markerKind=2|flatRuleMode=3"
         Case "polyu_layered"
-            PI_StyleRecipe = "shadowBlur=10|glow=1|glowRadius=4|glowTransparency=55|contrast=1|markerKind=0|flatRuleMode=0|barHeight=2.5|layered=1|shadowTransparency=62|shadowDistance=2.5|depthStep=0.8|flatRuleColor=#858F9A|flatRuleWidth=0.85|seenBackground=#D4D7DB|seenBarTransparency=70|unseenBarTransparency=70"
+            PI_StyleRecipe = "shadowBlur=10|glow=1|glowRadius=4|glowTransparency=55|contrast=1|markerKind=0|flatRuleMode=0|barHeight=2.5|layered=1|shadowTransparency=62|shadowDistance=2.5|depthStep=0.8|flatRuleColor=#858F9A|flatRuleWidth=0.85|seenBackground=#D4D7DB|seenBarTransparency=70|unseenBarTransparency=70|fontName=Inter Medium|currentBold=1|crimsonType=1"
         Case "quiet_layered"
             PI_StyleRecipe = "seenBackground=#DEDEE3|currentBackground=#FFFFFF|unseenBackground=#F2F2F7|seenForeground=#3C3C43|currentForeground=#9E1F38|unseenForeground=#3C3C43|shadowBlur=2|shadowTransparency=64|shadowDistance=1.3|depthStep=0.25|rail=0.5|accentMode=1|glow=1|markerKind=3|flatRuleMode=0|barHeight=5|futureOutline=1|panelShadow=1|sectionGap=4"
         Case "minimal_underline"
@@ -3983,6 +4263,7 @@ Private Sub PI_ApplyStyleValues(ByVal values As String)
                 Case "sectionGap": gblintSectionSpacing = Val(value)
                 Case "hardShadow": gblHardShadowOffset = Val(value)
                 Case "fontName": gblstrFontname = value
+                Case "crimsonType": gblCrimsonType = Val(value)
                 Case "titleAlignment": gblTitleAlignment = Val(value)
                 Case "titleCase": gblTitleCase = Val(value)
                 Case "flatRuleMode": gblFlatRuleMode = Val(value)
@@ -3994,7 +4275,10 @@ Private Sub PI_ApplyStyleValues(ByVal values As String)
                 Case "padding": gblSectionBandPadding = Val(value)
                 Case "textSize": gbldblFontSize = Val(value)
                 Case "textGap": gblintSectionIndicatorGap = Val(value)
-                Case "barHeight": gblFlatBarHeight = Val(value)
+                Case "barHeight"
+                    gblFlatBarHeight = Val(value)
+                    If gblMarkerKind = 3 Then gbldblIndicatorSize = gblFlatBarHeight
+                Case "dotSize": gbldblIndicatorSize = Val(value)
                 Case "barGap": gblFlatBarGap = Val(value)
                 Case "roundness": gblFlatBarRoundness = Val(value)
                 Case "glow": gblFlatBarGlow = Val(value)
@@ -4374,7 +4658,8 @@ Private Sub PI_OrderLayeredShapes(ByVal targetSlide As Slide, ByVal firstShape A
     Next index
 250     For index = 1 To count
 260         role = LCase$(generated(index).Tags("PI_ROLE"))
-270         If role = "section-hit-area" Or role = "layer-hit-area" Then generated(index).ZOrder msoBringToFront
+270         If role = "section-hit-area" Or role = "layer-hit-area" Or role = "section-body" Or _
+                role = "section-marker-row" Then generated(index).ZOrder msoBringToFront
     Next index
 290     For index = 1 To count
 300         If LCase$(generated(index).Tags("PI_ROLE")) = "section-accent" Then generated(index).ZOrder msoBringToFront
@@ -4665,6 +4950,10 @@ CropViewport:
 1480     PI_ClearSurfaceEffects picture
 1490     picture.Tags.Add "PI_ROLE", role
 1500     picture.Tags.Add "PI_SECTION", source.Tags("PI_SECTION")
+        If Len(source.Tags("PI_BODY_PT")) > 0 Then
+            picture.Tags.Add "PI_BODY_PT", source.Tags("PI_BODY_PT")
+            picture.Tags.Add "PI_ROW_PT", source.Tags("PI_ROW_PT")
+        End If
 1510     If Len(source.Tags("PI_DEPTH")) > 0 Then picture.Tags.Add "PI_DEPTH", source.Tags("PI_DEPTH")
 1520     picture.Tags.Add "PI_RENDER", "clipped-surface"
 1540     picture.Name = "PI clipped surface " & source.Tags("PI_SECTION")
@@ -4818,14 +5107,56 @@ Public Function PI_BandTitleHeight(fontSize As Double) As Double
     PI_BandTitleHeight = fontSize * 1.35 + 2
 End Function
 
+Private Sub PI_AddCompactRegion(ByVal target As Slide, opts As ProgressDotsOptions, _
+            ByVal left As Double, ByVal top As Double, ByVal width As Double, ByVal height As Double, _
+            ByVal section As Long, ByVal state As Integer, ByVal position As Double, ByVal role As String, _
+            ByVal shapeTag As String, ByVal subAddress As String, ByVal paint As Boolean)
+    Dim region As Shape
+    Set region = target.Shapes.AddShape(msoShapeRectangle, left, top, width, height)
+    PI_ClearSurfaceEffects region
+    If paint Then
+        PI_PaintSectionBackground region, opts, state, position
+    Else
+        ' The single layered silhouette beneath these chapter and marker hit areas owns their fill.
+        region.Fill.Solid
+        region.Fill.Transparency = 1
+    End If
+    region.Tags.Add shapeTag, "yes"
+    region.Tags.Add "PI_ROLE", role
+    region.Tags.Add "PI_SECTION", CStr(section)
+    region.ActionSettings(ppMouseClick).Action = ppActionHyperlink
+    region.ActionSettings(ppMouseClick).Hyperlink.SubAddress = subAddress
+End Sub
+
+Private Function PI_CompactBodyHeight(opts As ProgressDotsOptions) As Double
+    PI_CompactBodyHeight = opts.SectionBlockHeight
+    If opts.SectionBlockHeight = 0 Then PI_CompactBodyHeight = PI_BandTitleHeight(opts.textHeight)
+End Function
+
 Public Sub PI_BandGeometry(opts As ProgressDotsOptions, ByRef titleTop As Double, _
                           ByRef dotsTop As Double, ByRef bandHeight As Double)
     Dim padding As Double, gap As Double, rowHeight As Double, markerHeight As Double
+    Dim counterHeight As Double, hardOffset As Double, bodyHeight As Double
     padding = opts.SectionBandPadding
     gap = opts.SectionIndicatorGap
     If gap < 0 Then gap = 0
     rowHeight = PI_BandTitleHeight(opts.textHeight)
     markerHeight = PI_MarkerHeight(opts)
+    If opts.PresetSize > 0 And opts.DockEdge < 2 Then
+        bodyHeight = PI_CompactBodyHeight(opts)
+        counterHeight = PI_CounterRowHeight(opts)
+        If opts.LayeredNavigation = 0 Then hardOffset = PI_BarClamp(opts.HardShadowOffset, 0, bodyHeight / 3)
+        bandHeight = bodyHeight + hardOffset + counterHeight + markerHeight
+        If opts.SectionPlacement = 0 Then
+            titleTop = opts.yMargin
+            dotsTop = opts.yMargin + bandHeight - markerHeight
+        Else
+            dotsTop = opts.yMargin
+            titleTop = dotsTop + markerHeight + counterHeight
+        End If
+        If opts.PresetSize = 1 Then titleTop = titleTop + (bodyHeight - rowHeight) / 2
+        Exit Sub
+    End If
     If opts.SectionPlacement = 0 Then
         titleTop = opts.yMargin + padding
         dotsTop = titleTop + rowHeight + PI_CounterRowHeight(opts) + gap

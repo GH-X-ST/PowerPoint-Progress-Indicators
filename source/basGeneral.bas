@@ -55,6 +55,8 @@ Public gblTitleAlignment As Integer
 Public gblTitleCase As Integer
 Public gblMarkerKind As Integer
 Public gblPanelShadow As Integer
+Public gblPresetSize As Integer
+Public gblCrimsonType As Integer
 Public gblFlatRuleMode As Integer
 Public gblFlatRuleWidth As Double
 Public gblFlatRuleColor As String
@@ -1466,8 +1468,8 @@ Public Sub PI_ApplyDock(ByRef navigation As Shape, targetSlide As Slide, opts As
     If navigation Is Nothing Then Exit Sub
     If opts.DockEdge = 0 Then Exit Sub
     On Error GoTo DockError
-    pageWidth = ActivePresentation.PageSetup.SlideWidth
-    pageHeight = ActivePresentation.PageSetup.SlideHeight
+    pageWidth = targetSlide.Parent.PageSetup.SlideWidth
+    pageHeight = targetSlide.Parent.PageSetup.SlideHeight
     PI_BandGeometry opts, titleTop, dotsTop, bandHeight
     originalName = navigation.Name
     originalZ = navigation.ZOrderPosition
@@ -1501,7 +1503,11 @@ Public Sub PI_ApplyDock(ByRef navigation As Shape, targetSlide As Slide, opts As
         role = LCase$(part.Tags("PI_ROLE"))
         If opts.DockEdge = 1 Then
             If role = "section-title" Or role = "section-counter" Or role = "indicator" Or role = "indicator-summary" Then
-                part.Top = part.Top + pageHeight - 2 * opts.yMargin - bandHeight
+                If opts.PresetSize > 0 And PI_UsesSectionBand(opts) Then
+                    part.Top = pageHeight - part.Top - part.Height
+                Else
+                    part.Top = part.Top + pageHeight - 2 * opts.yMargin - bandHeight
+                End If
             Else
                 PI_MapDockSurface part, opts.DockEdge, pageWidth, pageHeight
             End If
@@ -1640,7 +1646,7 @@ Private Sub PI_DockMarker(ByVal marker As Shape, opts As ProgressDotsOptions, _
         originalHeight = originalHeight + 2 * inset
     End If
     padding = PI_BarClamp(opts.SectionBandPadding, 0, bandHeight / 4)
-    If opts.FlatBar = 1 Then
+    If opts.FlatBar = 1 Or LCase$(marker.Tags("PI_MARKER")) = "oval" Then
         markerWidth = originalHeight
         markerHeight = originalWidth
         top = alongStart

@@ -146,9 +146,10 @@ End Function
 ' Author: Olaf Noehring ( https://datenbank-projekt.de )
 ' Date: 2025-06-20
 ' ----------------------------------------------------------------
-Public Function ReadPersistensPISettings() As String
+Public Function ReadPersistensPISettings(Optional ByVal presentation As Presentation = Nothing) As String
           Dim s As String
-10        s = ActivePresentation.Tags.Item("__progress-indicator-config__")
+          If presentation Is Nothing Then Set presentation = ActivePresentation
+10        s = presentation.Tags.Item("__progress-indicator-config__")
           
 20        If Len(s) = 0 Then s = ""
           

@@ -1,5 +1,5 @@
 {
-  "version": "CN.11.2",
+  "version": "CN.11.3",
   "common": {
     "layered": 0,
     "height": 34,
@@ -271,7 +271,10 @@
         "flatRuleWidth": 0.85,
         "seenBackground": "#D4D7DB",
         "seenBarTransparency": 70,
-        "unseenBarTransparency": 70
+        "unseenBarTransparency": 70,
+        "fontName": "Inter Medium",
+        "currentBold": 1,
+        "crimsonType": 1
       }
     },
     {

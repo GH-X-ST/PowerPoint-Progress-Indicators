@@ -4,23 +4,25 @@
 
 这是基于 Olaf Nöhring 发布的 Progress Indicator 1.960 独立维护的中文 VBA 加载项。它读取 PowerPoint 文稿中的章节和页序，在每页生成章节导航。放映时，点击章节名可跳到该章首页，点击页标可跳到对应的幻灯片。[上游项目](https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac)
 
-下载并解压 CN.11.2 发布包，选择 `ProgressIndicators_v1960_3264b_SB_CN11_2.ppam` 安装。同名 `.pptm` 是可在 PowerPoint 中打开的维护文稿。[下载 CN.11.2](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.2/ProgressIndicators-CN.11.2.zip)
+下载并解压 CN.11.3 发布包，选择 `ProgressIndicators_v1960_3264b_SB_CN11_3.ppam` 安装。同名 `.pptm` 是可在 PowerPoint 中打开的维护文稿。[下载 CN.11.3](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.3/ProgressIndicators-CN.11.3.zip)
 
-需要英文界面时，请下载 EN.11.2 发布包，安装其中的 `ProgressIndicators_v1960_3264b_SB_EN11_2.ppam`。两种语言版本每次只启用一个。[下载 EN.11.2](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.2/ProgressIndicators-EN.11.2.zip) · [历史版本](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases)
+需要英文界面时，请下载 EN.11.3 发布包，安装其中的 `ProgressIndicators_v1960_3264b_SB_EN11_3.ppam`。两种语言版本每次只启用一个。[下载 EN.11.3](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.3/ProgressIndicators-EN.11.3.zip) · [历史版本](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases)
 
 ## 导航样式
 
 - 40 种预设提供不同的章节和页标结构，包括胶囊、圆节点、刻度、直角分段和连续轨道。
 - 可停靠在顶部、底部、左侧或右侧。“章节均长”给每个非空章节相同的长度。“进度均长”按计入进度的页数分配各章长度。
-- “层次 > 深红层叠”的章节面无缝相接，当前章与深红连接条共用轮廓。CN.11.2 按章节距离修正了叠放顺序。越靠近当前章的面板越靠上，距离超过三个可见章节的远端面板也按此顺序叠放。章节投影采用 10 pt 模糊和 62% 透明度，边缘更柔和。已讲页和未讲页的页标均为 70% 透明度，当前页标保持不透明，只有它带光晕。
+- 每款预设都可展开为大、中、小三档。大号沿用原尺寸。小号的章节标题为 7 pt，上下停靠时章体高 7 pt，页标高度为大号的一半，各章节的页标行居中占该章跨度的 90%。中号取本款大号与小号的中间值。左右停靠沿用文稿设置的侧栏宽度。
+- 椭圆页标随页面密度沿章节方向伸缩，保持厚度。“层次”中的“深红层叠”用 Inter SemiBold 显示当前章、Inter Medium 显示其他章，保留一体连接条、由远及近的层叠阴影和当前页光晕，其余页标为 70% 透明度。[Inter 字体](https://rsms.me/inter/)
+
 
 ## 在 Windows 桌面 PowerPoint 中安装
 
 1. 打开“文件 > 选项 > 加载项”，在窗口底部选择“管理 > PowerPoint 加载项”，点击“转到”。
 2. 若已有旧版 Progress Indicators，先取消勾选。点击“添加”，选中下载的 `.ppam`，按本机现有的宏授权流程启用。
-3. 打开已有章节的文稿，进入“演讲进度条”选项卡，在“设计样式”中选择预设。设定停靠边和均长模式，点击“更新当前页”查看效果，再点“生成”应用到需要的页面。
+3. 打开已有章节的文稿，进入“演讲进度条”选项卡，在“设计样式 > 样式预设”中展开所需样式，再选“大号”“中号”或“小号”。设定停靠边和均长模式，点击“更新当前页”查看效果，再点“生成”应用到需要的页面。
 
-更新旧文稿里的深红样式时，重新选取“深红层叠”再生成，文稿中已保存的导航才会采用新配方。
+要更新既有文稿，请重新选择预设及尺寸，再点“生成”。
 
 ## 从源码构建
 
@@ -29,7 +31,7 @@
 ```powershell
 uv venv --python 3.12 .venv
 uv pip install --python .venv\Scripts\python.exe -r requirements-build.txt
-.\.venv\Scripts\python.exe build_package.py --output-dir rebuild --version-token CN11_2 --report rebuild\package-validation.json
+.\.venv\Scripts\python.exe build_package.py --output-dir rebuild --version-token CN11_3 --report rebuild\package-validation.json
 ```
 
 正式加载项由桌面 PowerPoint 从维护文稿另存为 `.ppam`。发布命令见[构建说明](BUILD_zh-CN.txt)。

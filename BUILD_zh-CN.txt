@@ -1,4 +1,4 @@
-Progress Indicators CN.11.2 维护与构建
+Progress Indicators CN.11.3 维护与构建
 
 在 Windows 上将整个源码包解压到新的工作目录，使用 PowerShell 进入该目录。构建器从 source 读取 17 个 VBA 模块和窗体以及 Ribbon XML，分别使用 original 目录内的 .ppam 和 .pptm 作为模板，保留相应的窗体资源与项目属性。styles.json 保存样式配方；调整配方时，同步更新 source\mdlProgressIndicator.bas 的 PI_StyleRecipe 和相应功能区提示。
 
@@ -8,13 +8,13 @@ Progress Indicators CN.11.2 维护与构建
 
     uv venv --python 3.12 .venv
     uv pip install --python .venv\Scripts\python.exe -r requirements-build.txt
-    .\.venv\Scripts\python.exe build_package.py --output-dir rebuild --version-token CN11_2 --report rebuild\package-validation.json
+    .\.venv\Scripts\python.exe build_package.py --output-dir rebuild --version-token CN11_3 --report rebuild\package-validation.json
 
 使用桌面 PowerPoint 发布
 
-在同一 PowerShell 窗口执行以下命令。PowerPoint 须按当前的宏安全策略获准运行维护文稿。发布到新的目录，正式文件名使用 ProgressIndicators_v1960_3264b_SB_CN11_2.ppam。
+在同一 PowerShell 窗口执行以下命令。PowerPoint 须按当前的宏安全策略获准运行维护文稿。发布到新的目录，正式文件名使用 ProgressIndicators_v1960_3264b_SB_CN11_3.ppam。
 
-    $name = 'ProgressIndicators_v1960_3264b_SB_CN11_2'
+    $name = 'ProgressIndicators_v1960_3264b_SB_CN11_3'
     $sourceDeck = (Resolve-Path "rebuild\$name.pptm").Path
     $releaseDir = Join-Path (Get-Location) 'rebuild\distribution'
     $ppam = Join-Path $releaseDir "$name.ppam"

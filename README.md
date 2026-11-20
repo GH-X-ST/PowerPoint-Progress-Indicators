@@ -8,8 +8,8 @@ PowerPoint Progress Indicators is a VBA add-in that turns your slide sections in
 
 | Edition | Release package | Add-in to install |
 | --- | --- | --- |
-| English | [Download EN.11.2](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.2/ProgressIndicators-EN.11.2.zip) | `ProgressIndicators_v1960_3264b_SB_EN11_2.ppam` |
-| Simplified Chinese | [Download CN.11.2](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.2/ProgressIndicators-CN.11.2.zip) | `ProgressIndicators_v1960_3264b_SB_CN11_2.ppam` |
+| English | [Download EN.11.3](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.3/ProgressIndicators-EN.11.3.zip) | `ProgressIndicators_v1960_3264b_SB_EN11_3.ppam` |
+| Simplified Chinese | [Download CN.11.3](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.3/ProgressIndicators-CN.11.3.zip) | `ProgressIndicators_v1960_3264b_SB_CN11_3.ppam` |
 
 Extract the ZIP for the language you want. The `.ppam` is the add-in. The matching `.pptm` is a presentation you can open in PowerPoint to inspect or edit the VBA project. [Earlier releases](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases)
 
@@ -21,11 +21,16 @@ Extract the ZIP for the language you want. The `.ppam` is the add-in. The matchi
 
 ## Generate progress indicators
 
-1. Open a presentation with sections. On the **Progress Indicators** tab, open **Design Presets** and choose a style.
+1. Open a presentation with sections. On the **Progress Indicators** tab, open **Design Presets**, expand a style, and choose **Large**, **Medium**, or **Small**.
 2. Choose the top, bottom, left, or right edge of the slide. **Equal Sections** gives each nonempty section the same length. **Equal Slides** allocates section lengths in proportion to the number of slides that count toward progress.
 3. Click **Update Current Slide** to see the result on the current slide. Click **Generate** to apply it across the configured slide range.
 
-The 40 presets include pill-shaped sections, circular markers, ruler ticks, square segments, and continuous tracks. In **Crimson Layers**, the current section joins the crimson strip in a single shape. EN.11.2 places closer section panels in front of more distant ones, including panels more than three visible sections away from the current section. Section shadows use a 10 pt blur and 62% transparency for a softer edge. Past and upcoming slide markers use 70% transparency. The current marker stays opaque and is the only one that glows. To apply these settings to an existing deck, select **Crimson Layers** again and click **Generate**.
+All 40 presets offer three sizes. Large keeps the preset's original dimensions. Small uses 7 pt section titles, a 7 pt chapter panel on the top and bottom edges, and markers half as tall as Large. The first and last markers span the middle 90% of each section. Medium interpolates between that preset's Large and Small settings. Left and right docking keep the configured sidebar width. Dense oval markers change width along the section while keeping their height.
+
+**Crimson Layers** uses Inter SemiBold for the current section and Inter Medium for the others. Install the [Inter font family](https://rsms.me/inter/) for the specified weights. The crimson strip and active chapter share one outline. Closer sections sit in front of more distant ones. Inactive slide markers have 70% transparency, and only the current slide marker glows.
+
+To apply a size to an existing presentation, choose the preset and size, then click **Generate**.
+
 
 ## Build the English edition
 
@@ -42,7 +47,7 @@ The English VBA and Ribbon XML are generated in `rebuild/en/source/`. The Englis
 To produce the release add-in, use desktop PowerPoint to save the generated maintenance presentation as a `.ppam`. The script requires PowerPoint to be able to run macros in that presentation and writes to a new destination. Run it from the same PowerShell window.
 
 ```powershell
-$name = 'ProgressIndicators_v1960_3264b_SB_EN11_2'
+$name = 'ProgressIndicators_v1960_3264b_SB_EN11_3'
 $sourceDeck = (Resolve-Path "rebuild\$name.pptm").Path
 $releaseDir = Join-Path (Get-Location) 'rebuild\distribution'
 $ppam = Join-Path $releaseDir "$name.ppam"

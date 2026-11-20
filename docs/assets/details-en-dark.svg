@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 490" width="1000" height="490" role="img" aria-labelledby="title desc" xml:lang="en">
+<title id="title">Counts, density, and backdrop text</title>
+<desc id="desc">Counts can show the whole presentation or the current section. Marker density controls grouping. Cropped backdrop text appears behind titles and markers only on noncurrent sections when docked at the top.</desc>
+<rect x="0" y="0" width="1000" height="490" rx="0" fill="#11171E"/>
+<rect x="0" y="0" width="10" height="490" rx="0" fill="#FF9EAE"/>
+<text x="42" y="59" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="35" font-weight="700" letter-spacing="-0.7" text-anchor="start">Counts, density, and backdrop text</text>
+<path d="M42 82L958 82" fill="none" stroke="#F6F3EB" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M493 108L493 455" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="42" y="130" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="24" font-weight="680" letter-spacing="0" text-anchor="start">Progress Count</text>
+<text x="42" y="193" fill="#FF9EAE" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="48" font-weight="680" letter-spacing="-2" text-anchor="start">12/40</text>
+<text x="42" y="224" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">Overall count</text>
+<text x="257" y="193" fill="#FF9EAE" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="48" font-weight="680" letter-spacing="-2" text-anchor="start">2/8</text>
+<text x="257" y="224" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">Section count</text>
+<path d="M42 252L463 252" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="42" y="289" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="23" font-weight="680" letter-spacing="0" text-anchor="start">Marker Density</text>
+<text x="42" y="328" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="610" letter-spacing="0" text-anchor="start">All Slides</text>
+<text x="462" y="328" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="end">One marker per slide</text>
+<path d="M42 341L463 341" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="42" y="373" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="610" letter-spacing="0" text-anchor="start">Auto Density</text>
+<text x="462" y="373" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="end">Group as space runs out</text>
+<path d="M42 386L463 386" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="42" y="418" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="610" letter-spacing="0" text-anchor="start">Focus on Current Section</text>
+<text x="462" y="418" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="end">Summarize other sections</text>
+<path d="M42 431L463 431" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="525" y="130" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="23" font-weight="680" letter-spacing="0" text-anchor="start">Cropped Backdrop Text (Top)</text>
+<text x="525" y="166" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">Only in noncurrent sections when docked at the top.</text>
+<rect x="525" y="199" width="398" height="48" rx="0" fill="#11171E" stroke="#424A52" stroke-width="1"/>
+<circle cx="545" cy="223" r="5" fill="#B3BBC3"/>
+<text x="562" y="231" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="19" font-weight="480" letter-spacing="0" text-anchor="start">Section title and slide markers</text>
+<rect x="540" y="254" width="383" height="48" rx="0" fill="#3C262F" stroke="#424A52" stroke-width="1"/>
+<circle cx="560" cy="278" r="5" fill="#FF9EAE"/>
+<text x="577" y="286" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="19" font-weight="650" letter-spacing="0" text-anchor="start">Cropped section name</text>
+<rect x="555" y="309" width="368" height="48" rx="0" fill="#11171E" stroke="#424A52" stroke-width="1"/>
+<circle cx="575" cy="333" r="5" fill="#B3BBC3"/>
+<text x="592" y="341" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="19" font-weight="480" letter-spacing="0" text-anchor="start">Section background</text>
+<text x="525" y="400" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">Set its color, transparency, and scale.</text>
+<text x="525" y="430" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">The current section keeps its standard title.</text>
+</svg>

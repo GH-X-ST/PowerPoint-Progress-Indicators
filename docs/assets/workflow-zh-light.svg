@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 395" width="1000" height="395" role="img" aria-labelledby="title desc" xml:lang="zh">
+<title id="title">从分节到放映</title>
+<desc id="desc">添加章节，选择预设与尺寸，预览符合条件的页面，再生成进度条。放映时章节名和页标均可点击。</desc>
+<rect x="0" y="0" width="1000" height="395" rx="0" fill="#FAF8F4"/>
+<rect x="0" y="0" width="10" height="395" rx="0" fill="#A32342"/>
+<text x="42" y="59" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="33" font-weight="700" letter-spacing="-0.7" text-anchor="start">从分节到放映</text>
+<path d="M42 82L958 82" fill="none" stroke="#22252A" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<g transform="translate(42 110)">
+<rect x="0" y="0" width="57" height="53" rx="0" fill="#F4E4E5"/>
+<path d="M12 13H43M20 21H36M12 32H43M20 40H36" fill="none" stroke="#A32342" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<path d="M117 137L243 137" fill="none" stroke="#CDCAC4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M236 132L243 137L236 142" fill="none" stroke="#515960" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="42" y="201" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="23" font-weight="680" letter-spacing="-0.45" text-anchor="start">添加章节</text>
+<text x="42" y="231" fill="#515960" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">在缩略图窗格中</text>
+<text x="42" y="256" fill="#515960" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">将幻灯片分节。</text>
+<g transform="translate(276 110)">
+<rect x="0" y="0" width="57" height="53" rx="0" fill="#F4E4E5"/>
+<path d="M12 17L29 10L45 17L29 24ZM12 26L29 33L45 26M12 35L29 42L45 35" fill="none" stroke="#A32342" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<path d="M351 137L477 137" fill="none" stroke="#CDCAC4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M470 132L477 137L470 142" fill="none" stroke="#515960" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="276" y="201" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="23" font-weight="680" letter-spacing="-0.45" text-anchor="start">样式预设</text>
+<text x="276" y="231" fill="#515960" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">展开预设，选择</text>
+<text x="276" y="256" fill="#515960" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">大号、中号或小号。</text>
+<g transform="translate(510 110)">
+<rect x="0" y="0" width="57" height="53" rx="0" fill="#F4E4E5"/>
+<path d="M7 27Q28 3 50 27Q28 50 7 27Z" fill="none" stroke="#A32342" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="29" cy="27" r="5" fill="#A32342"/>
+</g>
+<path d="M585 137L711 137" fill="none" stroke="#CDCAC4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M704 132L711 137L704 142" fill="none" stroke="#515960" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="510" y="201" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="23" font-weight="680" letter-spacing="-0.45" text-anchor="start">预览</text>
+<text x="510" y="231" fill="#515960" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">查看最多 3 张</text>
+<text x="510" y="256" fill="#515960" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">符合条件的幻灯片。</text>
+<g transform="translate(744 110)">
+<rect x="0" y="0" width="57" height="53" rx="0" fill="#F4E4E5"/>
+<path d="M14 12H34L42 20V40H14ZM34 12V20H42" fill="none" stroke="#A32342" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M20 30L25 35L35 24" fill="none" stroke="#A32342" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<text x="744" y="201" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="23" font-weight="680" letter-spacing="-0.45" text-anchor="start">生成</text>
+<text x="744" y="231" fill="#515960" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">应用到指定页码</text>
+<text x="744" y="256" fill="#515960" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">范围内的页面。</text>
+<rect x="42" y="289" width="916" height="75" rx="0" fill="#F4E4E5"/>
+<text x="60" y="321" fill="#A32342" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="680" letter-spacing="0" text-anchor="start">放映时</text>
+<text x="60" y="346" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">点击章节名可跳到该章首页，点击页标可直接跳到对应的幻灯片。</text>
+</svg>

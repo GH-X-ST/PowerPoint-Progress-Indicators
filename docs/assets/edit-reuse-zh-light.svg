@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 524" width="1000" height="524" role="img" aria-labelledby="title desc" xml:lang="zh">
+<title id="title">保存预设与局部更新</title>
+<desc id="desc">每份文稿可保存最多 32 个命名预设。可针对所选页更新、移除、隐藏或恢复导航。导航复用仅在本次生成有效。</desc>
+<rect x="0" y="0" width="1000" height="524" rx="0" fill="#FAF8F4"/>
+<rect x="0" y="0" width="10" height="524" rx="0" fill="#A32342"/>
+<text x="42" y="59" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="33" font-weight="700" letter-spacing="-0.7" text-anchor="start">保存预设与局部更新</text>
+<path d="M42 82L958 82" fill="none" stroke="#22252A" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M459 105L459 337" fill="none" stroke="#CDCAC4" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="42" y="132" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="23" font-weight="680" letter-spacing="0" text-anchor="start">我的文档预设</text>
+<text x="38" y="219" fill="#A32342" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="80" font-weight="730" letter-spacing="-4" text-anchor="start">32</text>
+<text x="153" y="173" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="20" font-weight="620" letter-spacing="0" text-anchor="start">个命名预设</text>
+<text x="153" y="204" fill="#515960" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">每份演示文稿</text>
+<text x="42" y="263" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">保存并应用外观、布局、计数方式、</text>
+<text x="42" y="287" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">密度和长标题设置。</text>
+<text x="42" y="325" fill="#515960" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">导入和导出只传递当前配置。</text>
+<text x="490" y="132" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="23" font-weight="680" letter-spacing="0" text-anchor="start">所选幻灯片</text>
+<text x="490" y="174" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="620" letter-spacing="0" text-anchor="start">更新所选页</text>
+<text x="956" y="174" fill="#515960" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="end">在页码范围内生成</text>
+<path d="M490 187L956 187" fill="none" stroke="#CDCAC4" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="490" y="217" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="620" letter-spacing="0" text-anchor="start">移除所选页导航</text>
+<text x="956" y="217" fill="#515960" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="end">在页码范围内移除</text>
+<path d="M490 230L956 230" fill="none" stroke="#CDCAC4" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="490" y="260" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="620" letter-spacing="0" text-anchor="start">所选页不显示导航</text>
+<text x="956" y="260" fill="#515960" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="end">持续隐藏</text>
+<path d="M490 273L956 273" fill="none" stroke="#CDCAC4" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="490" y="303" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="620" letter-spacing="0" text-anchor="start">恢复所选页显示</text>
+<text x="956" y="303" fill="#515960" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="end">恢复显示资格</text>
+<path d="M490 316L956 316" fill="none" stroke="#CDCAC4" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="42" y="369" width="916" height="120" rx="0" fill="#F4E4E5"/>
+<text x="61" y="403" fill="#A32342" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="21" font-weight="670" letter-spacing="0" text-anchor="start">复用同章导航</text>
+<text x="531" y="403" fill="#A32342" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="21" font-weight="670" letter-spacing="0" text-anchor="start">上次生成统计</text>
+<path d="M509 388L509 468" fill="none" stroke="#CDCAC4" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="61" y="433" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">在一次生成中，主题、版式与背景均匹配的</text>
+<text x="61" y="457" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">同章页面可复用导航结构。</text>
+<text x="531" y="433" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">查看实际耗时、复用布局页数</text>
+<text x="531" y="457" fill="#22252A" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">和阴影图复用次数。</text>
+</svg>

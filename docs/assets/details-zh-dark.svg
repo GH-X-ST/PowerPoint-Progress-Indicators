@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 490" width="1000" height="490" role="img" aria-labelledby="title desc" xml:lang="zh">
+<title id="title">页码、密度与背景字</title>
+<desc id="desc">页码可显示整份文稿或当前章。标记密度可调。仅在顶部停靠时，非当前章节的裁切背景字显示在章名和页标后方。</desc>
+<rect x="0" y="0" width="1000" height="490" rx="0" fill="#11171E"/>
+<rect x="0" y="0" width="10" height="490" rx="0" fill="#FF9EAE"/>
+<text x="42" y="59" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="33" font-weight="700" letter-spacing="-0.7" text-anchor="start">页码、密度与背景字</text>
+<path d="M42 82L958 82" fill="none" stroke="#F6F3EB" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M493 108L493 455" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="42" y="130" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="24" font-weight="680" letter-spacing="0" text-anchor="start">进度计数</text>
+<text x="42" y="193" fill="#FF9EAE" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="48" font-weight="680" letter-spacing="-2" text-anchor="start">12/40</text>
+<text x="42" y="224" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">全局页码</text>
+<text x="257" y="193" fill="#FF9EAE" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="48" font-weight="680" letter-spacing="-2" text-anchor="start">2/8</text>
+<text x="257" y="224" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">章节页码</text>
+<path d="M42 252L463 252" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="42" y="289" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="23" font-weight="680" letter-spacing="0" text-anchor="start">进度密度</text>
+<text x="42" y="328" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="610" letter-spacing="0" text-anchor="start">全部页面</text>
+<text x="462" y="328" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="end">逐页显示</text>
+<path d="M42 341L463 341" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="42" y="373" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="610" letter-spacing="0" text-anchor="start">自动密度</text>
+<text x="462" y="373" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="end">空间不足时合并</text>
+<path d="M42 386L463 386" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="42" y="418" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="610" letter-spacing="0" text-anchor="start">聚焦当前章节</text>
+<text x="462" y="418" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="end">其他章显示汇总条</text>
+<path d="M42 431L463 431" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="525" y="130" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="23" font-weight="680" letter-spacing="0" text-anchor="start">裁切背景字（顶部）</text>
+<text x="525" y="166" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">仅在顶部停靠时显示于非当前章节。</text>
+<rect x="525" y="199" width="398" height="48" rx="0" fill="#11171E" stroke="#424A52" stroke-width="1"/>
+<circle cx="545" cy="223" r="5" fill="#B3BBC3"/>
+<text x="562" y="231" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="19" font-weight="480" letter-spacing="0" text-anchor="start">章节标题与页标</text>
+<rect x="540" y="254" width="383" height="48" rx="0" fill="#3C262F" stroke="#424A52" stroke-width="1"/>
+<circle cx="560" cy="278" r="5" fill="#FF9EAE"/>
+<text x="577" y="286" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="19" font-weight="650" letter-spacing="0" text-anchor="start">裁切后的章节名</text>
+<rect x="555" y="309" width="368" height="48" rx="0" fill="#11171E" stroke="#424A52" stroke-width="1"/>
+<circle cx="575" cy="333" r="5" fill="#B3BBC3"/>
+<text x="592" y="341" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="19" font-weight="480" letter-spacing="0" text-anchor="start">章节底色</text>
+<text x="525" y="400" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">背景字的颜色、透明度和缩放比例均可调。</text>
+<text x="525" y="430" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">当前章仍显示正常标题。</text>
+</svg>

@@ -272,73 +272,199 @@
 
 ## 全部 40 款样式
 
-以下 40 款样式均由加载项在同一张 PowerPoint 幻灯片上生成。展开一组即可对照各款的章名和页标。图中的名称与 **设计样式 > 样式预设** 菜单一致，每款都有大、中、小三档。
+以下是正式加载项在同一张幻灯片上生成的 40 款进度条。每张图都停在 Design 章的第 3 页，方便对照当前章和页标的样子。在 **设计样式 > 样式预设** 中可以按相同的顺序找到它们。
 
-<details>
-<summary>通用主题、胶囊、分段和衬线等 8 款</summary>
+### 通用
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/gallery/presets-1-dark.webp" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/gallery/presets-1-light.webp" />
-  <img src="docs/assets/gallery/presets-1-light.webp" alt="通用主题、表现型胶囊、Bento 分段、轻透胶囊、柔和极简、硬边错位、复古终端、衬线编辑在同一张幻灯片上的效果。" width="100%" />
-</picture>
+#### 通用主题
 
-</details>
+<img src="docs/assets/gallery/styles/universal_theme.webp" alt="当前章是蓝底白字，章名下方的细线上有一小段加粗的白线。" width="100%" />
 
-<details>
-<summary>深红层叠、极简线条、柔影与轮廓等 8 款</summary>
+### 圆角与分段
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/gallery/presets-2-dark.webp" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/gallery/presets-2-light.webp" />
-  <img src="docs/assets/gallery/presets-2-light.webp" alt="深红层叠、轻盈层次、极简下沿线、极简上沿线、柔和调性、实色强调、柔影侧标、精细轮廓在同一张幻灯片上的效果。" width="100%" />
-</picture>
+#### 表现型胶囊
 
-</details>
+<img src="docs/assets/gallery/styles/expressive_pill.webp" alt="每章各占一个紫色胶囊，当前章颜色最深，下方用实心和空心圆点标页。" width="100%" />
 
-<details>
-<summary>编辑排版、高对比和半透明系列，共 6 款</summary>
+#### Bento 分段
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/gallery/presets-3-dark.webp" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/gallery/presets-3-light.webp" />
-  <img src="docs/assets/gallery/presets-3-light.webp" alt="编号编辑风、黑白网格、高对比浅色、高对比深色、浅色半透明、深色半透明在同一张幻灯片上的效果。" width="100%" />
-</picture>
+<img src="docs/assets/gallery/styles/bento_segments.webp" alt="圆角方框里排着带编号的章名，当前章是浅蓝底，当前页用较大的深蓝方块标出。" width="100%" />
 
-</details>
+#### 轻透胶囊
 
-<details>
-<summary>技术视觉、渐变、材质与硬边等 6 款</summary>
+<img src="docs/assets/gallery/styles/glass_dock.webp" alt="浅蓝色胶囊之间留白，当前章的底色最浅，深蓝圆点标出当前页。" width="100%" />
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/gallery/presets-4-dark.webp" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/gallery/presets-4-light.webp" />
-  <img src="docs/assets/gallery/presets-4-light.webp" alt="暗色荧光、蓝图线框、双色调渐变、距离渐淡、暖纸柔影、硬边图形在同一张幻灯片上的效果。" width="100%" />
-</picture>
+#### 柔和极简
 
-</details>
+<img src="docs/assets/gallery/styles/soft_minimal.webp" alt="灰绿色圆角栏下方是一条连续细线，到了当前页的位置，线条稍稍加粗。" width="100%" />
 
-<details>
-<summary>框景与标注、编辑与档案系列，从舞台方窗到字样索引，共 6 款</summary>
+### 排版与图形
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/gallery/presets-5-dark.webp" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/gallery/presets-5-light.webp" />
-  <img src="docs/assets/gallery/presets-5-light.webp" alt="舞台方窗、工程定位、都市围框、分区字格、静默书目、字样索引在同一张幻灯片上的效果。" width="100%" />
-</picture>
+#### 硬边错位
 
-</details>
+<img src="docs/assets/gallery/styles/hard_offset.webp" alt="各栏的右边和底边都有错开的黑色阴影，当前章用黄底和黑色方块标出。" width="100%" />
 
-<details>
-<summary>编辑与档案、色带与图形节奏系列，从轻字标本到柜格序列，共 6 款</summary>
+#### 复古终端
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/gallery/presets-6-dark.webp" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/gallery/presets-6-light.webp" />
-  <img src="docs/assets/gallery/presets-6-light.webp" alt="轻字标本、档案标签、海岸色带、泳道单线、报刊分栏、柜格序列在同一张幻灯片上的效果。" width="100%" />
-</picture>
+<img src="docs/assets/gallery/styles/retro_terminal.webp" alt="近黑色的章节栏用等宽字体编号，当前章名和方形页标呈亮绿色。" width="100%" />
 
-</details>
+#### 衬线编辑
+
+<img src="docs/assets/gallery/styles/serif_editorial.webp" alt="细竖线分开米白色的各栏，带编号的衬线章名下方排列着长短刻度。" width="100%" />
+
+### 层次
+
+#### 深红层叠
+
+<img src="docs/assets/gallery/styles/polyu_layered.webp" alt="深红色的当前章连着底部红线，两侧灰色章节有投影，当前页是一段发光的白色短条。" width="100%" />
+
+#### 轻盈层次
+
+<img src="docs/assets/gallery/styles/quiet_layered.webp" alt="浅灰章节带有轻微投影，白底的当前章用红字、红色下沿线和圆点标出。" width="100%" />
+
+### 极简
+
+#### 极简下沿线
+
+<img src="docs/assets/gallery/styles/minimal_underline.webp" alt="细竖线分开各章，当前章有红色下划线，另一条细线在当前页的位置加粗。" width="100%" />
+
+#### 极简上沿线
+
+<img src="docs/assets/gallery/styles/minimal_topline.webp" alt="深红线标在当前章顶部，章名下方的页标是一排长短不同的刻度。" width="100%" />
+
+### 调性
+
+#### 柔和调性
+
+<img src="docs/assets/gallery/styles/material_tonal.webp" alt="浅紫色圆角栏下排着小圆点，当前章有紫色下沿线，当前页是较大的实心点。" width="100%" />
+
+#### 实色强调
+
+<img src="docs/assets/gallery/styles/material_filled.webp" alt="当前章整栏是紫底白字，章名下方排着两端方正的短线。" width="100%" />
+
+### 柔影与轮廓
+
+#### 柔影侧标
+
+<img src="docs/assets/gallery/styles/fluent_soft.webp" alt="各栏带淡淡的投影，当前章左侧有蓝线，下方轨道上的粗线标出当前页。" width="100%" />
+
+#### 精细轮廓
+
+<img src="docs/assets/gallery/styles/fluent_outline.webp" alt="各章都用细框围住，当前章是蓝色框线，未讲到的页面用空心小方块表示。" width="100%" />
+
+### 编辑排版
+
+#### 编号编辑风
+
+<img src="docs/assets/gallery/styles/editorial_numbered.webp" alt="章名前有两位数编号，当前章的左边线、文字和刻度都是深红色。" width="100%" />
+
+#### 黑白网格
+
+<img src="docs/assets/gallery/styles/swiss_mono.webp" alt="带编号的章节排在黑白方格里，当前章反白，当前页是一段加粗的白色短线。" width="100%" />
+
+### 高对比
+
+#### 高对比浅色
+
+<img src="docs/assets/gallery/styles/contrast_light.webp" alt="黑色框线分开灰白各栏，当前章为黑底白字，方形页标有实心和空心两种。" width="100%" />
+
+#### 高对比深色
+
+<img src="docs/assets/gallery/styles/contrast_dark.webp" alt="深灰到黑色的各栏围着白底的当前章，黑色实心圆点标出当前页。" width="100%" />
+
+### 半透明材质
+
+#### 浅色半透明
+
+<img src="docs/assets/gallery/styles/glass_light.webp" alt="蓝灰色章节各有细边框，当前栏接近白色，深蓝圆点标出当前页。" width="100%" />
+
+#### 深色半透明
+
+<img src="docs/assets/gallery/styles/glass_smoke.webp" alt="白色章名排在深蓝灰色的方框内，细轨道上较粗的一段白线标出当前页。" width="100%" />
+
+### 技术视觉
+
+#### 暗色荧光
+
+<img src="docs/assets/gallery/styles/neon_dark.webp" alt="深蓝底上，当前章名呈亮青色，当前页的圆点带有青色光晕。" width="100%" />
+
+#### 蓝图线框
+
+<img src="docs/assets/gallery/styles/blueprint.webp" alt="深蓝色章节的边角有浅蓝色十字，带编号的章名下方是长短刻度。" width="100%" />
+
+### 渐变
+
+#### 双色调渐变
+
+<img src="docs/assets/gallery/styles/duotone_gradient.webp" alt="紫色当前章的左侧是淡紫色，右侧是浅青色，白色粗线标出当前页。" width="100%" />
+
+#### 距离渐淡
+
+<img src="docs/assets/gallery/styles/distance_gradient.webp" alt="距深红色当前章越远，灰色栏的底色越淡，当前页对应一颗亮白圆点。" width="100%" />
+
+### 材质与硬边
+
+#### 暖纸柔影
+
+<img src="docs/assets/gallery/styles/paper_warm.webp" alt="暖米色的各栏带有淡阴影和小折角线，衬线章名靠左，下方排列短刻度。" width="100%" />
+
+#### 硬边图形
+
+<img src="docs/assets/gallery/styles/bold_graphic.webp" alt="黄色当前章四周有粗黑框，带编号的章名下方用黑色方块标出当前页。" width="100%" />
+
+### 框景与标注
+
+#### 舞台方窗
+
+<img src="docs/assets/gallery/styles/stage_window.webp" alt="大写章名靠左排在黑色方框里，红色当前章下方有一排小方块。" width="100%" />
+
+#### 工程定位
+
+<img src="docs/assets/gallery/styles/engineering_register.webp" alt="米色栏的边角带十字标记，当前章换成蓝灰底，章名编号下方是长短刻度。" width="100%" />
+
+#### 都市围框
+
+<img src="docs/assets/gallery/styles/civic_corners.webp" alt="每章四角各有一道蓝色直角线，当前章的大写标题和实心圆点都是亮蓝色。" width="100%" />
+
+#### 分区字格
+
+<img src="docs/assets/gallery/styles/community_cells.webp" alt="黑框分开各个编号章节，当前章填成橙色，章名下方的小方块区分各页。" width="100%" />
+
+### 编辑与档案
+
+#### 静默书目
+
+<img src="docs/assets/gallery/styles/quiet_colophon.webp" alt="米灰色栏里的衬线章名居中，一条细线横贯各章，只在当前页的位置加粗。" width="100%" />
+
+#### 字样索引
+
+<img src="docs/assets/gallery/styles/specimen_index.webp" alt="两道细红线沿着章节顶部延伸，黑底当前章用白色编号、章名和刻度。" width="100%" />
+
+#### 轻字标本
+
+<img src="docs/assets/gallery/styles/botanical_labels.webp" alt="浅绿色栏里的细字章名靠左排列，边角有短折线，小圆点排在标题下方。" width="100%" />
+
+#### 档案标签
+
+<img src="docs/assets/gallery/styles/archive_label.webp" alt="米色栏里用等宽字体显示编号和章名，红色竖线标出当前章，方块标出各页。" width="100%" />
+
+### 色带与图形节奏
+
+#### 海岸色带
+
+<img src="docs/assets/gallery/styles/coastal_bands.webp" alt="绿色和米色的横带之间是蓝色当前章，贯穿各章的细线在当前页加粗为白色短条。" width="100%" />
+
+#### 泳道单线
+
+<img src="docs/assets/gallery/styles/swimlane_outline.webp" alt="章名在浅蓝色细框内靠右对齐，蓝色细线穿过各栏，当前页处加粗。" width="100%" />
+
+#### 报刊分栏
+
+<img src="docs/assets/gallery/styles/newspaper_columns.webp" alt="衬线章名靠左，各栏之间有细竖线，当前章顶部加黑线，下方用刻度标页。" width="100%" />
+
+#### 柜格序列
+
+<img src="docs/assets/gallery/styles/cabinet_grid.webp" alt="各章排在灰色粗框里，当前章为黑底，白色分段短条标在带编号的章名下方。" width="100%" />
 
 ---
 

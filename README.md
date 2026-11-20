@@ -252,73 +252,199 @@ The cover stays clear because its layout rule takes priority over its master. Hi
 
 ## Preset gallery
 
-These examples come from the same PowerPoint slide, generated once with each of the 40 presets. Design is the current section, so you can compare how each preset marks the same section and slide. Find the corresponding style under **Design > Design Presets**, then choose a size.
+These are all 40 presets on the same PowerPoint slide. In every example, Design is the current section and its third slide is on screen. The presets appear in the same order under **Design > Design Presets**.
 
-<details>
-<summary>General, Rounded and Segmented, Typography and Graphics (8 styles)</summary>
+### General
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/gallery/presets-1-dark.webp" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/gallery/presets-1-light.webp" />
-  <img src="docs/assets/gallery/presets-1-light.webp" alt="Universal Theme, Expressive Pills, Bento Segments, Translucent Pills, Soft Minimal, Hard Offset, Retro Terminal, Serif Editorial." width="100%" />
-</picture>
+#### Universal Theme
 
-</details>
+<img src="docs/assets/gallery/styles/universal_theme.webp" alt="The current section has a blue background and white lettering, with a short white segment on the thin progress line." width="100%" />
 
-<details>
-<summary>Layers, Minimal, Tonal, Soft Shadows and Outlines (8 styles)</summary>
+### Rounded and Segmented
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/gallery/presets-2-dark.webp" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/gallery/presets-2-light.webp" />
-  <img src="docs/assets/gallery/presets-2-light.webp" alt="Crimson Layers, Light Layers, Minimal Underline, Minimal Overline, Soft Tones, Solid Accent, Soft Shadow Tabs, Fine Outlines." width="100%" />
-</picture>
+#### Expressive Pills
 
-</details>
+<img src="docs/assets/gallery/styles/expressive_pill.webp" alt="Each section sits in a purple pill, with filled and hollow dots beneath the title and the darkest fill on the current section." width="100%" />
 
-<details>
-<summary>Editorial, High Contrast, Translucent (6 styles)</summary>
+#### Bento Segments
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/gallery/presets-3-dark.webp" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/gallery/presets-3-light.webp" />
-  <img src="docs/assets/gallery/presets-3-light.webp" alt="Numbered Editorial, Monochrome Grid, High Contrast Light, High Contrast Dark, Light Glass, Dark Glass." width="100%" />
-</picture>
+<img src="docs/assets/gallery/styles/bento_segments.webp" alt="Numbered titles sit in rounded rectangles, with a larger dark blue square marking the current slide on a pale blue panel." width="100%" />
 
-</details>
+#### Translucent Pills
 
-<details>
-<summary>Technical, Gradients, Materials and Hard Edges (6 styles)</summary>
+<img src="docs/assets/gallery/styles/glass_dock.webp" alt="White gaps separate pale blue pills, and a dark blue dot marks the current slide in the lightest pill." width="100%" />
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/gallery/presets-4-dark.webp" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/gallery/presets-4-light.webp" />
-  <img src="docs/assets/gallery/presets-4-light.webp" alt="Dark Neon, Blueprint, Duotone Gradient, Distance Fade, Warm Paper, Hard-Edged Geometry." width="100%" />
-</picture>
+#### Soft Minimal
 
-</details>
+<img src="docs/assets/gallery/styles/soft_minimal.webp" alt="A thin line runs through the muted green panels and thickens at the current slide." width="100%" />
 
-<details>
-<summary>Frames and Annotations, Editorial and Archival (Stage Windows through Type Specimen Index)</summary>
+### Typography and Graphics
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/gallery/presets-5-dark.webp" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/gallery/presets-5-light.webp" />
-  <img src="docs/assets/gallery/presets-5-light.webp" alt="Stage Windows, Engineering Marks, Civic Corners, Community Cells, Quiet Colophon, Type Specimen Index." width="100%" />
-</picture>
+#### Hard Offset
 
-</details>
+<img src="docs/assets/gallery/styles/hard_offset.webp" alt="Black shadows extend below and to the right of the numbered panels, with black square markers on the yellow current section." width="100%" />
 
-<details>
-<summary>Editorial and Archival, Color Bands and Rhythm (Botanical Labels through Cabinet Grid)</summary>
+#### Retro Terminal
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/gallery/presets-6-dark.webp" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/gallery/presets-6-light.webp" />
-  <img src="docs/assets/gallery/presets-6-light.webp" alt="Botanical Labels, Archive Labels, Coastal Bands, Swim Lanes, Newspaper Columns, Cabinet Grid." width="100%" />
-</picture>
+<img src="docs/assets/gallery/styles/retro_terminal.webp" alt="Numbered monospaced titles sit on a nearly black strip, with the current title and square marker in bright green." width="100%" />
 
-</details>
+#### Serif Editorial
+
+<img src="docs/assets/gallery/styles/serif_editorial.webp" alt="Fine rules separate cream columns with numbered serif titles and short ticks below." width="100%" />
+
+### Layers
+
+#### Crimson Layers
+
+<img src="docs/assets/gallery/styles/polyu_layered.webp" alt="The crimson section meets a thin red strip beneath the shadowed gray panels, and the current slide marker glows white." width="100%" />
+
+#### Light Layers
+
+<img src="docs/assets/gallery/styles/quiet_layered.webp" alt="Pale gray panels have subtle shadows, while a red title, underline, and dot mark the white current section." width="100%" />
+
+### Minimal
+
+#### Minimal Underline
+
+<img src="docs/assets/gallery/styles/minimal_underline.webp" alt="Fine vertical lines separate the sections, with a red underline below the current section and a thicker segment at the current slide." width="100%" />
+
+#### Minimal Overline
+
+<img src="docs/assets/gallery/styles/minimal_topline.webp" alt="A dark red line marks the top of the current section, with a row of short and long ticks beneath the titles." width="100%" />
+
+### Tonal
+
+#### Soft Tones
+
+<img src="docs/assets/gallery/styles/material_tonal.webp" alt="Pale lavender panels have round slide markers, with a purple underline and a larger filled dot in the current section." width="100%" />
+
+#### Solid Accent
+
+<img src="docs/assets/gallery/styles/material_filled.webp" alt="The current section is solid purple with white lettering and a row of square-ended slide markers." width="100%" />
+
+### Soft Shadows and Outlines
+
+#### Soft Shadow Tabs
+
+<img src="docs/assets/gallery/styles/fluent_soft.webp" alt="The panels cast soft shadows, with a blue line on the left of the current section and a thicker mark on the track below." width="100%" />
+
+#### Fine Outlines
+
+<img src="docs/assets/gallery/styles/fluent_outline.webp" alt="Thin outlines enclose each section, with a blue border around the current section and hollow squares for upcoming slides." width="100%" />
+
+### Editorial
+
+#### Numbered Editorial
+
+<img src="docs/assets/gallery/styles/editorial_numbered.webp" alt="Two-digit numbers precede the titles, with a dark red left border, title, and ticks in the current section." width="100%" />
+
+#### Monochrome Grid
+
+<img src="docs/assets/gallery/styles/swiss_mono.webp" alt="Numbered sections form a black-and-white grid, with white text and a thick white slide marker in the black current section." width="100%" />
+
+### High Contrast
+
+#### High Contrast Light
+
+<img src="docs/assets/gallery/styles/contrast_light.webp" alt="Black borders divide light panels, and filled and hollow squares sit below the white title in the black current section." width="100%" />
+
+#### High Contrast Dark
+
+<img src="docs/assets/gallery/styles/contrast_dark.webp" alt="Dark panels flank the white current section, where a large filled black dot marks the current slide." width="100%" />
+
+### Translucent
+
+#### Light Glass
+
+<img src="docs/assets/gallery/styles/glass_light.webp" alt="Blue-gray panels have thin borders, and a dark blue dot marks the current slide in the nearly white panel." width="100%" />
+
+#### Dark Glass
+
+<img src="docs/assets/gallery/styles/glass_smoke.webp" alt="White titles sit in dark blue-gray frames, with a thicker white segment marking the current slide on a thin track." width="100%" />
+
+### Technical
+
+#### Dark Neon
+
+<img src="docs/assets/gallery/styles/neon_dark.webp" alt="The current title is bright cyan on navy, and the current dot has a cyan glow." width="100%" />
+
+#### Blueprint
+
+<img src="docs/assets/gallery/styles/blueprint.webp" alt="Blue crosshairs mark the corners of navy panels, with ticks of different lengths beneath the numbered titles." width="100%" />
+
+### Gradients
+
+#### Duotone Gradient
+
+<img src="docs/assets/gallery/styles/duotone_gradient.webp" alt="Lavender panels sit to the left of the purple current section and pale teal panels to the right, with a thick white mark on the progress line." width="100%" />
+
+#### Distance Fade
+
+<img src="docs/assets/gallery/styles/distance_gradient.webp" alt="Gray panels get lighter farther from the crimson current section, where a bright white dot marks the current slide." width="100%" />
+
+### Materials and Hard Edges
+
+#### Warm Paper
+
+<img src="docs/assets/gallery/styles/paper_warm.webp" alt="Warm beige panels have soft shadows and small corner marks, with left-aligned serif titles above short ticks." width="100%" />
+
+#### Hard-Edged Geometry
+
+<img src="docs/assets/gallery/styles/bold_graphic.webp" alt="A heavy black frame surrounds the yellow current section, with a black square below its numbered title." width="100%" />
+
+### Frames and Annotations
+
+#### Stage Windows
+
+<img src="docs/assets/gallery/styles/stage_window.webp" alt="Left-aligned uppercase titles sit in black frames, with square slide markers inside the red current section." width="100%" />
+
+#### Engineering Marks
+
+<img src="docs/assets/gallery/styles/engineering_register.webp" alt="Crosshairs mark the corners of the beige panels, with a blue-gray current section and ticks below the numbered titles." width="100%" />
+
+#### Civic Corners
+
+<img src="docs/assets/gallery/styles/civic_corners.webp" alt="Blue corner brackets frame each section, and the current uppercase title and filled dot are bright blue." width="100%" />
+
+#### Community Cells
+
+<img src="docs/assets/gallery/styles/community_cells.webp" alt="Black frames separate the numbered sections, with an orange fill on the current panel and square slide markers below its title." width="100%" />
+
+### Editorial and Archival
+
+#### Quiet Colophon
+
+<img src="docs/assets/gallery/styles/quiet_colophon.webp" alt="Centered serif titles sit above a fine line that runs through the beige panels and thickens at the current slide." width="100%" />
+
+#### Type Specimen Index
+
+<img src="docs/assets/gallery/styles/specimen_index.webp" alt="Two fine red lines run across the top, with a white number, title, and ticks inside the black current section." width="100%" />
+
+#### Botanical Labels
+
+<img src="docs/assets/gallery/styles/botanical_labels.webp" alt="Lightweight titles sit at the left of pale green panels, with small corner marks and a row of dots beneath each title." width="100%" />
+
+#### Archive Labels
+
+<img src="docs/assets/gallery/styles/archive_label.webp" alt="Monospaced numbers and titles sit on beige panels, with a red vertical line marking the current section and squares marking the slides." width="100%" />
+
+### Color Bands and Rhythm
+
+#### Coastal Bands
+
+<img src="docs/assets/gallery/styles/coastal_bands.webp" alt="A bright blue panel sits between green and cream bands, and the line across them thickens to a white bar at the current slide." width="100%" />
+
+#### Swim Lanes
+
+<img src="docs/assets/gallery/styles/swimlane_outline.webp" alt="Titles align to the right inside thin blue frames, and a blue line crosses the panels with a thicker segment at the current slide." width="100%" />
+
+#### Newspaper Columns
+
+<img src="docs/assets/gallery/styles/newspaper_columns.webp" alt="Fine vertical rules divide the left-aligned serif titles, with a black top rule over the current section and ticks below." width="100%" />
+
+#### Cabinet Grid
+
+<img src="docs/assets/gallery/styles/cabinet_grid.webp" alt="Thick gray frames enclose the sections, with a black current panel and short white bars beneath its numbered title." width="100%" />
 
 <a name="upstream"></a>
 <a name="changes-from-upstream-1960"></a>

@@ -153,7 +153,7 @@ Function DeserializeProgressOptions(s As String) As ProgressDotsOptions
               theOptions.NavigationWidth = 0
               theOptions.SectionBlockHeight = 34
               theOptions.RailWidth = 0
-              theOptions.RailThickness = 3
+              theOptions.RailThickness = 1
               theOptions.LayerShadowBlur = 6
               theOptions.LayerShadowTransparency = 80
               theOptions.LayerDepthStep = 0.75
@@ -455,7 +455,7 @@ Sub InitializePIVersion()
           'Version for settings-format saved in presentation
 10        gblIndicatorSettingsVersion = "Version20231115_1200"
 20        gblProgramVersionBase = "1.960"   'this is checked at online version check, see cmdWebCheck_Click in frmHelp
-30        gblProgramVersion = gblProgramVersionBase & " CN.11.3 32b/64b" & " / Settings: " & gblIndicatorSettingsVersion
+30        gblProgramVersion = gblProgramVersionBase & " CN.11.4 32b/64b" & " / Settings: " & gblIndicatorSettingsVersion
           
 End Sub
 

@@ -44,7 +44,7 @@ def prepare_english(
             continue
         source = ENCODED_TEXT.sub(translate_vba, module.read_text("utf-8-sig"))
         if module.name == "mdlOptionsHandling.bas":
-            source = source.replace('" CN.11.3 32b/64b"', '" EN.11.3 32b/64b"')
+            source = source.replace('" CN.11.4 32b/64b"', '" EN.11.4 32b/64b"')
         if module.name == "basGeneral.bas":
             source = source.replace('family = "Microsoft YaHei"',
                                     'family = "Segoe UI"')
@@ -60,7 +60,7 @@ def prepare_english(
     xml.write(target / "customUI14.xml", encoding="UTF-8", xml_declaration=True)
 
     catalog = json.loads((project_dir / "styles.json").read_text("utf-8"))
-    catalog["version"] = "EN.11.3"
+    catalog["version"] = "EN.11.4"
     for style in catalog["styles"]:
         for field in ("name", "family", "description"):
             style[field] = ribbon_text[style[field]]

@@ -953,6 +953,7 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
           Dim splitBand As Boolean, bodyHeight As Double, bodyTop As Double, rowTop As Double
           Dim rowHeight As Double, counterTop As Double
           Dim titleHeight As Double, bandPadding As Double, titlePadding As Double
+          Dim addedHeight As Double, markerClearance As Double
           Dim renderDotSize As Double, renderDotTop As Double, dotPadding As Double
           Dim dotAlong As Double, dotAcross As Double, ovalSlot As Double
           Dim renderBarWidth As Double, renderBarHeight As Double
@@ -1032,7 +1033,21 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
                   End If
               End If
               titleHeight = PI_BandTitleHeight(theOptions.textHeight)
-              If theOptions.PresetSize = 2 And theOptions.DockEdge < 2 Then titleHeight = bodyHeight
+              If theOptions.PresetSize = 2 And theOptions.DockEdge < 2 Then
+                  ' Split the added chapter height between the title side and the outer edge of the markers.
+                  titleHeight = PI_BarClamp(theOptions.textHeight, 0, bodyHeight)
+                  addedHeight = PI_BarClamp(bodyHeight - 10, 0, 3)
+                  markerClearance = addedHeight / 3
+                  addedHeight = PI_BarClamp(addedHeight, 0, bodyHeight - titleHeight)
+                  titleTop = titleTop + (bodyHeight - addedHeight - titleHeight) / 2
+                  If theOptions.SectionPlacement = 0 Then
+                      titleTop = titleTop + 2 * addedHeight / 3
+                      dotsTop = dotsTop - markerClearance
+                  Else
+                      titleTop = titleTop + addedHeight / 3
+                      dotsTop = dotsTop + markerClearance
+                  End If
+              End If
               bandPadding = theOptions.SectionBandPadding
           Else
               titleTop = theOptions.yMargin + (theOptions.SectionPlacement * markerRowHeight + 1) + (theOptions.SectionPlacement * intSectionIndicatorGap)
@@ -1363,7 +1378,7 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
                       theOptions.PIStyle <> "Indicator only" And theOptions.ignoreSections = "Full" Then
                       counterTop = titleTop + titleHeight
                       If splitBand Then
-                          counterTop = rowTop
+                          counterTop = rowTop - markerClearance
                           If theOptions.SectionPlacement <> 0 Then counterTop = dotsTop + markerRowHeight
                       End If
                       Set counter = PI_AddCounter(renderPresentation.Slides(slideNum), sectinfo, theOptions, _
@@ -4136,7 +4151,11 @@ Private Sub PI_ApplyPresetSize(ByVal presetSize As Integer)
     PI_BandGeometry largeOptions, titleTop, dotsTop, largeHeight
     If largeOptions.LayeredNavigation = 0 Then largeHeight = largeHeight - PI_BarClamp(largeOptions.HardShadowOffset, 0, largeHeight / 3)
     gblPresetSize = presetSize
-    gblSectionBlockHeight = largeHeight + blend * (7 - largeHeight)
+    If presetSize = 2 Then
+        gblSectionBlockHeight = 13
+    Else
+        gblSectionBlockHeight = (largeHeight + 7) / 2 - 4
+    End If
     gbldblFontSize = gbldblFontSize + blend * (7 - gbldblFontSize)
     gblFlatBarHeight = gblFlatBarHeight * (1 - blend / 2)
     gbldblIndicatorSize = gbldblIndicatorSize * (1 - blend / 2)
@@ -4160,7 +4179,7 @@ Private Sub PI_RestoreStylePolicy(previous As ProgressDotsOptions)
 End Sub
 
 Private Function PI_StyleCommon() As String
-    PI_StyleCommon = "layered=0|height=34|rail=3|padding=4|textSize=12|textGap=3|barHeight=2.5|barGap=3|roundness=50|glow=0|glowRadius=2|glowTransparency=65|shadowBlur=0|shadowTransparency=80|shadowDistance=1.5|depthStep=0.75|seenBackground=#E6E8EC|currentBackground=#9E1F38|unseenBackground=#E6E8EC|seenForeground=#414B55|currentForeground=#FFFFFF|unseenForeground=#414B55|seenBarTransparency=18|currentBarTransparency=0|unseenBarTransparency=55|currentTransparency=0|leftTransparency=0|rightTransparency=0|contrast=0|gradient=0|leftNear=#DADDE2|leftFar=#F0F1F3|rightNear=#E3E5E9|rightFar=#F4F5F7|accentMode=0|accentWidth=1.5|" & _
+    PI_StyleCommon = "layered=0|height=34|rail=1|padding=4|textSize=12|textGap=3|barHeight=2.5|barGap=3|roundness=50|glow=0|glowRadius=2|glowTransparency=65|shadowBlur=0|shadowTransparency=80|shadowDistance=1.5|depthStep=0.75|seenBackground=#E6E8EC|currentBackground=#9E1F38|unseenBackground=#E6E8EC|seenForeground=#414B55|currentForeground=#FFFFFF|unseenForeground=#414B55|seenBarTransparency=18|currentBarTransparency=0|unseenBarTransparency=55|currentTransparency=0|leftTransparency=0|rightTransparency=0|contrast=0|gradient=0|leftNear=#DADDE2|leftFar=#F0F1F3|rightNear=#E3E5E9|rightFar=#F4F5F7|accentMode=0|accentWidth=1.5|" & _
         "accentColor=#9E1F38|numbering=0|currentBold=0|futureOutline=0|sectionBars=1|themeColors=0|sectionRoundness=0|sectionGap=0|hardShadow=0|fontName=Arial|titleAlignment=0|titleCase=0|flatRuleMode=1|flatRuleWidth=0.8|flatRuleColor=#9199A4|markerKind=0|panelShadow=0"
 End Function
 
@@ -4185,67 +4204,67 @@ Private Function PI_StyleRecipe(ByVal styleID As String) As String
         Case "polyu_layered"
             PI_StyleRecipe = "shadowBlur=10|glow=1|glowRadius=4|glowTransparency=55|contrast=1|markerKind=0|flatRuleMode=0|barHeight=2.5|layered=1|shadowTransparency=62|shadowDistance=2.5|depthStep=0.8|flatRuleColor=#858F9A|flatRuleWidth=0.85|seenBackground=#D4D7DB|seenBarTransparency=70|unseenBarTransparency=70|fontName=Inter Medium|currentBold=1|crimsonType=1"
         Case "quiet_layered"
-            PI_StyleRecipe = "seenBackground=#DEDEE3|currentBackground=#FFFFFF|unseenBackground=#F2F2F7|seenForeground=#3C3C43|currentForeground=#9E1F38|unseenForeground=#3C3C43|shadowBlur=2|shadowTransparency=64|shadowDistance=1.3|depthStep=0.25|rail=0.5|accentMode=1|glow=1|markerKind=3|flatRuleMode=0|barHeight=5|futureOutline=1|panelShadow=1|sectionGap=4"
+            PI_StyleRecipe = "seenBackground=#DEDEE3|currentBackground=#FFFFFF|unseenBackground=#F2F2F7|seenForeground=#3C3C43|currentForeground=#9E1F38|unseenForeground=#3C3C43|shadowBlur=2|shadowTransparency=64|shadowDistance=1.3|depthStep=0.25|accentMode=1|glow=1|markerKind=3|flatRuleMode=0|barHeight=5|futureOutline=1|panelShadow=1|sectionGap=4"
         Case "minimal_underline"
-            PI_StyleRecipe = "seenBackground=#EAEBEC|currentBackground=#FFFFFF|unseenBackground=#FFFFFF|currentForeground=#9E1F38|rail=0.5|accentMode=1|accentWidth=2|markerKind=4|flatRuleMode=1|barHeight=4"
+            PI_StyleRecipe = "seenBackground=#EAEBEC|currentBackground=#FFFFFF|unseenBackground=#FFFFFF|currentForeground=#9E1F38|accentMode=1|accentWidth=2|markerKind=4|flatRuleMode=1|barHeight=4"
         Case "minimal_topline"
-            PI_StyleRecipe = "seenBackground=#EAEBEC|currentBackground=#FAF3F5|unseenBackground=#FFFFFF|currentForeground=#9E1F38|rail=0.5|accentMode=2|accentWidth=2.5|currentBold=1|markerKind=2|flatRuleMode=1|barHeight=6"
+            PI_StyleRecipe = "seenBackground=#EAEBEC|currentBackground=#FAF3F5|unseenBackground=#FFFFFF|currentForeground=#9E1F38|accentMode=2|accentWidth=2.5|currentBold=1|markerKind=2|flatRuleMode=1|barHeight=6"
         Case "material_tonal"
-            PI_StyleRecipe = "seenBackground=#E1DCE4|currentBackground=#E8DEF8|unseenBackground=#F4EFF6|seenForeground=#49454F|currentForeground=#21005D|unseenForeground=#49454F|accentMode=1|accentColor=#6750A4|accentWidth=2|rail=1|currentBold=1|markerKind=3|flatRuleMode=0|barHeight=6|futureOutline=1|sectionGap=3|sectionRoundness=15"
+            PI_StyleRecipe = "seenBackground=#E1DCE4|currentBackground=#E8DEF8|unseenBackground=#F4EFF6|seenForeground=#49454F|currentForeground=#21005D|unseenForeground=#49454F|accentMode=1|accentColor=#6750A4|accentWidth=2|currentBold=1|markerKind=3|flatRuleMode=0|barHeight=6|futureOutline=1|sectionGap=3|sectionRoundness=15"
         Case "material_filled"
-            PI_StyleRecipe = "seenBackground=#E4DFE7|currentBackground=#6750A4|unseenBackground=#F7F2FA|seenForeground=#49454F|unseenForeground=#49454F|glow=1|glowTransparency=70|rail=2|markerKind=1|flatRuleMode=0|barHeight=4|sectionGap=3|sectionRoundness=0"
+            PI_StyleRecipe = "seenBackground=#E4DFE7|currentBackground=#6750A4|unseenBackground=#F7F2FA|seenForeground=#49454F|unseenForeground=#49454F|glow=1|glowTransparency=70|markerKind=1|flatRuleMode=0|barHeight=4|sectionGap=3|sectionRoundness=0"
         Case "fluent_soft"
-            PI_StyleRecipe = "seenBackground=#E1E1E1|currentBackground=#EBF3FC|unseenBackground=#F5F5F5|seenForeground=#424242|currentForeground=#0F548C|unseenForeground=#424242|shadowBlur=3|shadowTransparency=63|shadowDistance=1.3|depthStep=0.25|accentMode=4|accentColor=#0F6CBD|accentWidth=2|rail=1.5|currentBold=1|markerKind=4|flatRuleMode=0|barHeight=4|panelShadow=1|sectionGap=4"
+            PI_StyleRecipe = "seenBackground=#E1E1E1|currentBackground=#EBF3FC|unseenBackground=#F5F5F5|seenForeground=#424242|currentForeground=#0F548C|unseenForeground=#424242|shadowBlur=3|shadowTransparency=63|shadowDistance=1.3|depthStep=0.25|accentMode=4|accentColor=#0F6CBD|accentWidth=2|currentBold=1|markerKind=4|flatRuleMode=0|barHeight=4|panelShadow=1|sectionGap=4"
         Case "fluent_outline"
-            PI_StyleRecipe = "seenBackground=#E8E8E8|currentBackground=#EFF6FC|unseenBackground=#FFFFFF|seenForeground=#323130|currentForeground=#0F548C|unseenForeground=#323130|accentMode=3|accentColor=#0F6CBD|accentWidth=0.8|rail=0.5|markerKind=5|flatRuleMode=4|barHeight=5|futureOutline=1"
+            PI_StyleRecipe = "seenBackground=#E8E8E8|currentBackground=#EFF6FC|unseenBackground=#FFFFFF|seenForeground=#323130|currentForeground=#0F548C|unseenForeground=#323130|accentMode=3|accentColor=#0F6CBD|accentWidth=0.8|markerKind=5|flatRuleMode=4|barHeight=5|futureOutline=1"
         Case "editorial_numbered"
-            PI_StyleRecipe = "seenBackground=#DFDDD8|currentBackground=#FFFFFF|unseenBackground=#F7F5F0|seenForeground=#191919|currentForeground=#9E1F38|unseenForeground=#191919|numbering=1|currentBold=1|accentMode=4|accentWidth=2|barHeight=6|roundness=0|rail=0.5|markerKind=2|flatRuleMode=1"
+            PI_StyleRecipe = "seenBackground=#DFDDD8|currentBackground=#FFFFFF|unseenBackground=#F7F5F0|seenForeground=#191919|currentForeground=#9E1F38|unseenForeground=#191919|numbering=1|currentBold=1|accentMode=4|accentWidth=2|barHeight=6|roundness=0|markerKind=2|flatRuleMode=1"
         Case "swiss_mono"
-            PI_StyleRecipe = "seenBackground=#EAEAEA|currentBackground=#111111|unseenBackground=#FFFFFF|seenForeground=#444444|unseenForeground=#444444|numbering=1|currentBold=1|barHeight=3|roundness=0|rail=2|markerKind=1|flatRuleMode=4|futureOutline=1"
+            PI_StyleRecipe = "seenBackground=#EAEAEA|currentBackground=#111111|unseenBackground=#FFFFFF|seenForeground=#444444|unseenForeground=#444444|numbering=1|currentBold=1|barHeight=3|roundness=0|markerKind=1|flatRuleMode=4|futureOutline=1"
         Case "contrast_light"
-            PI_StyleRecipe = "seenBackground=#E3E3E3|currentBackground=#111111|unseenBackground=#FFFFFF|seenForeground=#000000|unseenForeground=#000000|seenBarTransparency=0|unseenBarTransparency=0|currentBold=1|futureOutline=1|accentMode=3|accentColor=#FFD54F|barHeight=7|barGap=4|roundness=20|rail=2|markerKind=5|flatRuleMode=4|flatRuleColor=#363636"
+            PI_StyleRecipe = "seenBackground=#E3E3E3|currentBackground=#111111|unseenBackground=#FFFFFF|seenForeground=#000000|unseenForeground=#000000|seenBarTransparency=0|unseenBarTransparency=0|currentBold=1|futureOutline=1|accentMode=3|accentColor=#FFD54F|barHeight=7|barGap=4|roundness=20|markerKind=5|flatRuleMode=4|flatRuleColor=#363636"
         Case "contrast_dark"
-            PI_StyleRecipe = "seenBackground=#2F2F2F|currentBackground=#FFFFFF|unseenBackground=#151515|seenForeground=#FFFFFF|currentForeground=#111111|unseenForeground=#FFFFFF|seenBarTransparency=0|unseenBarTransparency=0|currentBold=1|futureOutline=1|barHeight=7|barGap=4|roundness=20|rail=2|markerKind=3|flatRuleMode=4|flatRuleColor=#A6ADB4"
+            PI_StyleRecipe = "seenBackground=#2F2F2F|currentBackground=#FFFFFF|unseenBackground=#151515|seenForeground=#FFFFFF|currentForeground=#111111|unseenForeground=#FFFFFF|seenBarTransparency=0|unseenBarTransparency=0|currentBold=1|futureOutline=1|barHeight=7|barGap=4|roundness=20|markerKind=3|flatRuleMode=4|flatRuleColor=#A6ADB4"
         Case "glass_light"
-            PI_StyleRecipe = "seenBackground=#B9C3D0|currentBackground=#EEF5FF|unseenBackground=#CBD5E1|seenForeground=#263549|currentForeground=#1E3A5F|unseenForeground=#263549|leftTransparency=55|rightTransparency=55|shadowBlur=3|shadowTransparency=71|shadowDistance=1.3|depthStep=0|accentMode=3|accentColor=#93A9C4|accentWidth=0.75|rail=1|markerKind=3|flatRuleMode=4|barHeight=5|futureOutline=1|panelShadow=1|sectionGap=4|flatRuleColor=#93A9C4"
+            PI_StyleRecipe = "seenBackground=#B9C3D0|currentBackground=#EEF5FF|unseenBackground=#CBD5E1|seenForeground=#263549|currentForeground=#1E3A5F|unseenForeground=#263549|leftTransparency=55|rightTransparency=55|shadowBlur=3|shadowTransparency=71|shadowDistance=1.3|depthStep=0|accentMode=3|accentColor=#93A9C4|accentWidth=0.75|markerKind=3|flatRuleMode=4|barHeight=5|futureOutline=1|panelShadow=1|sectionGap=4|flatRuleColor=#93A9C4"
         Case "glass_smoke"
-            PI_StyleRecipe = "seenBackground=#3E4A5D|currentBackground=#20334E|unseenBackground=#263449|seenForeground=#FFFFFF|unseenForeground=#FFFFFF|leftTransparency=35|rightTransparency=35|shadowBlur=2|shadowTransparency=62|shadowDistance=1.3|depthStep=0|accentMode=3|accentColor=#9AB8DA|accentWidth=0.75|rail=1|glow=1|markerKind=4|flatRuleMode=4|barHeight=4|panelShadow=1|sectionGap=4|flatRuleColor=#9AB8DA"
+            PI_StyleRecipe = "seenBackground=#3E4A5D|currentBackground=#20334E|unseenBackground=#263449|seenForeground=#FFFFFF|unseenForeground=#FFFFFF|leftTransparency=35|rightTransparency=35|shadowBlur=2|shadowTransparency=62|shadowDistance=1.3|depthStep=0|accentMode=3|accentColor=#9AB8DA|accentWidth=0.75|glow=1|markerKind=4|flatRuleMode=4|barHeight=4|panelShadow=1|sectionGap=4|flatRuleColor=#9AB8DA"
         Case "neon_dark"
-            PI_StyleRecipe = "seenBackground=#262D3C|currentBackground=#17283D|unseenBackground=#111827|seenForeground=#CED7E4|currentForeground=#65E4FF|unseenForeground=#CED7E4|accentMode=1|accentColor=#65E4FF|accentWidth=1.2|glow=1|glowRadius=3|glowTransparency=45|rail=1.5|currentBold=1|futureOutline=1|markerKind=3|flatRuleMode=1|barHeight=5"
+            PI_StyleRecipe = "seenBackground=#262D3C|currentBackground=#17283D|unseenBackground=#111827|seenForeground=#CED7E4|currentForeground=#65E4FF|unseenForeground=#CED7E4|accentMode=1|accentColor=#65E4FF|accentWidth=1.2|glow=1|glowRadius=3|glowTransparency=45|currentBold=1|futureOutline=1|markerKind=3|flatRuleMode=1|barHeight=5"
         Case "blueprint"
-            PI_StyleRecipe = "seenBackground=#203D5B|currentBackground=#123D66|unseenBackground=#0B2948|seenForeground=#C7DEF5|unseenForeground=#C7DEF5|accentMode=3|accentColor=#79C4F2|accentWidth=0.75|numbering=1|currentBold=1|futureOutline=1|barHeight=7|roundness=0|rail=1|markerKind=2|flatRuleMode=7|flatRuleColor=#79C4F2"
+            PI_StyleRecipe = "seenBackground=#203D5B|currentBackground=#123D66|unseenBackground=#0B2948|seenForeground=#C7DEF5|unseenForeground=#C7DEF5|accentMode=3|accentColor=#79C4F2|accentWidth=0.75|numbering=1|currentBold=1|futureOutline=1|barHeight=7|roundness=0|markerKind=2|flatRuleMode=7|flatRuleColor=#79C4F2"
         Case "duotone_gradient"
-            PI_StyleRecipe = "currentBackground=#6D28D9|gradient=1|contrast=1|leftNear=#DDD6FE|leftFar=#F5F3FF|rightNear=#D6F0EE|rightFar=#F0FDFA|rail=2|glow=1|markerKind=4|flatRuleMode=1|barHeight=5|seenBackground=#D4D7DB"
+            PI_StyleRecipe = "currentBackground=#6D28D9|gradient=1|contrast=1|leftNear=#DDD6FE|leftFar=#F5F3FF|rightNear=#D6F0EE|rightFar=#F0FDFA|glow=1|markerKind=4|flatRuleMode=1|barHeight=5|seenBackground=#D4D7DB"
         Case "distance_gradient"
-            PI_StyleRecipe = "gradient=1|contrast=1|leftNear=#A6B0BC|leftFar=#D7DDE4|rightNear=#DADDE2|rightFar=#F5F5F6|currentBold=1|rail=2|glow=1|markerKind=3|flatRuleMode=1|barHeight=5|futureOutline=1|seenBackground=#D4D7DB"
+            PI_StyleRecipe = "gradient=1|contrast=1|leftNear=#A6B0BC|leftFar=#D7DDE4|rightNear=#DADDE2|rightFar=#F5F5F6|currentBold=1|glow=1|markerKind=3|flatRuleMode=1|barHeight=5|futureOutline=1|seenBackground=#D4D7DB"
         Case "paper_warm"
-            PI_StyleRecipe = "seenBackground=#E0DCD2|currentBackground=#DED2BD|unseenBackground=#F4F0E6|seenForeground=#40382F|currentForeground=#3E3226|unseenForeground=#40382F|accentMode=2|accentColor=#8C6B45|accentWidth=1|shadowBlur=2|shadowTransparency=62|shadowDistance=1.3|depthStep=0.1|barHeight=6|roundness=20|rail=1|currentBold=1|markerKind=2|flatRuleMode=8|panelShadow=1|sectionGap=4|fontName=Georgia|titleAlignment=1"
+            PI_StyleRecipe = "seenBackground=#E0DCD2|currentBackground=#DED2BD|unseenBackground=#F4F0E6|seenForeground=#40382F|currentForeground=#3E3226|unseenForeground=#40382F|accentMode=2|accentColor=#8C6B45|accentWidth=1|shadowBlur=2|shadowTransparency=62|shadowDistance=1.3|depthStep=0.1|barHeight=6|roundness=20|currentBold=1|markerKind=2|flatRuleMode=8|panelShadow=1|sectionGap=4|fontName=Georgia|titleAlignment=1"
         Case "bold_graphic"
-            PI_StyleRecipe = "seenBackground=#E5E3DB|currentBackground=#FFD449|unseenBackground=#FFFDF4|seenForeground=#151515|currentForeground=#151515|unseenForeground=#151515|accentMode=3|accentColor=#151515|accentWidth=2.5|numbering=1|currentBold=1|futureOutline=1|barHeight=7|roundness=0|rail=3|markerKind=5|flatRuleMode=4"
+            PI_StyleRecipe = "seenBackground=#E5E3DB|currentBackground=#FFD449|unseenBackground=#FFFDF4|seenForeground=#151515|currentForeground=#151515|unseenForeground=#151515|accentMode=3|accentColor=#151515|accentWidth=2.5|numbering=1|currentBold=1|futureOutline=1|barHeight=7|roundness=0|markerKind=5|flatRuleMode=4"
         Case "stage_window"
-            PI_StyleRecipe = "layered=0|height=38|rail=0|padding=8|textSize=13|textGap=5|fontName=Arial|titleAlignment=1|titleCase=1|currentBold=1|numbering=0|sectionGap=0|sectionRoundness=0|seenBackground=#DCD9D2|currentBackground=#F33F2B|unseenBackground=#F5F2EA|seenForeground=#101010|currentForeground=#101010|unseenForeground=#101010|flatRuleMode=4|flatRuleWidth=1.2|flatRuleColor=#101010|barHeight=6|roundness=0|accentMode=0|glow=0|shadowBlur=0|gradient=0|markerKind=5|futureOutline=1"
+            PI_StyleRecipe = "layered=0|height=38|padding=8|textSize=13|textGap=5|fontName=Arial|titleAlignment=1|titleCase=1|currentBold=1|numbering=0|sectionGap=0|sectionRoundness=0|seenBackground=#DCD9D2|currentBackground=#F33F2B|unseenBackground=#F5F2EA|seenForeground=#101010|currentForeground=#101010|unseenForeground=#101010|flatRuleMode=4|flatRuleWidth=1.2|flatRuleColor=#101010|barHeight=6|roundness=0|accentMode=0|glow=0|shadowBlur=0|gradient=0|markerKind=5|futureOutline=1"
         Case "engineering_register"
-            PI_StyleRecipe = "layered=0|height=40|rail=0|padding=10|textSize=12|textGap=5|fontName=Arial|titleAlignment=1|titleCase=0|currentBold=1|numbering=1|sectionGap=0|sectionRoundness=0|seenBackground=#D8D2C4|currentBackground=#A8B4BD|unseenBackground=#EFE8D8|seenForeground=#202020|currentForeground=#202020|unseenForeground=#202020|flatRuleMode=7|flatRuleWidth=0.45|flatRuleColor=#202020|accentMode=4|accentColor=#202020|accentWidth=2|barHeight=7|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=2"
+            PI_StyleRecipe = "layered=0|height=40|padding=10|textSize=12|textGap=5|fontName=Arial|titleAlignment=1|titleCase=0|currentBold=1|numbering=1|sectionGap=0|sectionRoundness=0|seenBackground=#D8D2C4|currentBackground=#A8B4BD|unseenBackground=#EFE8D8|seenForeground=#202020|currentForeground=#202020|unseenForeground=#202020|flatRuleMode=7|flatRuleWidth=0.45|flatRuleColor=#202020|accentMode=4|accentColor=#202020|accentWidth=2|barHeight=7|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=2"
         Case "civic_corners"
-            PI_StyleRecipe = "layered=0|height=40|rail=0|padding=10|textSize=13|textGap=5|fontName=Arial|titleAlignment=0|titleCase=1|currentBold=1|numbering=0|sectionGap=0|sectionRoundness=0|seenBackground=#DEE0E3|currentBackground=#FFFFFF|unseenBackground=#F4F5F8|seenForeground=#30333B|currentForeground=#2640ED|unseenForeground=#30333B|flatRuleMode=5|flatRuleWidth=1.4|flatRuleColor=#2640ED|accentMode=0|barHeight=6|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=3|futureOutline=1"
+            PI_StyleRecipe = "layered=0|height=40|padding=10|textSize=13|textGap=5|fontName=Arial|titleAlignment=0|titleCase=1|currentBold=1|numbering=0|sectionGap=0|sectionRoundness=0|seenBackground=#DEE0E3|currentBackground=#FFFFFF|unseenBackground=#F4F5F8|seenForeground=#30333B|currentForeground=#2640ED|unseenForeground=#30333B|flatRuleMode=5|flatRuleWidth=1.4|flatRuleColor=#2640ED|accentMode=0|barHeight=6|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=3|futureOutline=1"
         Case "community_cells"
-            PI_StyleRecipe = "layered=0|height=40|rail=0|padding=8|textSize=13|textGap=6|fontName=Arial|titleAlignment=1|titleCase=1|currentBold=1|numbering=1|sectionGap=0|sectionRoundness=0|seenBackground=#CDCCC3|currentBackground=#FF571A|unseenBackground=#E4E3D9|seenForeground=#151515|currentForeground=#151515|unseenForeground=#151515|flatRuleMode=4|flatRuleWidth=1.8|flatRuleColor=#151515|accentMode=0|barHeight=7|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=5|futureOutline=1"
+            PI_StyleRecipe = "layered=0|height=40|padding=8|textSize=13|textGap=6|fontName=Arial|titleAlignment=1|titleCase=1|currentBold=1|numbering=1|sectionGap=0|sectionRoundness=0|seenBackground=#CDCCC3|currentBackground=#FF571A|unseenBackground=#E4E3D9|seenForeground=#151515|currentForeground=#151515|unseenForeground=#151515|flatRuleMode=4|flatRuleWidth=1.8|flatRuleColor=#151515|accentMode=0|barHeight=7|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=5|futureOutline=1"
         Case "quiet_colophon"
-            PI_StyleRecipe = "layered=0|height=40|rail=0|padding=12|textSize=12|textGap=7|fontName=Georgia|titleAlignment=0|titleCase=0|currentBold=0|numbering=0|sectionGap=0|sectionRoundness=0|seenBackground=#E6E4DE|currentBackground=#EEE9DE|unseenBackground=#F8F6F0|seenForeground=#55534C|currentForeground=#25251F|unseenForeground=#55534C|flatRuleMode=3|flatRuleWidth=0.35|flatRuleColor=#A5A094|accentMode=0|barHeight=3.5|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=4"
+            PI_StyleRecipe = "layered=0|height=40|padding=12|textSize=12|textGap=7|fontName=Georgia|titleAlignment=0|titleCase=0|currentBold=0|numbering=0|sectionGap=0|sectionRoundness=0|seenBackground=#E6E4DE|currentBackground=#EEE9DE|unseenBackground=#F8F6F0|seenForeground=#55534C|currentForeground=#25251F|unseenForeground=#55534C|flatRuleMode=3|flatRuleWidth=0.35|flatRuleColor=#A5A094|accentMode=0|barHeight=3.5|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=4"
         Case "specimen_index"
-            PI_StyleRecipe = "layered=0|height=39|rail=0|padding=8|textSize=12|textGap=5|fontName=Arial|titleAlignment=1|titleCase=0|currentBold=1|numbering=1|sectionGap=0|sectionRoundness=0|seenBackground=#E6E4E1|currentBackground=#292929|unseenBackground=#FBF9F5|seenForeground=#3E3E3E|currentForeground=#FFFFFF|unseenForeground=#3E3E3E|flatRuleMode=2|flatRuleWidth=0.45|flatRuleColor=#F25B42|accentMode=0|barHeight=6|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=2"
+            PI_StyleRecipe = "layered=0|height=39|padding=8|textSize=12|textGap=5|fontName=Arial|titleAlignment=1|titleCase=0|currentBold=1|numbering=1|sectionGap=0|sectionRoundness=0|seenBackground=#E6E4E1|currentBackground=#292929|unseenBackground=#FBF9F5|seenForeground=#3E3E3E|currentForeground=#FFFFFF|unseenForeground=#3E3E3E|flatRuleMode=2|flatRuleWidth=0.45|flatRuleColor=#F25B42|accentMode=0|barHeight=6|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=2"
         Case "botanical_labels"
-            PI_StyleRecipe = "layered=0|height=42|rail=0|padding=10|textSize=14|textGap=8|fontName=Calibri Light|titleAlignment=1|titleCase=0|currentBold=0|numbering=0|sectionGap=0|sectionRoundness=0|seenBackground=#E0E3DB|currentBackground=#DDE9D6|unseenBackground=#F1F3EC|seenForeground=#52614F|currentForeground=#233D2A|unseenForeground=#52614F|flatRuleMode=8|accentMode=0|barHeight=5|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=3|futureOutline=1"
+            PI_StyleRecipe = "layered=0|height=42|padding=10|textSize=14|textGap=8|fontName=Calibri Light|titleAlignment=1|titleCase=0|currentBold=0|numbering=0|sectionGap=0|sectionRoundness=0|seenBackground=#E0E3DB|currentBackground=#DDE9D6|unseenBackground=#F1F3EC|seenForeground=#52614F|currentForeground=#233D2A|unseenForeground=#52614F|flatRuleMode=8|accentMode=0|barHeight=5|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=3|futureOutline=1"
         Case "archive_label"
-            PI_StyleRecipe = "layered=0|height=40|rail=0|padding=9|textSize=12|textGap=6|fontName=Courier New|titleAlignment=1|titleCase=0|currentBold=0|numbering=1|sectionGap=0|sectionRoundness=0|seenBackground=#DCD9D1|currentBackground=#FFFFFF|unseenBackground=#F0EDE5|seenForeground=#383633|currentForeground=#222222|unseenForeground=#383633|flatRuleMode=8|flatRuleWidth=0.45|flatRuleColor=#77736A|accentMode=4|accentWidth=2|accentColor=#AD342A|barHeight=5|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=5|futureOutline=1"
+            PI_StyleRecipe = "layered=0|height=40|padding=9|textSize=12|textGap=6|fontName=Courier New|titleAlignment=1|titleCase=0|currentBold=0|numbering=1|sectionGap=0|sectionRoundness=0|seenBackground=#DCD9D1|currentBackground=#FFFFFF|unseenBackground=#F0EDE5|seenForeground=#383633|currentForeground=#222222|unseenForeground=#383633|flatRuleMode=8|flatRuleWidth=0.45|flatRuleColor=#77736A|accentMode=4|accentWidth=2|accentColor=#AD342A|barHeight=5|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=5|futureOutline=1"
         Case "coastal_bands"
-            PI_StyleRecipe = "layered=0|height=38|rail=0|padding=8|textSize=12|textGap=5|fontName=Arial|titleAlignment=1|titleCase=0|currentBold=0|numbering=0|sectionGap=0|sectionRoundness=0|seenBackground=#4B745F|currentBackground=#2556D8|unseenBackground=#EDE6CB|seenForeground=#FFFFFF|currentForeground=#FFFFFF|unseenForeground=#24382D|flatRuleMode=3|flatRuleWidth=2.5|flatRuleColor=#889680|accentMode=0|barHeight=5|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=4"
+            PI_StyleRecipe = "layered=0|height=38|padding=8|textSize=12|textGap=5|fontName=Arial|titleAlignment=1|titleCase=0|currentBold=0|numbering=0|sectionGap=0|sectionRoundness=0|seenBackground=#4B745F|currentBackground=#2556D8|unseenBackground=#EDE6CB|seenForeground=#FFFFFF|currentForeground=#FFFFFF|unseenForeground=#24382D|flatRuleMode=3|flatRuleWidth=2.5|flatRuleColor=#889680|accentMode=0|barHeight=5|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=4"
         Case "swimlane_outline"
-            PI_StyleRecipe = "layered=0|height=38|rail=0|padding=8|textSize=12|textGap=5|fontName=Arial|titleAlignment=2|titleCase=0|currentBold=1|numbering=0|sectionGap=0|sectionRoundness=0|seenBackground=#E6EDF5|currentBackground=#E7F1F9|unseenBackground=#FFFFFF|seenForeground=#185CA0|currentForeground=#185CA0|unseenForeground=#185CA0|flatRuleMode=4|flatRuleWidth=0.55|flatRuleColor=#185CA0|accentMode=2|accentWidth=1.5|accentColor=#185CA0|barHeight=5|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=4"
+            PI_StyleRecipe = "layered=0|height=38|padding=8|textSize=12|textGap=5|fontName=Arial|titleAlignment=2|titleCase=0|currentBold=1|numbering=0|sectionGap=0|sectionRoundness=0|seenBackground=#E6EDF5|currentBackground=#E7F1F9|unseenBackground=#FFFFFF|seenForeground=#185CA0|currentForeground=#185CA0|unseenForeground=#185CA0|flatRuleMode=4|flatRuleWidth=0.55|flatRuleColor=#185CA0|accentMode=2|accentWidth=1.5|accentColor=#185CA0|barHeight=5|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=4"
         Case "newspaper_columns"
-            PI_StyleRecipe = "layered=0|height=40|rail=0|padding=8|textSize=14|textGap=5|fontName=Georgia|titleAlignment=1|titleCase=0|currentBold=1|numbering=0|sectionGap=0|sectionRoundness=0|seenBackground=#E9E9E9|currentBackground=#F0F0EC|unseenBackground=#FFFFFF|seenForeground=#343434|currentForeground=#101010|unseenForeground=#343434|flatRuleMode=1|flatRuleWidth=0.45|flatRuleColor=#888888|accentMode=2|accentWidth=1.2|accentColor=#101010|barHeight=6|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=2"
+            PI_StyleRecipe = "layered=0|height=40|padding=8|textSize=14|textGap=5|fontName=Georgia|titleAlignment=1|titleCase=0|currentBold=1|numbering=0|sectionGap=0|sectionRoundness=0|seenBackground=#E9E9E9|currentBackground=#F0F0EC|unseenBackground=#FFFFFF|seenForeground=#343434|currentForeground=#101010|unseenForeground=#343434|flatRuleMode=1|flatRuleWidth=0.45|flatRuleColor=#888888|accentMode=2|accentWidth=1.2|accentColor=#101010|barHeight=6|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=2"
         Case "cabinet_grid"
-            PI_StyleRecipe = "layered=0|height=38|rail=0|padding=8|textSize=12|textGap=7|fontName=Arial|titleAlignment=1|titleCase=0|currentBold=0|numbering=1|sectionGap=0|sectionRoundness=0|seenBackground=#D0D0CE|currentBackground=#151515|unseenBackground=#E6E6E3|seenForeground=#202020|currentForeground=#FFFFFF|unseenForeground=#202020|flatRuleMode=4|flatRuleWidth=2|flatRuleColor=#777975|accentMode=0|barHeight=4|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=1|futureOutline=1"
+            PI_StyleRecipe = "layered=0|height=38|padding=8|textSize=12|textGap=7|fontName=Arial|titleAlignment=1|titleCase=0|currentBold=0|numbering=1|sectionGap=0|sectionRoundness=0|seenBackground=#D0D0CE|currentBackground=#151515|unseenBackground=#E6E6E3|seenForeground=#202020|currentForeground=#FFFFFF|unseenForeground=#202020|flatRuleMode=4|flatRuleWidth=2|flatRuleColor=#777975|accentMode=0|barHeight=4|roundness=0|glow=0|shadowBlur=0|gradient=0|markerKind=1|futureOutline=1"
     End Select
 End Function
 

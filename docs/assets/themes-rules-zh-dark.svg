@@ -1,40 +1,44 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 475" width="1000" height="475" role="img" aria-labelledby="title desc" xml:lang="zh">
-<title id="title">主题配色与显示规则</title>
-<desc id="desc">导航颜色取自当前页的母版主题。手动隐藏该页导航优先于版式规则，其次是母版规则，最后采用未匹配时的默认动作。</desc>
+<title id="title">设置进度条的颜色，选择显示它的页面</title>
+<desc id="desc">启用“跟随当前页主题”后，当前章节使用主题的强调色。示例为封面版式隐藏进度条，为正文母版显示进度条。手动隐藏优先于版式和母版设置。</desc>
 <rect x="0" y="0" width="1000" height="475" rx="0" fill="#11171E"/>
 <rect x="0" y="0" width="10" height="475" rx="0" fill="#FF9EAE"/>
-<text x="42" y="59" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="33" font-weight="700" letter-spacing="-0.7" text-anchor="start">主题配色与显示规则</text>
+<text x="42" y="59" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="33" font-weight="700" letter-spacing="-0.7" text-anchor="start">设置进度条的颜色，选择显示它的页面</text>
 <path d="M42 82L958 82" fill="none" stroke="#F6F3EB" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
 <path d="M505 105L505 442" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="42" y="130" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="24" font-weight="680" letter-spacing="0" text-anchor="start">跟随当前页主题</text>
-<text x="42" y="162" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">颜色来自当前页的幻灯片母版主题。</text>
+<text x="42" y="162" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">打开这个选项后，当前章节使用本页的主题强调色。</text>
 <rect x="42" y="189" width="116" height="28" rx="0" fill="#FF9EAE" stroke="#424A52" stroke-width="1"/>
-<text x="42" y="243" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="550" letter-spacing="0" text-anchor="start">Accent 1</text>
+<text x="42" y="243" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="550" letter-spacing="0" text-anchor="start">强调色 1</text>
 <rect x="184" y="189" width="116" height="28" rx="0" fill="#F5EEE2" stroke="#424A52" stroke-width="1"/>
-<text x="184" y="243" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="550" letter-spacing="0" text-anchor="start">浅色</text>
+<text x="184" y="243" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="550" letter-spacing="0" text-anchor="start">浅色 1</text>
 <rect x="326" y="189" width="116" height="28" rx="0" fill="#243343" stroke="#424A52" stroke-width="1"/>
-<text x="326" y="243" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="550" letter-spacing="0" text-anchor="start">深色</text>
-<text x="42" y="287" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="20" font-weight="660" letter-spacing="0" text-anchor="start">纯色页面背景</text>
-<text x="42" y="315" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">根据页面底色选择深色或浅色章节背景。</text>
+<text x="326" y="243" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="550" letter-spacing="0" text-anchor="start">深色 1</text>
+<text x="42" y="287" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="20" font-weight="660" letter-spacing="0" text-anchor="start">纯色背景上的其他章节</text>
+<text x="42" y="315" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">在浅色页面上用浅色，在深色页面上用深色。</text>
 <path d="M42 340L475 340" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
-<text x="42" y="371" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="21" font-weight="660" letter-spacing="0" text-anchor="start">单一显示绑定</text>
-<text x="42" y="400" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">关闭多规则时，按指定的母版</text>
-<text x="42" y="424" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">或版式显示导航。</text>
-<text x="542" y="130" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="24" font-weight="680" letter-spacing="0" text-anchor="start">多母版与版式规则</text>
-<text x="542" y="162" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">每页按以下优先级匹配规则。</text>
+<text x="42" y="371" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="21" font-weight="660" letter-spacing="0" text-anchor="start">只在一种版式上显示</text>
+<text x="42" y="400" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">关闭多规则，在“单一显示绑定”中选择正文版式。</text>
+<text x="42" y="424" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">这样只有使用该版式的页面显示进度条。</text>
+<text x="542" y="130" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="24" font-weight="680" letter-spacing="0" text-anchor="start">封面与正文的设置示例</text>
+<text x="542" y="162" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">同一页符合多项设置时，以最靠上的一项为准。</text>
 <rect x="542" y="188" width="390" height="48" rx="0" fill="#3C262F"/>
 <text x="554" y="220" fill="#FF9EAE" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="20" font-weight="650" letter-spacing="0" text-anchor="start">1</text>
-<text x="593" y="220" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="20" font-weight="620" letter-spacing="0" text-anchor="start">此页已手动隐藏导航</text>
+<text x="593" y="210" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="620" letter-spacing="0" text-anchor="start">手动隐藏了该页的进度条</text>
+<text x="593" y="229" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">隐藏进度条不会改变页数统计。</text>
 <rect x="542" y="248" width="390" height="48" rx="0" fill="none"/>
 <text x="554" y="280" fill="#FF9EAE" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="20" font-weight="650" letter-spacing="0" text-anchor="start">2</text>
-<text x="593" y="280" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="20" font-weight="480" letter-spacing="0" text-anchor="start">匹配的幻灯片版式</text>
+<text x="593" y="270" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="480" letter-spacing="0" text-anchor="start">封面版式</text>
+<text x="593" y="289" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">使用封面版式的页面隐藏进度条。</text>
 <path d="M542 296L932 296" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="542" y="308" width="390" height="48" rx="0" fill="none"/>
 <text x="554" y="340" fill="#FF9EAE" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="20" font-weight="650" letter-spacing="0" text-anchor="start">3</text>
-<text x="593" y="340" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="20" font-weight="480" letter-spacing="0" text-anchor="start">匹配的母版</text>
+<text x="593" y="330" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="480" letter-spacing="0" text-anchor="start">正文母版</text>
+<text x="593" y="349" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">正文页使用为这张母版保存的进度条样式。</text>
 <path d="M542 356L932 356" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="542" y="368" width="390" height="48" rx="0" fill="none"/>
 <text x="554" y="400" fill="#FF9EAE" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="20" font-weight="650" letter-spacing="0" text-anchor="start">4</text>
-<text x="593" y="400" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="20" font-weight="480" letter-spacing="0" text-anchor="start">未匹配时的默认动作</text>
+<text x="593" y="390" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="480" letter-spacing="0" text-anchor="start">其他页面</text>
+<text x="593" y="409" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">在“未匹配页面”中指定显示或隐藏。</text>
 <path d="M542 416L932 416" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
 </svg>

@@ -6,7 +6,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/hero-en-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/hero-en-light.svg" />
-  <img src="docs/assets/hero-en-light.svg" alt="PowerPoint Progress Indicators: 40 designs, three sizes, and four dock edges" width="100%" />
+  <img src="docs/assets/hero-en-light.svg" alt="During a slide show, click a section title to open that section or a marker to jump to its slide. Choose from 40 styles in three sizes and place the bar along any edge of the slide." width="100%" />
 </picture>
 
 ## About
@@ -48,7 +48,7 @@ This is an independently maintained edition of Olaf Nöhring's Progress Indicato
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/workflow-en-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/workflow-en-light.svg" />
-  <img src="docs/assets/workflow-en-light.svg" alt="Add sections, choose a preset and size, preview, and generate clickable navigation" width="100%" />
+  <img src="docs/assets/workflow-en-light.svg" alt="Name the sections in the thumbnail pane and choose a design and size. Preview draws the bar on up to three slides, starting with the first slide in the chosen range that should show navigation. Generate updates the bar throughout that range." width="100%" />
 </picture>
 
 ## Navigation layout
@@ -138,22 +138,26 @@ The nine line settings include **Off**, **Double Rules**, and **Triple Dividers*
 <details>
 <summary>Numbering, letter case, alignment, marker outlines, and contrast</summary>
 
+Both examples in the bottom row use the same dark purple background. With **Auto Contrast for Text and Markers** on, the Design title and its markers change from muted purple to white.
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/native/type-and-states-dark.webp" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/native/type-and-states-light.webp" />
-  <img src="docs/assets/native/type-and-states-light.webp" alt="Numbered and uppercase titles, start and end alignment, solid and hollow future markers, and manual versus automatic text color" width="100%" />
+  <img src="docs/assets/native/type-and-states-light.webp" alt="Four rows compare numbered and uppercase titles, left and right alignment, filled and hollow markers for upcoming slides, and muted purple and white lettering and markers on a dark panel." width="100%" />
 </picture>
 
 </details>
 
 ### Color, shadows, and background text
 
-**Section Panels** sets past, current, and upcoming panel transparency. Turn on **Two-Sided Gradient** to choose near and far colors independently for past and upcoming sections. **Cropped Backdrop Text (Top) > Backdrop Text for Other Sections** places an enlarged section name behind the title on each inactive top panel. Set its scale, color, and transparency in the same group.
+**Section Panels** sets past, current, and upcoming panel transparency. Turn on **Two-Sided Gradient** to choose near and far colors independently for past and upcoming sections.
+
+The middle row shows **Cropped Backdrop Text (Top) > Backdrop Text for Other Sections**. Research and Results each show a second, larger copy of their title, cropped at the panel edges. The current section, Design, keeps its solid red background. In the same group, adjust the size, color, and transparency of the background letters.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/native/surfaces-dark.webp" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/native/surfaces-light.webp" />
-  <img src="docs/assets/native/surfaces-light.webp" alt="Independent shadows, oversized clipped text on inactive panels, and a two-sided gradient" width="100%" />
+  <img src="docs/assets/native/surfaces-light.webp" alt="The top row shows a shadow between sections. The middle row repeats each inactive title in large background letters. In the bottom row, teal to the left of Design and brown to its right fade toward the ends." width="100%" />
 </picture>
 
 **Layered Navigation** controls the connecting strip and each panel's shadow, including blur, distance, and transparency. Crimson Layers joins the current chapter to a 1 pt strip. Panels closer to the current chapter sit in front of more distant ones. The current slide marker glows, and other markers use 70% transparency. For the preset's original lettering, install Inter Medium and Inter SemiBold on the computers used to prepare and present the slides. [Inter font family](https://rsms.me/inter/)
@@ -189,12 +193,12 @@ In **Counts and Density > Progress Count**, choose an overall count, a section c
 | **Auto Density** | An inactive section collapses to one summary marker when its individual markers would be shorter than **Minimum Marker Length (pt)**. |
 | **Focus on Current Section** | Individual markers in the current section and one summary marker for each other section. |
 
-In this 61-slide presentation, Design is the current section in all three examples. With **Auto Density**, the two sections whose markers fall below the minimum length each display one summary marker.
+All three rows show the same slide in a 61-slide presentation. The third of the five markers under Design glows in every row. In the middle row, **Auto Density** replaces the tightly spaced marks under Context and Results with one long bar each.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/native/density-dark.webp" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/native/density-light.webp" />
-  <img src="docs/assets/native/density-light.webp" alt="All Slides, Auto Density, and Focus on Current Section on the same 61-slide deck" width="100%" />
+  <img src="docs/assets/native/density-light.webp" alt="The top row shows a mark for every slide. The middle row combines the marks in Context and Results into one bar per section. In the bottom row, only Design has individual slide markers." width="100%" />
 </picture>
 
 <details>
@@ -203,7 +207,7 @@ In this 61-slide presentation, Design is the current section in all three exampl
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/details-en-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/details-en-light.svg" />
-  <img src="docs/assets/details-en-light.svg" alt="Counter formats, density choices, and the layer order of cropped backdrop text" width="100%" />
+  <img src="docs/assets/details-en-light.svg" alt="The same slide is page 12 of 40 overall and page 2 of 8 in its section. Other sections can group their markers into one bar. Large letters fill the Research panel, while the current section, Design, has a solid red background." width="100%" />
 </picture>
 
 </details>
@@ -227,7 +231,7 @@ For a long presentation with **Show All** and individual markers, turn on **Slid
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/edit-reuse-en-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/edit-reuse-en-light.svg" />
-  <img src="docs/assets/edit-reuse-en-light.svg" alt="Named presentation presets, four actions on selected slides, reuse, and generation statistics" width="100%" />
+  <img src="docs/assets/edit-reuse-en-light.svg" alt="A presentation can store up to 32 sets of bar settings. Removing a bar allows it to be generated again. Hiding it keeps it off the slide the next time the bars are generated." width="100%" />
 </picture>
 
 ## Presentation settings and rules
@@ -242,7 +246,7 @@ For a long presentation with **Show All** and individual markers, turn on **Slid
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/themes-rules-en-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/themes-rules-en-light.svg" />
-  <img src="docs/assets/themes-rules-en-light.svg" alt="Theme color sources and the priority of manual hiding, layout rules, master rules, and the unmatched action" width="100%" />
+  <img src="docs/assets/themes-rules-en-light.svg" alt="The current section uses the slide theme's accent color when theme colors are enabled. In this example the cover layout hides the bar and the content master shows it. Hiding the bar manually overrides both rules." width="100%" />
 </picture>
 
 ---

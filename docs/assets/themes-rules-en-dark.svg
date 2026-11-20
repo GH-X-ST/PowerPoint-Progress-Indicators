@@ -1,40 +1,44 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 475" width="1000" height="475" role="img" aria-labelledby="title desc" xml:lang="en">
-<title id="title">Theme colors and visibility rules</title>
-<desc id="desc">The slide master supplies theme colors. Manual hiding of indicators takes priority over a matching layout, followed by the master rule and the default action.</desc>
+<title id="title">Choose bar colors and where the bar appears</title>
+<desc id="desc">The current section uses the slide theme's accent color when theme colors are enabled. In this example the cover layout hides the bar and the content master shows it. Hiding the bar manually overrides both rules.</desc>
 <rect x="0" y="0" width="1000" height="475" rx="0" fill="#11171E"/>
 <rect x="0" y="0" width="10" height="475" rx="0" fill="#FF9EAE"/>
-<text x="42" y="59" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="35" font-weight="700" letter-spacing="-0.7" text-anchor="start">Theme colors and visibility rules</text>
+<text x="42" y="59" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="35" font-weight="700" letter-spacing="-0.7" text-anchor="start">Choose bar colors and where the bar appears</text>
 <path d="M42 82L958 82" fill="none" stroke="#F6F3EB" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
 <path d="M505 105L505 442" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="42" y="130" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="24" font-weight="680" letter-spacing="0" text-anchor="start">Use Each Slide&#x27;s Theme</text>
-<text x="42" y="162" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">Colors come from the slide master's theme.</text>
+<text x="42" y="162" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">The current section takes its color from Accent 1.</text>
 <rect x="42" y="189" width="116" height="28" rx="0" fill="#FF9EAE" stroke="#424A52" stroke-width="1"/>
 <text x="42" y="243" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="550" letter-spacing="0" text-anchor="start">Accent 1</text>
 <rect x="184" y="189" width="116" height="28" rx="0" fill="#F5EEE2" stroke="#424A52" stroke-width="1"/>
-<text x="184" y="243" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="550" letter-spacing="0" text-anchor="start">Light</text>
+<text x="184" y="243" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="550" letter-spacing="0" text-anchor="start">Light 1</text>
 <rect x="326" y="189" width="116" height="28" rx="0" fill="#243343" stroke="#424A52" stroke-width="1"/>
-<text x="326" y="243" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="550" letter-spacing="0" text-anchor="start">Dark</text>
-<text x="42" y="287" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="20" font-weight="660" letter-spacing="0" text-anchor="start">Solid slide background</text>
-<text x="42" y="315" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">Used to choose light or dark panels.</text>
+<text x="326" y="243" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="550" letter-spacing="0" text-anchor="start">Dark 1</text>
+<text x="42" y="287" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="20" font-weight="660" letter-spacing="0" text-anchor="start">Other sections on a solid background</text>
+<text x="42" y="315" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">Light slides get light panels, dark slides get dark ones.</text>
 <path d="M42 340L475 340" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
-<text x="42" y="371" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="21" font-weight="660" letter-spacing="0" text-anchor="start">Single Visibility Rule</text>
-<text x="42" y="400" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">When multiple rules are off, use one slide</text>
-<text x="42" y="424" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">master or layout.</text>
-<text x="542" y="130" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="24" font-weight="680" letter-spacing="0" text-anchor="start">Master and Layout Rules</text>
-<text x="542" y="162" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">Rules are checked in priority order.</text>
+<text x="42" y="371" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="21" font-weight="660" letter-spacing="0" text-anchor="start">Show the bar on one layout</text>
+<text x="42" y="400" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">With multiple rules off, choose Single Visibility Rule</text>
+<text x="42" y="424" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="400" letter-spacing="0" text-anchor="start">and select the layout to use for content slides.</text>
+<text x="542" y="130" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="24" font-weight="680" letter-spacing="0" text-anchor="start">Cover and content slide rules</text>
+<text x="542" y="162" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">Use the first setting that applies to each slide.</text>
 <rect x="542" y="188" width="390" height="48" rx="0" fill="#3C262F"/>
 <text x="554" y="220" fill="#FF9EAE" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="20" font-weight="650" letter-spacing="0" text-anchor="start">1</text>
-<text x="593" y="220" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="20" font-weight="620" letter-spacing="0" text-anchor="start">Indicators hidden on this slide</text>
+<text x="593" y="210" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="620" letter-spacing="0" text-anchor="start">Bar hidden on this slide</text>
+<text x="593" y="229" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">Hiding the bar keeps the same count.</text>
 <rect x="542" y="248" width="390" height="48" rx="0" fill="none"/>
 <text x="554" y="280" fill="#FF9EAE" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="20" font-weight="650" letter-spacing="0" text-anchor="start">2</text>
-<text x="593" y="280" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="20" font-weight="480" letter-spacing="0" text-anchor="start">Matching slide layout</text>
+<text x="593" y="270" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="480" letter-spacing="0" text-anchor="start">Cover layout</text>
+<text x="593" y="289" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">Hide the bar on slides that use this layout.</text>
 <path d="M542 296L932 296" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="542" y="308" width="390" height="48" rx="0" fill="none"/>
 <text x="554" y="340" fill="#FF9EAE" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="20" font-weight="650" letter-spacing="0" text-anchor="start">3</text>
-<text x="593" y="340" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="20" font-weight="480" letter-spacing="0" text-anchor="start">Matching slide master</text>
+<text x="593" y="330" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="480" letter-spacing="0" text-anchor="start">Content slide master</text>
+<text x="593" y="349" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">Use the bar style saved for this master.</text>
 <path d="M542 356L932 356" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="542" y="368" width="390" height="48" rx="0" fill="none"/>
 <text x="554" y="400" fill="#FF9EAE" font-family="'SFMono-Regular',Consolas,'Liberation Mono',monospace" font-size="20" font-weight="650" letter-spacing="0" text-anchor="start">4</text>
-<text x="593" y="400" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="20" font-weight="480" letter-spacing="0" text-anchor="start">Default for unmatched slides</text>
+<text x="593" y="390" fill="#F6F3EB" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="480" letter-spacing="0" text-anchor="start">All other slides</text>
+<text x="593" y="409" fill="#B3BBC3" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">Set Unmatched Slides to Show or Hide.</text>
 <path d="M542 416L932 416" fill="none" stroke="#424A52" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
 </svg>

@@ -6,7 +6,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/hero-zh-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/hero-zh-light.svg" />
-  <img src="docs/assets/hero-zh-light.svg" alt="PowerPoint 演讲进度条：40 款设计、三档尺寸与四边停靠" width="100%" />
+  <img src="docs/assets/hero-zh-light.svg" alt="放映时，点击章名跳到该章，点击页标跳到对应页。进度条有 40 款样式，每款有三档尺寸，可放在幻灯片的任一边。" width="100%" />
 </picture>
 
 ## 关于
@@ -54,7 +54,7 @@ PowerPoint 演讲进度条是一个 VBA 加载项，基于 Olaf Nöhring 的 Pro
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/workflow-zh-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/workflow-zh-light.svg" />
-  <img src="docs/assets/workflow-zh-light.svg" alt="添加节、选择预设和尺寸、预览，然后生成可点击的导航" width="100%" />
+  <img src="docs/assets/workflow-zh-light.svg" alt="在缩略图窗格里新增节并命名。选好样式和大小后，点“预览”查看效果。预览从指定页码范围内第一张需要显示导航的幻灯片开始，最多更新 3 页。点“生成”即可为整个指定范围更新导航。" width="100%" />
 </picture>
 
 ---
@@ -130,10 +130,12 @@ PowerPoint 演讲进度条是一个 VBA 加载项，基于 Olaf Nöhring 的 Pro
   <img src="docs/assets/native/type-light.webp" alt="同一长章名缩小适应或以省略号结束" width="100%" />
 </picture>
 
+下图第二行中，Research 和 Results 的标题背后各有一层放大的章名。字母只显示在各自的色块内，当前章 Design 仍是深红底。
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/native/surfaces-dark.webp" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/native/surfaces-light.webp" />
-  <img src="docs/assets/native/surfaces-light.webp" alt="独立投影、非当前章节的裁切背景字和两侧渐变配色" width="100%" />
+  <img src="docs/assets/native/surfaces-light.webp" alt="第一行在各章之间加上阴影，第二行在非当前章背后放大章名，第三行在 Design 左侧用青色、右侧用棕色，离当前章越远颜色越浅。" width="100%" />
 </picture>
 
 <details>
@@ -160,12 +162,12 @@ PowerPoint 演讲进度条是一个 VBA 加载项，基于 Olaf Nöhring 的 Pro
 <details>
 <summary>编号、对齐与状态色</summary>
 
-下图对照章名编号与大写、起止点对齐、未讲页标的实心和空心效果，以及手动文字色和自动对比度。
+最下排的两块深紫色背景相同。打开 **文字与进度自动对比** 后，Design 的章名和页标从灰紫色变成白色。
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/native/type-and-states-dark.webp" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/native/type-and-states-light.webp" />
-  <img src="docs/assets/native/type-and-states-light.webp" alt="章名编号与大写、起止点对齐、未讲页标实心与空心，以及同一章面的手动与自动文字色" width="100%" />
+  <img src="docs/assets/native/type-and-states-light.webp" alt="从上到下分别对照章名编号与大写、章名左对齐与右对齐、未讲页标实心与空心，以及深色背景上的灰紫色和白色章名与页标。" width="100%" />
 </picture>
 
 </details>
@@ -193,12 +195,12 @@ PowerPoint 演讲进度条是一个 VBA 加载项，基于 Olaf Nöhring 的 Pro
 
 **进度密度** 控制同一进度的显示方式。**全部页面** 保留逐页标记。**自动密度** 在非当前章的单个页标短于 **最短页条 (pt)** 时，将该章合为一条。**聚焦当前章节** 仅为当前章保留逐页标记，其他章节各显示一条汇总标记。
 
-下图取自 61 页文稿。当前页始终是 Design 章的第 3 页，三种密度下的章内进度相同。
+这份文稿有 61 页。三行图都停在 Design 章的第 3 页，五个页标中第三个发亮。中间一行启用了 **自动密度**，Context 和 Results 原本密集的短线各合成了一条长线。
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/native/density-dark.webp" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/native/density-light.webp" />
-  <img src="docs/assets/native/density-light.webp" alt="61 页文稿在全部页面、自动密度、聚焦当前章节三种模式下的原生输出" width="100%" />
+  <img src="docs/assets/native/density-light.webp" alt="第一行每页一条短线，第二行把 Context 和 Results 两章各缩成一条长线，第三行只有 Design 章还显示逐页标记。" width="100%" />
 </picture>
 
 <details>
@@ -215,7 +217,7 @@ PowerPoint 演讲进度条是一个 VBA 加载项，基于 Olaf Nöhring 的 Pro
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/details-zh-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/details-zh-light.svg" />
-  <img src="docs/assets/details-zh-light.svg" alt="计数与密度的区别，以及顶部章面、背景字和标题的层级" width="100%" />
+  <img src="docs/assets/details-zh-light.svg" alt="这张幻灯片是全稿 40 页中的第 12 页，也是本章 8 页中的第 2 页。其他章节可以把多个页标合成一条。图中的 Research 用放大的章名作背景，相邻的当前章 Design 仍是深红底。" width="100%" />
 </picture>
 
 </details>
@@ -240,7 +242,7 @@ PowerPoint 演讲进度条是一个 VBA 加载项，基于 Olaf Nöhring 的 Pro
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/edit-reuse-zh-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/edit-reuse-zh-light.svg" />
-  <img src="docs/assets/edit-reuse-zh-light.svg" alt="文稿预设、选中页的四个操作和上次生成统计" width="100%" />
+  <img src="docs/assets/edit-reuse-zh-light.svg" alt="每份文稿最多可保存 32 套进度条设置。移除的进度条可以重新生成，手动隐藏的进度条则会在下次生成时保持隐藏。" width="100%" />
 </picture>
 
 ---
@@ -271,7 +273,7 @@ PowerPoint 演讲进度条是一个 VBA 加载项，基于 Olaf Nöhring 的 Pro
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/themes-rules-zh-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/themes-rules-zh-light.svg" />
-  <img src="docs/assets/themes-rules-zh-light.svg" alt="主题色来源，手动隐藏、精确版式、母版与未匹配动作的优先顺序" width="100%" />
+  <img src="docs/assets/themes-rules-zh-light.svg" alt="启用“跟随当前页主题”后，当前章节使用主题的强调色。示例为封面版式隐藏进度条，为正文母版显示进度条。手动隐藏优先于版式和母版设置。" width="100%" />
 </picture>
 
 ---

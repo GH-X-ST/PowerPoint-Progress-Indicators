@@ -3,9 +3,11 @@
 
 <h1 align="center">PowerPoint 演讲进度条</h1>
 
-本项目在 Olaf Nöhring 发布的 **Progress Indicator 1.960** 基础上开发并独立维护。这个 PowerPoint 加载项源自 Edward Loper 编写的 *Progress Dots* 宏，后来由 Adam M. Wilson 和 Olaf Nöhring 先后扩展。
-
-[上游 GitHub 仓库（AdamWilsonLab/progress_indicators）](https://github.com/AdamWilsonLab/progress_indicators) · [Olaf Nöhring 的项目页](https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac)
+<p align="center">
+  <sub>本项目在 Olaf Nöhring 发布的 <strong>Progress Indicator 1.960</strong> 基础上开发并独立维护。</sub><br>
+  <sub>这个 PowerPoint 加载项源自 Edward Loper 编写的 <em>Progress Dots</em> 宏，后来由 Adam M. Wilson 和 Olaf Nöhring 先后扩展。</sub><br>
+  <sub><a href="https://github.com/AdamWilsonLab/progress_indicators">上游 GitHub 仓库（AdamWilsonLab/progress_indicators）</a> · <a href="https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac">Olaf Nöhring 的项目页</a></sub>
+</p>
 
 <p align="center"><sub>Windows 桌面版 PowerPoint &nbsp;|&nbsp; CN.11.5 / EN.11.5</sub></p>
 

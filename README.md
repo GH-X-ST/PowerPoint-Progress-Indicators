@@ -3,9 +3,11 @@
 
 <h1 align="center">PowerPoint Progress Indicators</h1>
 
-This independent edition is based on **Progress Indicator 1.960**, released by Olaf Nöhring. Edward Loper wrote the original *Progress Dots* macro for PowerPoint, which Adam M. Wilson and Olaf Nöhring later extended.
-
-[Upstream GitHub repository (AdamWilsonLab/progress_indicators)](https://github.com/AdamWilsonLab/progress_indicators) | [Olaf Nöhring's project page](https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac)
+<p align="center">
+  <sub>This independent edition is based on <strong>Progress Indicator 1.960</strong>, released by Olaf Nöhring.</sub><br>
+  <sub>Edward Loper wrote the original <em>Progress Dots</em> macro for PowerPoint, which Adam M. Wilson and Olaf Nöhring later extended.</sub><br>
+  <sub><a href="https://github.com/AdamWilsonLab/progress_indicators">Upstream GitHub repository (AdamWilsonLab/progress_indicators)</a> | <a href="https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac">Olaf Nöhring's project page</a></sub>
+</p>
 
 <p align="center"><sub>PowerPoint for Windows &nbsp;|&nbsp; EN.11.5 / CN.11.5</sub></p>
 

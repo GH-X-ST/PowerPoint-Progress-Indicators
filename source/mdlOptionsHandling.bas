@@ -228,7 +228,13 @@ Function DeserializeProgressOptions(s As String) As ProgressDotsOptions
                   theOptions.dotSize = theOptions.FlatBarHeight
               End If
               If UBound(words) >= 103 Then theOptions.CrimsonType = CInt(Val(words(103)))
-              If UBound(words) >= 104 Then theOptions.BandHeightMode = CInt(Val(words(104)))
+              If UBound(words) >= 104 Then
+                  theOptions.BandHeightMode = CInt(Val(words(104)))
+                  If theOptions.PresetSize = 2 And theOptions.CrimsonType = 1 And _
+                          theOptions.BandHeightMode = 0 And theOptions.SectionBlockHeight = PI_SMALL_BODY_HEIGHT Then
+                      theOptions.SectionBlockHeight = PI_CRIMSON_SMALL_BODY_HEIGHT
+                  End If
+              End If
 
 
 550       End If
@@ -457,7 +463,7 @@ Sub InitializePIVersion()
           'Version for settings-format saved in presentation
 10        gblIndicatorSettingsVersion = "Version20231115_1200"
 20        gblProgramVersionBase = "1.960"   'this is checked at online version check, see cmdWebCheck_Click in frmHelp
-30        gblProgramVersion = gblProgramVersionBase & " CN.11.5 32b/64b" & " / Settings: " & gblIndicatorSettingsVersion
+30        gblProgramVersion = gblProgramVersionBase & " CN.11.6 32b/64b" & " / Settings: " & gblIndicatorSettingsVersion
           
 End Sub
 

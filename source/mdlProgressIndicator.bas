@@ -198,6 +198,10 @@ End Type
 
 Private Const PI_PROPORTIONAL_BAND As Integer = 1
 Private Const PI_EXACT_BAND As Integer = 2
+Public Const PI_SMALL_BODY_HEIGHT As Double = 13
+Public Const PI_CRIMSON_SMALL_BODY_HEIGHT As Double = 16
+Private Const PI_CRIMSON_MARKER_SPAN As Double = 0.8
+Private Const PI_INACTIVE_SEGMENT_HEIGHT As Double = 0.48
 
 ' The extra array slot stores the end sentinel after 100 sections.
 Type ProgressDotsSectionInfo
@@ -957,11 +961,11 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
           Dim splitBand As Boolean, bodyHeight As Double, bodyTop As Double, rowTop As Double
           Dim rowHeight As Double, counterTop As Double
           Dim titleHeight As Double, bandPadding As Double, titlePadding As Double
-          Dim addedHeight As Double, markerClearance As Double, presetGrowth As Double
+          Dim addedHeight As Double, markerClearance As Double, presetGrowth As Double, titleBodyHeight As Double
           Dim renderDotSize As Double, renderDotTop As Double, dotPadding As Double
           Dim dotAlong As Double, dotAcross As Double, ovalSlot As Double
           Dim renderBarWidth As Double, renderBarHeight As Double
-          Dim sizedMarkers As Boolean, slotCount As Long, slotIndex As Long
+          Dim sizedMarkers As Boolean, crimsonMarkers As Boolean, slotCount As Long, slotIndex As Long
           Dim barSlotWidth As Double, barGap As Double, barAreaLeft As Double, barAreaWidth As Double
           Dim markerRowHeight As Double
           Dim flatBarMode As Boolean
@@ -1009,7 +1013,8 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
           bandMode = PI_UsesSectionBand(theOptions)
           layeredMode = (bandMode And theOptions.LayeredNavigation = 1)
           flatBarMode = (theOptions.FlatBar = 1)
-          sizedMarkers = flatBarMode And (theOptions.PresetSize > 0 Or theOptions.MarkerKind = 3)
+          crimsonMarkers = flatBarMode And PI_UsesCrimsonMarkers(theOptions)
+          sizedMarkers = flatBarMode And (crimsonMarkers Or theOptions.PresetSize > 0 Or theOptions.MarkerKind = 3)
           markerRowHeight = PI_MarkerHeight(theOptions)
           navigationLeft = theOptions.LeftMargin
           mPIRenderCanvasWidth = PI_RenderAxisLength(theOptions, renderPresentation)
@@ -1039,12 +1044,18 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
               End If
               titleHeight = PI_BandTitleHeight(theOptions.textHeight)
               If theOptions.PresetSize = 2 And theOptions.DockEdge < 2 Then
-                  ' Split the added chapter height between the title side and the outer edge of the markers.
-                  titleHeight = PI_BarClamp(theOptions.textHeight, 0, bodyHeight)
-                  addedHeight = PI_BarClamp(bodyHeight - 10, 0, 3)
+                  titleBodyHeight = bodyHeight
+                  If theOptions.CrimsonType = 1 And theOptions.BandHeightMode = 0 And _
+                          bodyHeight = PI_CRIMSON_SMALL_BODY_HEIGHT Then
+                      ' Keep the text anchored to its outer edge as the gap to the markers grows.
+                      titleBodyHeight = PI_SMALL_BODY_HEIGHT
+                      If theOptions.SectionPlacement <> 0 Then titleTop = titleTop + bodyHeight - titleBodyHeight
+                  End If
+                  titleHeight = PI_BarClamp(theOptions.textHeight, 0, titleBodyHeight)
+                  addedHeight = PI_BarClamp(titleBodyHeight - 10, 0, 3)
                   markerClearance = addedHeight / 3
-                  addedHeight = PI_BarClamp(addedHeight, 0, bodyHeight - titleHeight)
-                  titleTop = titleTop + (bodyHeight - addedHeight - titleHeight) / 2
+                  addedHeight = PI_BarClamp(addedHeight, 0, titleBodyHeight - titleHeight)
+                  titleTop = titleTop + (titleBodyHeight - addedHeight - titleHeight) / 2
                   If theOptions.SectionPlacement = 0 Then
                       titleTop = titleTop + 2 * addedHeight / 3
                       dotsTop = dotsTop - markerClearance
@@ -1394,10 +1405,15 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
                   If flatBarMode And theOptions.PIStyle = "Full" And sectionIs <> 1 Then
                       If theOptions.DensityMode = 2 Then collapsedSection = True
                       If theOptions.DensityMode = 1 Then
-                          barSlotWidth = dbllabelWidth_test / numDotsInSection
-                          barSlotWidth = barSlotWidth * (1 - 0.05 * theOptions.PresetSize)
-                          barGap = PI_BarClamp(theOptions.FlatBarGap * (1 - 0.25 * theOptions.PresetSize), 0, barSlotWidth / 2)
-                          collapsedSection = (barSlotWidth - barGap < PI_BarClamp(theOptions.MinMarkerLength, 2, 20))
+                          If crimsonMarkers Then
+                              renderBarWidth = PI_CrimsonMarkerWidth(theOptions, dbllabelWidth_test, numDotsInSection, barGap)
+                          Else
+                              barSlotWidth = dbllabelWidth_test / numDotsInSection
+                              barSlotWidth = barSlotWidth * (1 - 0.05 * theOptions.PresetSize)
+                              barGap = PI_BarClamp(theOptions.FlatBarGap * (1 - 0.25 * theOptions.PresetSize), 0, barSlotWidth / 2)
+                              renderBarWidth = barSlotWidth - barGap
+                          End If
+                          collapsedSection = (renderBarWidth < PI_BarClamp(theOptions.MinMarkerLength, 2, 20))
                       End If
                   End If
 
@@ -1460,7 +1476,7 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
                       slotIndex = 1
                   End If
                   PI_PresetMarkerGeometry theOptions, barAreaLeft, barAreaWidth, slotIndex, slotCount, _
-                      CLng(dotNum) - slideNumVisible, markerRowHeight, dblLeft_newC2, renderBarWidth, renderBarHeight
+                      CLng(dotNum) - slideNumVisible, markerRowHeight, dblLeft_newC2, renderBarWidth, renderBarHeight, barSlotWidth
                   renderDotTop = dotsTop + (markerRowHeight - renderBarHeight) / 2
               ElseIf mPIReadLayout Then
                   With mPIMarkerSlots(dotNum)
@@ -1568,7 +1584,7 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
                       Set indicator2 = renderPresentation.Slides(slideNum).Shapes.AddShape( _
                           intShapetypeNr, dblLeft_newC2, renderDotTop, renderBarWidth, renderBarHeight)
                       If theOptions.MarkerKind = 0 Then indicator2.Adjustments.Item(1) = PI_BarClamp(theOptions.FlatBarRoundness, 0, 50) / 100
-                      If theOptions.MarkerKind > 0 And Not sizedMarkers Then
+                      If crimsonMarkers Or (theOptions.MarkerKind > 0 And Not sizedMarkers) Then
                           indicator2.Tags.Add "PI_GLYPH_SIZE", Trim$(Str$(renderBarWidth)) & "|" & _
                               Trim$(Str$(renderBarHeight)) & "|" & Trim$(Str$(barSlotWidth))
                       End If
@@ -3812,7 +3828,7 @@ Private Sub PI_GlyphDimensions(ByVal kind As Integer, ByVal height As Double, By
         Case 0
             If across > along / 3 Then across = along / 3
         Case 1
-            If pageDelta <> 0 Then across = across * 0.48
+            If pageDelta <> 0 Then across = across * PI_INACTIVE_SEGMENT_HEIGHT
         Case 2
             If along > height * 0.32 Then along = height * 0.32
             If pageDelta = 0 Then
@@ -3835,17 +3851,36 @@ Private Sub PI_GlyphDimensions(ByVal kind As Integer, ByVal height As Double, By
     End Select
 End Sub
 
+Private Function PI_UsesCrimsonMarkers(opts As ProgressDotsOptions) As Boolean
+    PI_UsesCrimsonMarkers = (opts.CrimsonType = 1 And opts.MarkerKind = 0)
+End Function
+
+Private Function PI_CrimsonMarkerWidth(opts As ProgressDotsOptions, ByVal sectionWidth As Double, _
+                                      ByVal count As Long, ByRef gap As Double) As Double
+    Dim span As Double
+    span = sectionWidth * PI_CRIMSON_MARKER_SPAN
+    gap = PI_BarClamp(opts.FlatBarGap * (1 - 0.25 * opts.PresetSize), 0, span / count / 2)
+    PI_CrimsonMarkerWidth = (span - (count - 1) * gap) / count
+End Function
+
 Private Sub PI_PresetMarkerGeometry(opts As ProgressDotsOptions, ByVal sectionLeft As Double, _
                         ByVal sectionWidth As Double, ByVal ordinal As Long, ByVal count As Long, _
                         ByVal pageDelta As Long, ByVal rowHeight As Double, _
-                        ByRef left As Double, ByRef width As Double, ByRef height As Double)
-    Dim blend As Double, largeHeight As Double, slot As Double, largeCenter As Double
+                        ByRef left As Double, ByRef width As Double, ByRef height As Double, ByRef slot As Double)
+    Dim blend As Double, largeHeight As Double, gap As Double, largeCenter As Double
     Dim smallSlot As Double, smallWidth As Double, firstWidth As Double, lastWidth As Double
     Dim smallCenter As Double, firstCenter As Double, lastCenter As Double, unusedHeight As Double
     blend = opts.PresetSize / 2
     largeHeight = rowHeight / (1 - blend / 2)
     slot = sectionWidth / count
     PI_GlyphDimensions opts.MarkerKind, largeHeight, slot, opts.FlatBarGap, ordinal, pageDelta, width, height
+    If PI_UsesCrimsonMarkers(opts) Then
+        width = PI_CrimsonMarkerWidth(opts, sectionWidth, count, gap)
+        slot = width + gap
+        left = sectionLeft + sectionWidth * (1 - PI_CRIMSON_MARKER_SPAN) / 2 + (ordinal - 1) * slot
+        height = height * (1 - blend / 2)
+        Exit Sub
+    End If
     largeCenter = sectionLeft + (ordinal - 0.5) * slot
     left = largeCenter - width / 2
     If blend = 0 Then Exit Sub
@@ -3901,8 +3936,8 @@ Private Sub PI_SizePageMarker(ByVal marker As Shape, opts As ProgressDotsOptions
     across = Val(dimensions(1))
     slot = Val(dimensions(2))
     Select Case opts.MarkerKind
-        Case 1
-            If relativePage <> 0 Then across = across * 0.48
+        Case 0, 1
+            If relativePage <> 0 Then across = across * PI_INACTIVE_SEGMENT_HEIGHT
         Case 2
             If relativePage = 0 Then
                 along = PI_BarClamp(along * 2.8, 0, slot)
@@ -3951,7 +3986,8 @@ Private Sub PI_FinalizeNavigationGlow(ByVal navigation As Shape, opts As Progres
         If role = "indicator" Or role = "indicator-summary" Then
             relativePage = Sgn(CLng(Val(navigation.Tags("PI_PAGE"))) - visibleIndex)
             isCurrent = (role = "indicator" And relativePage = 0)
-            If opts.PresetSize = 0 And opts.MarkerKind > 0 And opts.MarkerKind <> 3 Then
+            If (PI_UsesCrimsonMarkers(opts) And Not isCurrent) Or _
+                    (opts.PresetSize = 0 And opts.MarkerKind > 0 And opts.MarkerKind <> 3) Then
                 PI_SizePageMarker navigation, opts, relativePage
             End If
             PI_BarApplyGlow navigation, opts, isCurrent
@@ -4176,7 +4212,11 @@ Private Sub PI_ApplyPresetSize(ByVal presetSize As Integer)
     If largeOptions.LayeredNavigation = 0 Then largeHeight = largeHeight - PI_BarClamp(largeOptions.HardShadowOffset, 0, largeHeight / 3)
     gblPresetSize = presetSize
     If presetSize = 2 Then
-        gblSectionBlockHeight = 13
+        If gblCrimsonType = 1 Then
+            gblSectionBlockHeight = PI_CRIMSON_SMALL_BODY_HEIGHT
+        Else
+            gblSectionBlockHeight = PI_SMALL_BODY_HEIGHT
+        End If
     Else
         gblSectionBlockHeight = (largeHeight + 7) / 2 - 4
         gblBandHeightMode = PI_PROPORTIONAL_BAND

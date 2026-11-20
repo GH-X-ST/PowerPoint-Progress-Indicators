@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 395" width="1000" height="395" role="img" aria-labelledby="title desc" xml:lang="zh">
-<title id="title">从分节到放映</title>
-<desc id="desc">添加章节，选择预设与尺寸，预览符合条件的页面，再生成进度条。放映时章节名和页标均可点击。</desc>
+<title id="title">生成进度条</title>
+<desc id="desc">在 PowerPoint 中新增节，选择样式和尺寸，预览最多 3 张符合条件的幻灯片，再为指定范围生成进度条。</desc>
 <rect x="0" y="0" width="1000" height="395" rx="0" fill="#11171E"/>
 <rect x="0" y="0" width="10" height="395" rx="0" fill="#FF9EAE"/>
-<text x="42" y="59" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="33" font-weight="700" letter-spacing="-0.7" text-anchor="start">从分节到放映</text>
+<text x="42" y="59" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="33" font-weight="700" letter-spacing="-0.7" text-anchor="start">生成进度条</text>
 <path d="M42 82L958 82" fill="none" stroke="#F6F3EB" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
 <g transform="translate(42 110)">
 <rect x="0" y="0" width="57" height="53" rx="0" fill="#3C262F"/>
@@ -11,9 +11,9 @@
 </g>
 <path d="M117 137L243 137" fill="none" stroke="#424A52" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <path d="M236 132L243 137L236 142" fill="none" stroke="#B3BBC3" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-<text x="42" y="201" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="23" font-weight="680" letter-spacing="-0.45" text-anchor="start">添加章节</text>
-<text x="42" y="231" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">在缩略图窗格中</text>
-<text x="42" y="256" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">将幻灯片分节。</text>
+<text x="42" y="201" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="23" font-weight="680" letter-spacing="-0.45" text-anchor="start">新增节</text>
+<text x="42" y="231" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">在两张幻灯片缩略图</text>
+<text x="42" y="256" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">之间单击右键。</text>
 <g transform="translate(276 110)">
 <rect x="0" y="0" width="57" height="53" rx="0" fill="#3C262F"/>
 <path d="M12 17L29 10L45 17L29 24ZM12 26L29 33L45 26M12 35L29 42L45 35" fill="none" stroke="#FF9EAE" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
@@ -21,7 +21,7 @@
 <path d="M351 137L477 137" fill="none" stroke="#424A52" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <path d="M470 132L477 137L470 142" fill="none" stroke="#B3BBC3" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="276" y="201" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="23" font-weight="680" letter-spacing="-0.45" text-anchor="start">样式预设</text>
-<text x="276" y="231" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">展开预设，选择</text>
+<text x="276" y="231" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">选择样式，再选择</text>
 <text x="276" y="256" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">大号、中号或小号。</text>
 <g transform="translate(510 110)">
 <rect x="0" y="0" width="57" height="53" rx="0" fill="#3C262F"/>
@@ -31,7 +31,7 @@
 <path d="M585 137L711 137" fill="none" stroke="#424A52" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <path d="M704 132L711 137L704 142" fill="none" stroke="#B3BBC3" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="510" y="201" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="23" font-weight="680" letter-spacing="-0.45" text-anchor="start">预览</text>
-<text x="510" y="231" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">查看最多 3 张</text>
+<text x="510" y="231" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">更新最多 3 张</text>
 <text x="510" y="256" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">符合条件的幻灯片。</text>
 <g transform="translate(744 110)">
 <rect x="0" y="0" width="57" height="53" rx="0" fill="#3C262F"/>
@@ -39,9 +39,9 @@
 <path d="M20 30L25 35L35 24" fill="none" stroke="#FF9EAE" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/>
 </g>
 <text x="744" y="201" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="23" font-weight="680" letter-spacing="-0.45" text-anchor="start">生成</text>
-<text x="744" y="231" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">应用到指定页码</text>
-<text x="744" y="256" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">范围内的页面。</text>
+<text x="744" y="231" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">在指定页码范围内</text>
+<text x="744" y="256" fill="#B3BBC3" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">创建或更新进度条。</text>
 <rect x="42" y="289" width="916" height="75" rx="0" fill="#3C262F"/>
-<text x="60" y="321" fill="#FF9EAE" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="680" letter-spacing="0" text-anchor="start">放映时</text>
-<text x="60" y="346" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">点击章节名可跳到该章首页，点击页标可直接跳到对应的幻灯片。</text>
+<text x="60" y="321" fill="#FF9EAE" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="17" font-weight="680" letter-spacing="0" text-anchor="start">放映跳转</text>
+<text x="60" y="346" fill="#F6F3EB" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',Inter,Arial,sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">点击章名跳到该章首张计入进度的幻灯片，点击页标跳到对应页。</text>
 </svg>

@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 395" width="1000" height="395" role="img" aria-labelledby="title desc" xml:lang="en">
-<title id="title">From sections to a slide show</title>
-<desc id="desc">Add sections, choose a design and size, preview up to three eligible slides, and generate the indicators. During a slide show, section titles and slide markers are links.</desc>
+<title id="title">Generate progress indicators</title>
+<desc id="desc">Add PowerPoint sections, choose a design preset and size, preview up to three eligible slides, then generate indicators for the specified slide range.</desc>
 <rect x="0" y="0" width="1000" height="395" rx="0" fill="#FAF8F4"/>
 <rect x="0" y="0" width="10" height="395" rx="0" fill="#A32342"/>
-<text x="42" y="59" fill="#22252A" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="35" font-weight="700" letter-spacing="-0.7" text-anchor="start">From sections to a slide show</text>
+<text x="42" y="59" fill="#22252A" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="35" font-weight="700" letter-spacing="-0.7" text-anchor="start">Generate progress indicators</text>
 <path d="M42 82L958 82" fill="none" stroke="#22252A" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
 <g transform="translate(42 110)">
 <rect x="0" y="0" width="57" height="53" rx="0" fill="#F4E4E5"/>
@@ -11,9 +11,9 @@
 </g>
 <path d="M117 137L243 137" fill="none" stroke="#CDCAC4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <path d="M236 132L243 137L236 142" fill="none" stroke="#515960" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-<text x="42" y="201" fill="#22252A" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="23" font-weight="680" letter-spacing="-0.45" text-anchor="start">Add sections</text>
-<text x="42" y="231" fill="#515960" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">Group slides in the</text>
-<text x="42" y="256" fill="#515960" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">thumbnail pane.</text>
+<text x="42" y="201" fill="#22252A" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="23" font-weight="680" letter-spacing="-0.45" text-anchor="start">Add Section</text>
+<text x="42" y="231" fill="#515960" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">Right-click between</text>
+<text x="42" y="256" fill="#515960" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">slide thumbnails.</text>
 <g transform="translate(276 110)">
 <rect x="0" y="0" width="57" height="53" rx="0" fill="#F4E4E5"/>
 <path d="M12 17L29 10L45 17L29 24ZM12 26L29 33L45 26M12 35L29 42L45 35" fill="none" stroke="#A32342" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
@@ -21,8 +21,8 @@
 <path d="M351 137L477 137" fill="none" stroke="#CDCAC4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <path d="M470 132L477 137L470 142" fill="none" stroke="#515960" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="276" y="201" fill="#22252A" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="23" font-weight="680" letter-spacing="-0.45" text-anchor="start">Design Presets</text>
-<text x="276" y="231" fill="#515960" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">Open a design, then</text>
-<text x="276" y="256" fill="#515960" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">choose its size.</text>
+<text x="276" y="231" fill="#515960" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">Choose a design and</text>
+<text x="276" y="256" fill="#515960" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">one of its three sizes.</text>
 <g transform="translate(510 110)">
 <rect x="0" y="0" width="57" height="53" rx="0" fill="#F4E4E5"/>
 <path d="M7 27Q28 3 50 27Q28 50 7 27Z" fill="none" stroke="#A32342" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
@@ -31,7 +31,7 @@
 <path d="M585 137L711 137" fill="none" stroke="#CDCAC4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <path d="M704 132L711 137L704 142" fill="none" stroke="#515960" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="510" y="201" fill="#22252A" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="23" font-weight="680" letter-spacing="-0.45" text-anchor="start">Preview</text>
-<text x="510" y="231" fill="#515960" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">Check up to three</text>
+<text x="510" y="231" fill="#515960" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">Update up to three</text>
 <text x="510" y="256" fill="#515960" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">eligible slides.</text>
 <g transform="translate(744 110)">
 <rect x="0" y="0" width="57" height="53" rx="0" fill="#F4E4E5"/>
@@ -39,9 +39,9 @@
 <path d="M20 30L25 35L35 24" fill="none" stroke="#A32342" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/>
 </g>
 <text x="744" y="201" fill="#22252A" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="23" font-weight="680" letter-spacing="-0.45" text-anchor="start">Generate</text>
-<text x="744" y="231" fill="#515960" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">Apply indicators within</text>
-<text x="744" y="256" fill="#515960" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">the selected slide range.</text>
+<text x="744" y="231" fill="#515960" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">Create or update within</text>
+<text x="744" y="256" fill="#515960" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">the specified slide range.</text>
 <rect x="42" y="289" width="916" height="75" rx="0" fill="#F4E4E5"/>
-<text x="60" y="321" fill="#A32342" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="680" letter-spacing="0" text-anchor="start">During a slide show</text>
-<text x="60" y="346" fill="#22252A" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">Select a section title to open its first slide, or select a marker to jump directly to that slide.</text>
+<text x="60" y="321" fill="#A32342" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="17" font-weight="680" letter-spacing="0" text-anchor="start">Slide show links</text>
+<text x="60" y="346" fill="#22252A" font-family="Inter,Arial,Helvetica,'Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="400" letter-spacing="0" text-anchor="start">A title links to its section's first counted slide. A slide marker links to its slide.</text>
 </svg>

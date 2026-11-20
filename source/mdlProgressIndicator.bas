@@ -1648,7 +1648,7 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
           End If
           If layeredMode Or (bandMode And (theOptions.AccentMode > 0 Or theOptions.PanelShadow = 1)) Then
     If Len(mPITraceFile) > 0 Then PI_Trace "zorder.begin"
-              PI_OrderLayeredShapes renderPresentation.Slides(slideNum), firstShape, shapeTag
+              PI_OrderLayeredShapes renderPresentation.Slides(slideNum), firstShape, shapeTag, numSections
           End If
                     
 
@@ -3671,6 +3671,7 @@ End Sub
 Private Sub PI_FinalizeNavigationGlow(ByVal navigation As Shape, opts As ProgressDotsOptions, _
                                        ByVal visibleIndex As Long)
     Dim index As Long, role As String, isCurrent As Boolean
+    Dim relativePage As Integer, transparency As Double
     If opts.FlatBar <> 1 Then Exit Sub
     If navigation.Type = msoGroup Then
         For index = 1 To navigation.GroupItems.Count
@@ -3679,9 +3680,23 @@ Private Sub PI_FinalizeNavigationGlow(ByVal navigation As Shape, opts As Progres
     Else
         role = LCase$(navigation.Tags("PI_ROLE"))
         If role = "indicator" Or role = "indicator-summary" Then
-            isCurrent = (role = "indicator" And CLng(Val(navigation.Tags("PI_PAGE"))) = visibleIndex)
-            If opts.MarkerKind > 0 Then PI_SizePageMarker navigation, opts, Sgn(Val(navigation.Tags("PI_PAGE")) - visibleIndex)
+            relativePage = Sgn(CLng(Val(navigation.Tags("PI_PAGE"))) - visibleIndex)
+            isCurrent = (role = "indicator" And relativePage = 0)
+            If opts.MarkerKind > 0 Then PI_SizePageMarker navigation, opts, relativePage
             PI_BarApplyGlow navigation, opts, isCurrent
+            If opts.LayeredNavigation = 1 And PI_UsesSectionBand(opts) Then
+                ' Apply opacity after the final fill color, outline, and dock transform.
+                Select Case relativePage
+                    Case -1: transparency = opts.transparencyIndicatorSeen / 100
+                    Case 0: transparency = opts.transparencyIndicatorActive / 100
+                    Case 1: transparency = opts.transparencyIndicatorUnseen / 100
+                End Select
+                If LCase$(navigation.Tags("PI_OUTLINED")) = "yes" Then
+                    navigation.Line.Transparency = transparency
+                Else
+                    navigation.Fill.Transparency = transparency
+                End If
+            End If
         End If
     End If
 End Sub
@@ -3888,7 +3903,7 @@ Private Function PI_StyleRecipe(ByVal styleID As String) As String
         Case "serif_editorial"
             PI_StyleRecipe = "layered=0|fontName=Times New Roman|sectionGap=4|height=38|textSize=12.5|textGap=4|seenBackground=#E4E0DA|currentBackground=#FFFFFF|unseenBackground=#F8F5EF|seenForeground=#3F372F|currentForeground=#5C3F2B|unseenForeground=#3F372F|numbering=1|currentBold=1|barHeight=6|roundness=0|accentMode=4|accentColor=#8C6749|accentWidth=1|markerKind=2|flatRuleMode=3"
         Case "polyu_layered"
-            PI_StyleRecipe = "shadowBlur=6|glow=1|glowRadius=4|glowTransparency=55|contrast=1|markerKind=0|flatRuleMode=0|barHeight=2.5|layered=1|shadowTransparency=38|shadowDistance=2.5|depthStep=0.8|flatRuleColor=#858F9A|flatRuleWidth=0.85|seenBackground=#D4D7DB"
+            PI_StyleRecipe = "shadowBlur=10|glow=1|glowRadius=4|glowTransparency=55|contrast=1|markerKind=0|flatRuleMode=0|barHeight=2.5|layered=1|shadowTransparency=62|shadowDistance=2.5|depthStep=0.8|flatRuleColor=#858F9A|flatRuleWidth=0.85|seenBackground=#D4D7DB|seenBarTransparency=70|unseenBarTransparency=70"
         Case "quiet_layered"
             PI_StyleRecipe = "seenBackground=#DEDEE3|currentBackground=#FFFFFF|unseenBackground=#F2F2F7|seenForeground=#3C3C43|currentForeground=#9E1F38|unseenForeground=#3C3C43|shadowBlur=2|shadowTransparency=64|shadowDistance=1.3|depthStep=0.25|rail=0.5|accentMode=1|glow=1|markerKind=3|flatRuleMode=0|barHeight=5|futureOutline=1|panelShadow=1|sectionGap=4"
         Case "minimal_underline"
@@ -4225,22 +4240,15 @@ End Sub
 
 Private Function PI_LayerDepth(sections As ProgressDotsSectionInfo, _
                                ByVal sectionIndex As Long, ByVal currentSlide As Long) As Long
-    Dim index As Long, ordinal As Long, currentSection As Long
+    Dim index As Long
     Dim targetOrdinal As Long, currentOrdinal As Long
     For index = 1 To sections.lngSecSections
-        If currentSlide >= sections.lngArySecStart(index) Then currentSection = index
-    Next index
-    For index = 1 To sections.lngSecSections
         If sections.intArySecVisible(index) = 1 Then
-            ordinal = ordinal + 1
-            If index = sectionIndex Then targetOrdinal = ordinal
-            If index = currentSection Then currentOrdinal = ordinal
+            If index <= sectionIndex Then targetOrdinal = targetOrdinal + 1
+            If sections.lngArySecStart(index) <= currentSlide Then currentOrdinal = currentOrdinal + 1
         End If
     Next index
-    PI_LayerDepth = 3
-    If targetOrdinal > 0 And currentOrdinal > 0 Then
-        PI_LayerDepth = CLng(PI_BarClamp(Abs(targetOrdinal - currentOrdinal), 1, 3))
-    End If
+    PI_LayerDepth = Abs(targetOrdinal - currentOrdinal)
 End Function
 
 Private Sub PI_StyleLayerBand(ByVal targetSlide As Slide, ByRef band As Shape, _
@@ -4273,6 +4281,7 @@ Private Sub PI_StyleLayerBand(ByVal targetSlide As Slide, ByRef band As Shape, _
 280         foreground.Tags.Add shapeTag, "yes"
 290         foreground.Tags.Add "PI_ROLE", "layer-foreground"
 300         foreground.Tags.Add "PI_SECTION", CStr(sectionIndex)
+            foreground.Tags.Add "PI_DEPTH", "0"
 310         foreground.ActionSettings(ppMouseClick).Action = ppActionHyperlink
 320         foreground.ActionSettings(ppMouseClick).Hyperlink.SubAddress = linkTarget
 330         foreground.Name = "PI current chapter and rail"
@@ -4284,7 +4293,8 @@ Private Sub PI_StyleLayerBand(ByVal targetSlide As Slide, ByRef band As Shape, _
 390         depth = PI_LayerDepth(sections, sectionIndex, gblLastPIslideNum)
 400         band.Height = fullHeight
 410         band.Tags.Add "PI_DEPTH", CStr(depth)
-420         PI_ApplyLayerShadow band, opts, shadowDistance + (depth - 1) * PI_BarClamp(opts.LayerDepthStep, 0, 5)
+            ' Offset has three settings; stacking uses every visible section's exact depth.
+420         PI_ApplyLayerShadow band, opts, shadowDistance + PI_BarClamp(depth - 1, 0, 2) * PI_BarClamp(opts.LayerDepthStep, 0, 5)
     End If
     Exit Sub
 LayerError:
@@ -4328,26 +4338,36 @@ ShadowError:
         PI_Zh("539F751F591696345F718BBE7F6E59318D25FF1A") & CStr(failureNumber) & " " & failureDescription
 End Sub
 
-Private Sub PI_OrderLayeredShapes(ByVal targetSlide As Slide, ByVal firstShape As Long, ByVal shapeTag As String)
+Private Sub PI_OrderLayeredShapes(ByVal targetSlide As Slide, ByVal firstShape As Long, _
+                                  ByVal shapeTag As String, ByVal sectionCount As Long)
     Dim generated() As Shape, index As Long, count As Long, depth As Long, role As String
+    Dim surfacesByDepth() As Collection, surface As Shape
     Dim failureDescription As String
     On Error GoTo LayerError
 50     count = targetSlide.Shapes.Count - firstShape + 1
 60     If count < 1 Then Exit Sub
 70     ReDim generated(1 To count)
+       ReDim surfacesByDepth(0 To sectionCount)
 80     For index = 1 To count
 90         Set generated(index) = targetSlide.Shapes(firstShape + index - 1)
+           If UCase$(generated(index).Tags(shapeTag)) = "YES" Then
+               role = LCase$(generated(index).Tags("PI_ROLE"))
+               If role = "section-band" Or role = "section-backdrop" Then
+                   depth = CLng(Val(generated(index).Tags("PI_DEPTH")))
+                   If depth > 0 Then
+                       If surfacesByDepth(depth) Is Nothing Then Set surfacesByDepth(depth) = New Collection
+                       surfacesByDepth(depth).Add generated(index)
+                   End If
+               End If
+           End If
     Next index
-    ' Bring only generated shapes forward; no object crosses the user-content boundary.
-120     For depth = 3 To 1 Step -1
-130         For index = 1 To count
-140             If UCase$(generated(index).Tags(shapeTag)) = "YES" Then
-150                 role = LCase$(generated(index).Tags("PI_ROLE"))
-160                 If role = "section-band" Or role = "section-backdrop" Then
-170                     If Val(generated(index).Tags("PI_DEPTH")) = depth Then generated(index).ZOrder msoBringToFront
-                End If
+    ' Draw the farther panels first so shadows from nearer panels fall across them.
+120     For depth = sectionCount To 1 Step -1
+            If Not surfacesByDepth(depth) Is Nothing Then
+                For Each surface In surfacesByDepth(depth)
+170                 surface.ZOrder msoBringToFront
+                Next surface
             End If
-        Next index
     Next depth
 220     For index = 1 To count
 230         If LCase$(generated(index).Tags("PI_ROLE")) = "layer-foreground" Then generated(index).ZOrder msoBringToFront

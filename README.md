@@ -8,10 +8,10 @@ PowerPoint Progress Indicators is a VBA add-in that turns your slide sections in
 
 | Edition | Release package | Add-in to install |
 | --- | --- | --- |
-| English | [Download EN.11.1](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.1/ProgressIndicators-EN.11.1.zip) | `ProgressIndicators_v1960_3264b_SB_EN11_1.ppam` |
-| Simplified Chinese | [Download CN.11.1](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.1/ProgressIndicators-CN.11.1.zip) | `ProgressIndicators_v1960_3264b_SB_CN11_1.ppam` |
+| English | [Download EN.11.2](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.2/ProgressIndicators-EN.11.2.zip) | `ProgressIndicators_v1960_3264b_SB_EN11_2.ppam` |
+| Simplified Chinese | [Download CN.11.2](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.2/ProgressIndicators-CN.11.2.zip) | `ProgressIndicators_v1960_3264b_SB_CN11_2.ppam` |
 
-Extract the ZIP for the language you want. The `.ppam` is the add-in. The matching `.pptm` is a presentation you can open in PowerPoint to inspect or edit the VBA project.
+Extract the ZIP for the language you want. The `.ppam` is the add-in. The matching `.pptm` is a presentation you can open in PowerPoint to inspect or edit the VBA project. [Earlier releases](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases)
 
 ## Install in PowerPoint for Windows
 
@@ -25,7 +25,7 @@ Extract the ZIP for the language you want. The `.ppam` is the add-in. The matchi
 2. Choose the top, bottom, left, or right edge of the slide. **Equal Sections** gives each nonempty section the same length. **Equal Slides** allocates section lengths in proportion to the number of slides that count toward progress.
 3. Click **Update Current Slide** to see the result on the current slide. Click **Generate** to apply it across the configured slide range.
 
-The 40 presets include pill-shaped sections, circular markers, ruler ticks, square segments, and continuous tracks. In **Crimson Layers**, shadows give the adjoining sections depth. The current section and its crimson connecting strip share a single outline, and only the current slide marker glows. To update a deck that still shows the earlier gray divider lines, select **Crimson Layers** again and click **Generate**.
+The 40 presets include pill-shaped sections, circular markers, ruler ticks, square segments, and continuous tracks. In **Crimson Layers**, the current section joins the crimson strip in a single shape. EN.11.2 places closer section panels in front of more distant ones, including panels more than three visible sections away from the current section. Section shadows use a 10 pt blur and 62% transparency for a softer edge. Past and upcoming slide markers use 70% transparency. The current marker stays opaque and is the only one that glows. To apply these settings to an existing deck, select **Crimson Layers** again and click **Generate**.
 
 ## Build the English edition
 
@@ -42,7 +42,7 @@ The English VBA and Ribbon XML are generated in `rebuild/en/source/`. The Englis
 To produce the release add-in, use desktop PowerPoint to save the generated maintenance presentation as a `.ppam`. The script requires PowerPoint to be able to run macros in that presentation and writes to a new destination. Run it from the same PowerShell window.
 
 ```powershell
-$name = 'ProgressIndicators_v1960_3264b_SB_EN11_1'
+$name = 'ProgressIndicators_v1960_3264b_SB_EN11_2'
 $sourceDeck = (Resolve-Path "rebuild\$name.pptm").Path
 $releaseDir = Join-Path (Get-Location) 'rebuild\distribution'
 $ppam = Join-Path $releaseDir "$name.ppam"

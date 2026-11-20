@@ -674,7 +674,7 @@
             <button id="btnStyle_retro_terminal" label="复古终端" tag="retro_terminal" onAction="PI_ModernPreset" screentip="等宽章节索引由分隔线划开；方块模拟终端的字符位置。"/>
             <button id="btnStyle_serif_editorial" label="衬线编辑" tag="serif_editorial" onAction="PI_ModernPreset" screentip="衬线栏题与栏线组成编辑版面，逐页刻度按五页分组。"/>
             <menuSeparator id="sepStyle_polyu_layered" title="层次"/>
-            <button id="btnStyle_polyu_layered" label="深红层叠" tag="polyu_layered" onAction="PI_ModernPreset" screentip="章节面无缝相接，以整块投影呈现层次。深红当前章与连接条共用轮廓，只有当前页的极扁圆角横条发光。"/>
+            <button id="btnStyle_polyu_layered" label="深红层叠" tag="polyu_layered" onAction="PI_ModernPreset" screentip="深红当前章与连接条无缝相接，柔和投影沿外轮廓向外晕开。当前页的细圆角横条发光，其余页条均为 70% 透明。"/>
             <button id="btnStyle_quiet_layered" label="轻盈层次" tag="quiet_layered" onAction="PI_ModernPreset" screentip="轻影章节面各自成片，内置细小圆节点；当前章节带下沿标识。"/>
             <menuSeparator id="sepStyle_minimal_underline" title="极简"/>
             <button id="btnStyle_minimal_underline" label="极简下沿线" tag="minimal_underline" onAction="PI_ModernPreset" screentip="垂直细线划开栏目，下沿突出当前章，粗细轨道表示页进度。"/>
@@ -779,8 +779,8 @@
           <editBox id="edtRailThickness" label="连接条厚度 (pt)" getText="PI_LayerGetValue" onChange="PI_LayerSetValue" sizeString="000.0" screentip="整体连接条的厚度" supertip="输入 0.5 至 30，默认 3。连接条在章节与正文之间，随停靠边转换方向；其余页面版式保持原样。"/>
           <editBox id="edtLayerShadowBlur" label="阴影柔化 (pt)" getText="PI_LayerGetValue" onChange="PI_LayerSetValue" sizeString="000.0" screentip="完整外轮廓投影的模糊半径" supertip="输入 0 至 20，默认 6。0 关闭所有层叠阴影。投影按原生外阴影生成，随后与底板一起裁切，底部横条下缘以外不保留阴影。章节与横条的连接处没有内部接缝。"/>
           <editBox id="edtLayerShadowTransparency" label="阴影透明度 (%)" getText="PI_LayerGetValue" onChange="PI_LayerSetValue" sizeString="000.0" screentip="原生阴影的独立透明度" supertip="输入 0 至 100，默认 80。100 隐藏所有层叠阴影。色块完全透明或关闭背景时，其阴影也会关闭。"/>
-          <editBox id="edtLayerShadowDistance" label="投影距离 (pt)" getText="PI_LayerGetValue" onChange="PI_LayerSetValue" sizeString="000.0" screentip="当前底板及最近非当前章节的投影距离" supertip="输入 0 至 20，默认 1.5。当前章节与底部横条整体向上投影，非当前章节向下投影。水平偏移为 0；更远章节在此距离上增加投影层差。"/>
-          <editBox id="edtLayerDepthStep" label="投影层差 (pt)" getText="PI_LayerGetValue" onChange="PI_LayerSetValue" sizeString="000.0" screentip="相邻视觉层级的阴影偏移差" supertip="输入 0 至 5，默认 0.75。非当前章节最多三级，每远一级，下方投影增加此距离。只改变阴影偏移，不改变章节高度或文字和进度位置。"/>
+          <editBox id="edtLayerShadowDistance" label="投影距离 (pt)" getText="PI_LayerGetValue" onChange="PI_LayerSetValue" sizeString="000.0" screentip="当前底板及最近非当前章节的投影距离" supertip="输入 0 至 20，默认 1.5。顶部停靠时，当前章与连接条一同向上投影，其他章向下投影，水平方向不偏移。换边停靠时，投影随之转向。"/>
+          <editBox id="edtLayerDepthStep" label="投影层差 (pt)" getText="PI_LayerGetValue" onChange="PI_LayerSetValue" sizeString="000.0" screentip="相邻视觉层级的阴影偏移差" supertip="输入 0 至 5，默认 0.75。每侧紧邻当前章的投影使用基准距离，第二章增加一档，第三章及更远章节增加两档。各章仍按远近叠放，较近的章节在上。"/>
         </group>
         <group id="grpBandBackdrop" label="裁切背景字（顶部）" autoScale="true">
           <checkBox id="cbxBandBackdrop" label="非当前章节背景字" getPressed="PI_BandGetPressed" onAction="PI_BandOnToggle" getEnabled="PI_TopBackdropEnabled" screentip="顶部模式的可选装饰文字" supertip="仅顶部停靠时绘制。直接使用本格章节名，在色块上、正常标题和页条下生成裁切背景字，当前章不显示。切换到其他边时保留设置但不绘制装饰字；正常章节名在四边均保持正向。"/>

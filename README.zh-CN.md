@@ -4,15 +4,15 @@
 
 这是基于 Olaf Nöhring 发布的 Progress Indicator 1.960 独立维护的中文 VBA 加载项。它读取 PowerPoint 文稿中的章节和页序，在每页生成章节导航。放映时，点击章节名可跳到该章首页，点击页标可跳到对应的幻灯片。[上游项目](https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac)
 
-下载并解压 CN.11.1 发布包，选择 `ProgressIndicators_v1960_3264b_SB_CN11_1.ppam` 安装。同名 `.pptm` 是可在 PowerPoint 中打开的维护文稿。[下载 CN.11.1](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.1/ProgressIndicators-CN.11.1.zip)
+下载并解压 CN.11.2 发布包，选择 `ProgressIndicators_v1960_3264b_SB_CN11_2.ppam` 安装。同名 `.pptm` 是可在 PowerPoint 中打开的维护文稿。[下载 CN.11.2](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.2/ProgressIndicators-CN.11.2.zip)
 
-需要英文界面时，请下载 EN.11.1 发布包，安装其中的 `ProgressIndicators_v1960_3264b_SB_EN11_1.ppam`。两种语言版本每次只启用一个。[下载 EN.11.1](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.1/ProgressIndicators-EN.11.1.zip)
+需要英文界面时，请下载 EN.11.2 发布包，安装其中的 `ProgressIndicators_v1960_3264b_SB_EN11_2.ppam`。两种语言版本每次只启用一个。[下载 EN.11.2](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.2/ProgressIndicators-EN.11.2.zip) · [历史版本](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases)
 
 ## 导航样式
 
 - 40 种预设提供不同的章节和页标结构，包括胶囊、圆节点、刻度、直角分段和连续轨道。
 - 可停靠在顶部、底部、左侧或右侧。“章节均长”给每个非空章节相同的长度。“进度均长”按计入进度的页数分配各章长度。
-- CN.11.1 移除了“层次 > 深红层叠”在章节交界处的灰色分隔线。章节面无缝相接，靠整块投影呈现层次。当前章与深红连接条共用轮廓，当前页以带光晕的短条标识。
+- “层次 > 深红层叠”的章节面无缝相接，当前章与深红连接条共用轮廓。CN.11.2 按章节距离修正了叠放顺序。越靠近当前章的面板越靠上，距离超过三个可见章节的远端面板也按此顺序叠放。章节投影采用 10 pt 模糊和 62% 透明度，边缘更柔和。已讲页和未讲页的页标均为 70% 透明度，当前页标保持不透明，只有它带光晕。
 
 ## 在 Windows 桌面 PowerPoint 中安装
 
@@ -29,7 +29,7 @@
 ```powershell
 uv venv --python 3.12 .venv
 uv pip install --python .venv\Scripts\python.exe -r requirements-build.txt
-.\.venv\Scripts\python.exe build_package.py --output-dir rebuild --version-token CN11_1 --report rebuild\package-validation.json
+.\.venv\Scripts\python.exe build_package.py --output-dir rebuild --version-token CN11_2 --report rebuild\package-validation.json
 ```
 
 正式加载项由桌面 PowerPoint 从维护文稿另存为 `.ppam`。发布命令见[构建说明](BUILD_zh-CN.txt)。

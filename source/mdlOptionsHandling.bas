@@ -446,7 +446,7 @@ Sub InitializePIVersion()
           'Version for settings-format saved in presentation
 10        gblIndicatorSettingsVersion = "Version20231115_1200"
 20        gblProgramVersionBase = "1.960"   'this is checked at online version check, see cmdWebCheck_Click in frmHelp
-30        gblProgramVersion = gblProgramVersionBase & " CN.11.1 32b/64b" & " / Settings: " & gblIndicatorSettingsVersion
+30        gblProgramVersion = gblProgramVersionBase & " CN.11.2 32b/64b" & " / Settings: " & gblIndicatorSettingsVersion
           
 End Sub
 

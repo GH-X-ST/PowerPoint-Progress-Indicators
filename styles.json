@@ -1,5 +1,5 @@
 {
-  "version": "CN.11.1",
+  "version": "CN.11.2",
   "common": {
     "layered": 0,
     "height": 34,
@@ -253,9 +253,9 @@
       "id": "polyu_layered",
       "name": "深红层叠",
       "family": "层次",
-      "description": "章节面无缝相接，以整块投影呈现层次。深红当前章与连接条共用轮廓，只有当前页的极扁圆角横条发光。",
+      "description": "深红当前章与连接条无缝相接，柔和投影沿外轮廓向外晕开。当前页的细圆角横条发光，其余页条均为 70% 透明。",
       "values": {
-        "shadowBlur": 6,
+        "shadowBlur": 10,
         "glow": 1,
         "glowRadius": 4,
         "glowTransparency": 55,
@@ -264,12 +264,14 @@
         "flatRuleMode": 0,
         "barHeight": 2.5,
         "layered": 1,
-        "shadowTransparency": 38,
+        "shadowTransparency": 62,
         "shadowDistance": 2.5,
         "depthStep": 0.8,
         "flatRuleColor": "#858F9A",
         "flatRuleWidth": 0.85,
-        "seenBackground": "#D4D7DB"
+        "seenBackground": "#D4D7DB",
+        "seenBarTransparency": 70,
+        "unseenBarTransparency": 70
       }
     },
     {

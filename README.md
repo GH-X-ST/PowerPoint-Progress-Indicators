@@ -3,6 +3,10 @@
 
 <h1 align="center">PowerPoint Progress Indicators</h1>
 
+This independent edition is based on **Progress Indicator 1.960**, released by Olaf Nöhring. Edward Loper wrote the original *Progress Dots* macro for PowerPoint, which Adam M. Wilson and Olaf Nöhring later extended.
+
+[Upstream GitHub repository (AdamWilsonLab/progress_indicators)](https://github.com/AdamWilsonLab/progress_indicators) | [Olaf Nöhring's project page](https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac)
+
 <p align="center"><sub>PowerPoint for Windows &nbsp;|&nbsp; EN.11.5 / CN.11.5</sub></p>
 
 <img src="docs/assets/native/crimson-layers.webp" alt="Five section tabs span the slide. Design is red, and its third marker glows white." width="100%" />
@@ -451,7 +455,7 @@ These are all 40 presets on the same PowerPoint slide. In every example, Design 
 
 ## Changes since Progress Indicator 1.960
 
-This independently maintained edition builds on Olaf Nöhring's Progress Indicator 1.960. The original add-in included clickable titles and markers, the two spacing options, and custom fonts, shapes, pictures, and colors for past, current, and upcoming slides. It could already generate a preview, update a range of slides, skip or repeat a slide, exclude hidden slides, and save or export settings. [Original project](https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac) | [Original README](original/ProgressIndicators_v1960_3264b/README.md)
+Version 1.960 already included clickable titles and markers, the two spacing options, and custom fonts, shapes, pictures, and colors for past, current, and upcoming slides. It could already generate a preview, update a range of slides, skip or repeat a slide, exclude hidden slides, and save or export settings. [Original project](https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac) | [Original README](original/ProgressIndicators_v1960_3264b/README.md)
 
 | This edition adds | Where to find it |
 | --- | --- |

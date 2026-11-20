@@ -3,6 +3,10 @@
 
 <h1 align="center">PowerPoint 演讲进度条</h1>
 
+本项目在 Olaf Nöhring 发布的 **Progress Indicator 1.960** 基础上开发并独立维护。这个 PowerPoint 加载项源自 Edward Loper 编写的 *Progress Dots* 宏，后来由 Adam M. Wilson 和 Olaf Nöhring 先后扩展。
+
+[上游 GitHub 仓库（AdamWilsonLab/progress_indicators）](https://github.com/AdamWilsonLab/progress_indicators) · [Olaf Nöhring 的项目页](https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac)
+
 <p align="center"><sub>Windows 桌面版 PowerPoint &nbsp;|&nbsp; CN.11.5 / EN.11.5</sub></p>
 
 <img src="docs/assets/native/crimson-layers.webp" alt="深红层叠进度条：当前在 Design 章的第 3 页，章名下方的第三个页标发亮。" width="100%" />
@@ -473,7 +477,7 @@
 
 ## 与原版 1.960 的区别
 
-本项目基于 Olaf Nöhring 的 Progress Indicator 1.960 独立维护。原版已经支持点击章名或图标跳页、按章节或页数分配宽度，以及用自定义图片做页标。按页码范围生成和移除、预览、自动更新、跳过或沿用进度、排除隐藏页和导入导出设置，也都来自原版。[原作者的项目页](https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac) · [1.960 随附说明](original/ProgressIndicators_v1960_3264b/README.md)
+1.960 版已经支持点击章名或图标跳页、按章节或页数分配宽度，以及用自定义图片做页标。按页码范围生成和移除、预览、自动更新、跳过或沿用进度、排除隐藏页和导入导出设置，也都来自原版。[原作者的项目页](https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac) · [1.960 随附说明](original/ProgressIndicators_v1960_3264b/README.md)
 
 ### 本版新增
 

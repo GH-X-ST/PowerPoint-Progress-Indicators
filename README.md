@@ -1,13 +1,11 @@
 <p align="center"><a href="README.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/lang-en-en-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/lang-en-en-light.svg" /><img src="docs/assets/badges/lang-en-en-light.svg" alt="Current README language: English" height="24" /></picture></a><!--
 --><a href="README.zh-CN.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/lang-en-zh-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/lang-en-zh-light.svg" /><img src="docs/assets/badges/lang-en-zh-light.svg" alt="Read the Chinese README" height="24" /></picture></a></p>
 
+<h1 align="center">PowerPoint Progress Indicators</h1>
+
 <p align="center"><sub>PowerPoint for Windows &nbsp;|&nbsp; EN.11.5 / CN.11.5</sub></p>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/hero-en-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/hero-en-light.svg" />
-  <img src="docs/assets/hero-en-light.svg" alt="During a slide show, click a section title to open that section or a marker to jump to its slide. Choose from 40 styles in three sizes and place the bar along any edge of the slide." width="100%" />
-</picture>
+<img src="docs/assets/native/crimson-layers.webp" alt="Crimson Layers in PowerPoint. Design is the current section, with the third of five slide markers highlighted." width="100%" />
 
 ## About
 
@@ -44,12 +42,6 @@ This is an independently maintained edition of Olaf Nöhring's Progress Indicato
 3. On the **Progress Indicators** tab, open **Design > Design Presets**. Under **Layers**, for example, open **Crimson Layers** and choose **Medium**. In the **Generate** group, select **Show All**, **Sections Only**, or **Icons Only**.
 4. Choose **Slide Updates and Performance > Update Current Slide** to redraw the active slide. **Generate > Preview** updates up to three eligible slides, starting at the beginning of the selected range.
 5. Click **Generate** to update the full range, then save the presentation. The navigation links work in Slide Show view. Generate again after adding, removing, or rearranging slides.
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/workflow-en-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/workflow-en-light.svg" />
-  <img src="docs/assets/workflow-en-light.svg" alt="Name the sections in the thumbnail pane and choose a design and size. Preview draws the bar on up to three slides, starting with the first slide in the chosen range that should show navigation. Generate updates the bar throughout that range." width="100%" />
-</picture>
 
 ## Navigation layout
 
@@ -152,7 +144,7 @@ Both examples in the bottom row use the same dark purple background. With **Auto
 
 **Section Panels** sets past, current, and upcoming panel transparency. Turn on **Two-Sided Gradient** to choose near and far colors independently for past and upcoming sections.
 
-The middle row shows **Cropped Backdrop Text (Top) > Backdrop Text for Other Sections**. Research and Results each show a second, larger copy of their title, cropped at the panel edges. The current section, Design, keeps its solid red background. In the same group, adjust the size, color, and transparency of the background letters.
+The middle row shows **Cropped Backdrop Text (Top) > Backdrop Text for Other Sections**. Research and Results each show a second, larger copy of their title, cropped at the panel edges. The current section, Design, keeps its solid red background. In the same group, set the text scale (110% to 300%), color, and transparency.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/native/surfaces-dark.webp" />
@@ -201,17 +193,6 @@ All three rows show the same slide in a 61-slide presentation. The third of the 
   <img src="docs/assets/native/density-light.webp" alt="The top row shows a mark for every slide. The middle row combines the marks in Context and Results into one bar per section. In the bottom row, only Design has individual slide markers." width="100%" />
 </picture>
 
-<details>
-<summary>Counter formats, density settings, and backdrop layers</summary>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/details-en-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/details-en-light.svg" />
-  <img src="docs/assets/details-en-light.svg" alt="The same slide is page 12 of 40 overall and page 2 of 8 in its section. Other sections can group their markers into one bar. Large letters fill the Research panel, while the current section, Design, has a solid red background." width="100%" />
-</picture>
-
-</details>
-
 ## Updating slides
 
 The first and last slide fields in **Generate** set the range for the current session. **Auto Update** redraws the bar as settings change. With it off, **Generate** applies several edits together.
@@ -228,26 +209,14 @@ In Normal view or Slide Sorter, select the slide thumbnails before applying a se
 
 For a long presentation with **Show All** and individual markers, turn on **Slide Updates and Performance > Reuse Section Indicators**. Compatible slides in a section can share layout calculations and rendered shadow images while keeping their own titles, markers, and links. **Last Run Statistics** reports elapsed time, layout and shadow reuse, and PNG captures.
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/edit-reuse-en-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/edit-reuse-en-light.svg" />
-  <img src="docs/assets/edit-reuse-en-light.svg" alt="A presentation can store up to 32 sets of bar settings. Removing a bar allows it to be generated again. Hiding it keeps it off the slide the next time the bars are generated." width="100%" />
-</picture>
-
 ## Presentation settings and rules
 
 - **Save a style in this presentation.** Open **Settings > My Presentation Presets > Save Current Settings as a Presentation Preset**. Enter a name. To reuse the settings, open the named preset, choose **Apply**, and generate the selected range. Each presentation can hold up to 32 named presets.
 - **Copy settings to another presentation.** Under **Settings**, choose **Export** to save the current configuration as a `.txt` file. In the destination presentation, choose **Import**. Import applies the configuration and starts an update. Named presets and rules remain in the source presentation.
-- **Show navigation on one master or layout.** Select a representative slide in Normal view. Open **Position and Visibility > Single Visibility Rule** and choose **Use Current Slide Master** or **Use Current Slide Layout**. The filter controls which slides display navigation. Counts still cover the same eligible slides. Save as `.pptx` or `.pptm` to keep the rule.
+- **Show navigation on one master or layout.** Turn off multiple rules, then select a representative slide in Normal view. Open **Position and Visibility > Single Visibility Rule** and choose **Use Current Slide Master** or **Use Current Slide Layout**. The filter controls which slides display navigation. Counts still cover the same eligible slides. Save as `.pptx` or `.pptm` to keep the rule.
 - **Give different layouts their own styles or visibility.** Configure a content slide, open **Position and Visibility > Master and Layout Rules > Save a Rule for the Current Slide**, and choose **Slide Master: Show with Current Style**. Select a cover slide and choose **Layout: Hide Indicators** from the same menu. Saving a rule enables multiple rules. Choose **Unmatched Slides: Show** or **Unmatched Slides: Hide**, then click **Generate**. A presentation can hold up to 32 rules.
 
 **Hide on Selected Slides** takes priority. On other slides, the add-in checks for a matching layout rule, then a master rule, then applies the action for unmatched slides. All rules use the same count.
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/themes-rules-en-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/themes-rules-en-light.svg" />
-  <img src="docs/assets/themes-rules-en-light.svg" alt="The current section uses the slide theme's accent color when theme colors are enabled. In this example the cover layout hides the bar and the content master shows it. Hiding the bar manually overrides both rules." width="100%" />
-</picture>
 
 ---
 

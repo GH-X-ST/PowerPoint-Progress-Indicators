@@ -1,13 +1,11 @@
 <p align="center"><a href="README.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/lang-zh-en-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/lang-zh-en-light.svg" /><img src="docs/assets/badges/lang-zh-en-light.svg" alt="选择自述文件语言，切换到English" height="24" /></picture></a><!--
 --><a href="README.zh-CN.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/lang-zh-zh-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/lang-zh-zh-light.svg" /><img src="docs/assets/badges/lang-zh-zh-light.svg" alt="选择自述文件语言，当前为中文" height="24" /></picture></a></p>
 
+<h1 align="center">PowerPoint 演讲进度条</h1>
+
 <p align="center"><sub>Windows 桌面版 PowerPoint &nbsp;|&nbsp; EN.11.5 / CN.11.5</sub></p>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/hero-zh-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/hero-zh-light.svg" />
-  <img src="docs/assets/hero-zh-light.svg" alt="放映时，点击章名跳到该章，点击页标跳到对应页。进度条有 40 款样式，每款有三档尺寸，可放在幻灯片的任一边。" width="100%" />
-</picture>
+<img src="docs/assets/native/crimson-layers.webp" alt="PowerPoint 中的深红层叠导航。当前章节是 Design，五个页标中的第三个发亮。" width="100%" />
 
 ## 关于
 
@@ -50,12 +48,6 @@ PowerPoint 演讲进度条是一个 VBA 加载项，基于 Olaf Nöhring 的 Pro
 3. 在 **位置与显示 > 停靠边** 选择页面边缘，为原有标题、校徽或页脚留出空间。在 **生成** 组选择均长方式。**完整显示** 同时显示章名和页标，也可选择 **仅章节** 或 **仅图标**。
 4. 点击 **局部更新与性能 > 更新当前页** 查看当前页的效果。**生成 > 预览** 会更新起止页码范围内最先符合显示条件的最多三页。
 5. 确认样式后，点击 **生成** 组中的 **生成**，保存文稿。在幻灯片放映中点击章名和页标即可跳转。增删、重排幻灯片或调整分节后，再次生成以更新进度和链接。
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/workflow-zh-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/workflow-zh-light.svg" />
-  <img src="docs/assets/workflow-zh-light.svg" alt="在缩略图窗格里新增节并命名。选好样式和大小后，点“预览”查看效果。预览从指定页码范围内第一张需要显示导航的幻灯片开始，最多更新 3 页。点“生成”即可为整个指定范围更新导航。" width="100%" />
-</picture>
 
 ---
 
@@ -122,7 +114,7 @@ PowerPoint 演讲进度条是一个 VBA 加载项，基于 Olaf Nöhring 的 Pro
 | **进度图标**、**设计样式** | 已讲、当前、未讲页标的颜色与透明度。当前章标记的位置、粗细和颜色。可为章节添加序号、加粗当前章名、将未讲页标设为空心，或让页标跟随章节文字配色。 |
 | **章节色块** | 各状态的章面颜色与透明度、两侧渐变，以及 **文字与进度自动对比**。 |
 | **层叠导航** | 横向章高、章节独立投影、阴影柔化与距离，以及当前章连接条的长度和厚度。 |
-| **裁切背景字（顶部）** | 在非当前章的色块内显示放大的章名，超出色块的部分裁切。该效果只用于顶部停靠。 |
+| **裁切背景字（顶部）** | 在非当前章的色块内显示放大的章名，超出色块的部分裁切。该效果只用于顶部停靠，背景字的放大比例可设为 110% 至 300%。 |
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/native/type-dark.webp" />
@@ -214,12 +206,6 @@ PowerPoint 演讲进度条是一个 VBA 加载项，基于 Olaf Nöhring 的 Pro
   <img src="docs/assets/native/counts-light.webp" alt="14 页文稿中第 8 页同时是 Design 的第 3/5 页，另示全局百分比" width="100%" />
 </picture>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/details-zh-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/details-zh-light.svg" />
-  <img src="docs/assets/details-zh-light.svg" alt="这张幻灯片是全稿 40 页中的第 12 页，也是本章 8 页中的第 2 页。其他章节可以把多个页标合成一条。图中的 Research 用放大的章名作背景，相邻的当前章 Design 仍是深红底。" width="100%" />
-</picture>
-
 </details>
 
 ---
@@ -239,12 +225,6 @@ PowerPoint 演讲进度条是一个 VBA 加载项，基于 Olaf Nöhring 的 Pro
 
 **局部更新与性能 > 复用同章导航** 可在一次生成中复用同章页面的布局和阴影图。复用要求显示完整的章面和全部页标，页面的配置、主题、版式与背景相符。页标状态及跳转目标仍按页生成。**上次生成统计** 可查看上次生成的耗时、布局复用次数、阴影图复用次数和 PNG 捕获次数。
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/edit-reuse-zh-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/edit-reuse-zh-light.svg" />
-  <img src="docs/assets/edit-reuse-zh-light.svg" alt="每份文稿最多可保存 32 套进度条设置。移除的进度条可以重新生成，手动隐藏的进度条则会在下次生成时保持隐藏。" width="100%" />
-</picture>
-
 ---
 
 <a id="presentation-settings"></a>
@@ -258,7 +238,7 @@ PowerPoint 演讲进度条是一个 VBA 加载项，基于 Olaf Nöhring 的 Pro
 
 ### 按母版或版式显示
 
-**单一绑定**　在普通视图中选择具有目标母版或版式的幻灯片，打开 **位置与显示 > 单一显示绑定**，选择绑定当前页的母版或版式。导航生成在符合条件的幻灯片上，各页仍按相同规则计数。可使用 `.pptx` 或 `.pptm` 保存绑定。
+**单一绑定**　先关闭多规则，再在普通视图中选择具有目标母版或版式的幻灯片，打开 **位置与显示 > 单一显示绑定**，选择绑定当前页的母版或版式。导航生成在符合条件的幻灯片上，各页仍按相同规则计数。可使用 `.pptx` 或 `.pptm` 保存绑定。
 
 **多规则示例**
 
@@ -269,12 +249,6 @@ PowerPoint 演讲进度条是一个 VBA 加载项，基于 Olaf Nöhring 的 Pro
 3. 保存规则后，多规则自动启用。设置 **未匹配页面** 的显示动作，再点击 **生成**。
 
 加载项依次检查逐页手动隐藏、精确版式和母版规则。其余页面按未匹配页面的默认动作处理。每份文稿最多可保存 32 条规则。规则控制显示和样式，进度仍按整份文稿统一计算。
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/themes-rules-zh-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/themes-rules-zh-light.svg" />
-  <img src="docs/assets/themes-rules-zh-light.svg" alt="启用“跟随当前页主题”后，当前章节使用主题的强调色。示例为封面版式隐藏进度条，为正文母版显示进度条。手动隐藏优先于版式和母版设置。" width="100%" />
-</picture>
 
 ---
 

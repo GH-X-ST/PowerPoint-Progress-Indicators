@@ -193,7 +193,11 @@ Type ProgressDotsOptions
     PanelShadow As Integer
     PresetSize As Integer
     CrimsonType As Integer
+    BandHeightMode As Integer
 End Type
+
+Private Const PI_PROPORTIONAL_BAND As Integer = 1
+Private Const PI_EXACT_BAND As Integer = 2
 
 ' The extra array slot stores the end sentinel after 100 sections.
 Type ProgressDotsSectionInfo
@@ -953,7 +957,7 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
           Dim splitBand As Boolean, bodyHeight As Double, bodyTop As Double, rowTop As Double
           Dim rowHeight As Double, counterTop As Double
           Dim titleHeight As Double, bandPadding As Double, titlePadding As Double
-          Dim addedHeight As Double, markerClearance As Double
+          Dim addedHeight As Double, markerClearance As Double, presetGrowth As Double
           Dim renderDotSize As Double, renderDotTop As Double, dotPadding As Double
           Dim dotAlong As Double, dotAcross As Double, ovalSlot As Double
           Dim renderBarWidth As Double, renderBarHeight As Double
@@ -1018,12 +1022,13 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
                   navigationLeft, navigationWidth, railLeft, railWidth
           End If
           If bandMode Then
-              PI_BandGeometry theOptions, titleTop, dotsTop, bandHeight
+              PI_BandGeometry theOptions, titleTop, dotsTop, bandHeight, presetGrowth
               splitBand = (theOptions.PresetSize > 0 And theOptions.DockEdge < 2)
               bodyTop = theOptions.yMargin
               bodyHeight = bandHeight
               If splitBand Then
-                  bodyHeight = PI_CompactBodyHeight(theOptions)
+                  bodyHeight = PI_CompactBodyHeight(theOptions) + presetGrowth
+                  markerClearance = presetGrowth / 3
                   rowHeight = markerRowHeight + PI_CounterRowHeight(theOptions)
                   rowTop = theOptions.yMargin
                   If theOptions.SectionPlacement = 0 Then
@@ -1344,7 +1349,7 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
                       bandPosition = PI_BandGradientPosition(sectinfo, sectNum, gblLastPIslideNum)
                       PI_PaintSectionBackground bandShape, theOptions, sectionIs, bandPosition
                       If Not layeredMode Then
-                          PI_AddHardShadow bandShape, theOptions, shapeTag
+                          PI_AddHardShadow bandShape, theOptions, shapeTag, presetGrowth
                           If theOptions.PanelShadow = 1 Then PI_ApplyLayerShadow bandShape, theOptions, theOptions.LayerShadowDistance
                       End If
                       If layeredMode Then
@@ -2445,7 +2450,8 @@ Private Sub PI_RemoveOtherNavigation(ByVal targetSlide As Slide, ByVal keep As S
     Next index
 End Sub
 
-Private Sub PI_AddHardShadow(ByVal band As Shape, opts As ProgressDotsOptions, ByVal shapeTag As String)
+Private Sub PI_AddHardShadow(ByVal band As Shape, opts As ProgressDotsOptions, ByVal shapeTag As String, _
+                             ByVal presetGrowth As Double)
     Dim offset As Double, along As Double, across As Double
     Dim shadow As Shape, duplicates As ShapeRange
     Dim failureDescription As String
@@ -2455,7 +2461,7 @@ Private Sub PI_AddHardShadow(ByVal band As Shape, opts As ProgressDotsOptions, B
 70     If band.Fill.Transparency >= 1 Then Exit Sub
        ' Reserve the offset inside the allocated chapter, including the last one.
        along = PI_BarClamp(offset, 0, band.Width / 3)
-       across = PI_BarClamp(offset, 0, band.Height / 3)
+       across = PI_BarClamp(offset, 0, (band.Height - presetGrowth) / 3)
        band.LockAspectRatio = msoFalse
        band.Width = band.Width - along
        If opts.PresetSize = 0 Or opts.DockEdge >= 2 Then band.Height = band.Height - across
@@ -2640,6 +2646,7 @@ Public Function PI_NativeGenerate(ByVal request As String) As String
             Case "display": gblstrIndicatorStyle = pair(1)
             Case "density": gblDensityMode = CInt(pair(1))
             Case "counter": gblCounterMode = CInt(pair(1))
+            Case "height": PI_SetManualBandHeight Val(pair(1))
             Case "backdrop": gblSectionBandBackdrop = CInt(pair(1))
             Case "backdropAlpha": gblSectionBandBackdropTransparency = CDbl(pair(1))
             Case "backdropScale": gblSectionBandBackdropScale = CDbl(pair(1))
@@ -3972,6 +3979,7 @@ Public Sub PI_BandPreset(control As IRibbonControl)
     previous = DeserializeProgressOptions(SerializeProgressOptionsRibbon())
     spacingMode = gblEvenSpaceSecOrInd
     PI_SetBandDefaults
+    gblBandHeightMode = PI_PROPORTIONAL_BAND
     PI_RestoreStylePolicy previous
     PI_SetFullWidth PI_StyleAxisLength()
     If spacingMode = "Sections" Or spacingMode = "Shapes" Then gblEvenSpaceSecOrInd = spacingMode
@@ -3983,6 +3991,7 @@ End Sub
 Private Sub PI_SetBandDefaults()
     gblPresetSize = 0
     gblCrimsonType = 0
+    gblBandHeightMode = 0
     gblTitleAlignment = 0
     gblTitleCase = 0
     gblMarkerKind = 0
@@ -4068,6 +4077,7 @@ Public Sub PI_InitializeUniversalStyle(ByVal pageWidth As Double)
     PI_SetBandDefaults
     PI_ApplyStyleValues PI_StyleCommon()
     PI_ApplyStyleValues PI_StyleRecipe("universal_theme")
+    gblBandHeightMode = PI_PROPORTIONAL_BAND
     gblintMarginTop = 0
     PI_SetFullWidth pageWidth
 End Sub
@@ -4087,6 +4097,7 @@ Public Sub PI_InitializeLayerStyle(ByVal pageWidth As Double)
     PI_SetBandDefaults
     PI_ApplyStyleValues PI_StyleCommon()
     PI_ApplyStyleValues PI_StyleRecipe("polyu_layered")
+    gblBandHeightMode = PI_PROPORTIONAL_BAND
     PI_SetFullWidth pageWidth
 End Sub
 
@@ -4107,7 +4118,17 @@ End Sub
 Public Sub PI_LayerGetValue(control As IRibbonControl, ByRef value)
     Select Case control.id
         Case "edtNavigationWidth": value = CStr(gblNavigationWidth)
-        Case "edtSectionBlockHeight": value = CStr(gblSectionBlockHeight)
+        Case "edtSectionBlockHeight"
+            If gblBandHeightMode = PI_PROPORTIONAL_BAND Then
+                Dim opts As ProgressDotsOptions, titleTop As Double, dotsTop As Double
+                Dim bandHeight As Double, growth As Double, physicalBody As Double
+                opts = getDefaultOptions()
+                opts.DockEdge = 0
+                PI_BandGeometry opts, titleTop, dotsTop, bandHeight, growth, physicalBody
+                value = CStr(Round(physicalBody, 4))
+            Else
+                value = CStr(gblSectionBlockHeight)
+            End If
         Case "edtRailWidth": value = CStr(gblRailWidth)
         Case "edtRailThickness": value = CStr(gblRailThickness)
         Case "edtLayerShadowBlur": value = CStr(gblLayerShadowBlur)
@@ -4144,7 +4165,10 @@ Private Sub PI_ApplyPresetSize(ByVal presetSize As Integer)
     Dim blend As Double, largeHeight As Double, titleTop As Double, dotsTop As Double
     Dim largeOptions As ProgressDotsOptions
     If gblMarkerKind = 3 Then gbldblIndicatorSize = gblFlatBarHeight
-    If presetSize = 0 Then Exit Sub
+    If presetSize = 0 Then
+        gblBandHeightMode = PI_PROPORTIONAL_BAND
+        Exit Sub
+    End If
     blend = presetSize / 2
     largeOptions = getDefaultOptions()
     largeOptions.DockEdge = 0
@@ -4155,6 +4179,7 @@ Private Sub PI_ApplyPresetSize(ByVal presetSize As Integer)
         gblSectionBlockHeight = 13
     Else
         gblSectionBlockHeight = (largeHeight + 7) / 2 - 4
+        gblBandHeightMode = PI_PROPORTIONAL_BAND
     End If
     gbldblFontSize = gbldblFontSize + blend * (7 - gbldblFontSize)
     gblFlatBarHeight = gblFlatBarHeight * (1 - blend / 2)
@@ -4505,7 +4530,7 @@ Public Sub PI_LayerSetValue(control As IRibbonControl, text As String)
     If value < minimum Or value > maximum Then GoTo InvalidValue
     Select Case control.id
         Case "edtNavigationWidth": gblNavigationWidth = value
-        Case "edtSectionBlockHeight": gblSectionBlockHeight = value
+        Case "edtSectionBlockHeight": PI_SetManualBandHeight value
         Case "edtRailWidth": gblRailWidth = value
         Case "edtRailThickness": gblRailThickness = value
         Case "edtLayerShadowBlur": gblLayerShadowBlur = value
@@ -5147,23 +5172,32 @@ Private Sub PI_AddCompactRegion(ByVal target As Slide, opts As ProgressDotsOptio
     region.ActionSettings(ppMouseClick).Hyperlink.SubAddress = subAddress
 End Sub
 
+Private Sub PI_SetManualBandHeight(ByVal value As Double)
+    gblSectionBlockHeight = value
+    gblBandHeightMode = PI_EXACT_BAND
+End Sub
+
 Private Function PI_CompactBodyHeight(opts As ProgressDotsOptions) As Double
     PI_CompactBodyHeight = opts.SectionBlockHeight
     If opts.SectionBlockHeight = 0 Then PI_CompactBodyHeight = PI_BandTitleHeight(opts.textHeight)
 End Function
 
 Public Sub PI_BandGeometry(opts As ProgressDotsOptions, ByRef titleTop As Double, _
-                          ByRef dotsTop As Double, ByRef bandHeight As Double)
+                          ByRef dotsTop As Double, ByRef bandHeight As Double, _
+                          Optional ByRef presetGrowth As Double = 0, Optional ByRef physicalBody As Double = 0)
     Dim padding As Double, gap As Double, rowHeight As Double, markerHeight As Double
     Dim counterHeight As Double, hardOffset As Double, bodyHeight As Double
+    Dim contentShift As Double, reverse As Boolean
     padding = opts.SectionBandPadding
     gap = opts.SectionIndicatorGap
     If gap < 0 Then gap = 0
     rowHeight = PI_BandTitleHeight(opts.textHeight)
     markerHeight = PI_MarkerHeight(opts)
+    counterHeight = PI_CounterRowHeight(opts)
+    presetGrowth = 0
+
     If opts.PresetSize > 0 And opts.DockEdge < 2 Then
         bodyHeight = PI_CompactBodyHeight(opts)
-        counterHeight = PI_CounterRowHeight(opts)
         If opts.LayeredNavigation = 0 Then hardOffset = PI_BarClamp(opts.HardShadowOffset, 0, bodyHeight / 3)
         bandHeight = bodyHeight + hardOffset + counterHeight + markerHeight
         If opts.SectionPlacement = 0 Then
@@ -5174,21 +5208,40 @@ Public Sub PI_BandGeometry(opts As ProgressDotsOptions, ByRef titleTop As Double
             titleTop = dotsTop + markerHeight + counterHeight
         End If
         If opts.PresetSize = 1 Then titleTop = titleTop + (bodyHeight - rowHeight) / 2
-        Exit Sub
-    End If
-    If opts.SectionPlacement = 0 Then
-        titleTop = opts.yMargin + padding
-        dotsTop = titleTop + rowHeight + PI_CounterRowHeight(opts) + gap
+        physicalBody = bodyHeight
     Else
-        dotsTop = opts.yMargin + padding
-        titleTop = dotsTop + markerHeight + gap
+        If opts.SectionPlacement = 0 Then
+            titleTop = opts.yMargin + padding
+            dotsTop = titleTop + rowHeight + counterHeight + gap
+        Else
+            dotsTop = opts.yMargin + padding
+            titleTop = dotsTop + markerHeight + gap
+        End If
+        bandHeight = 2 * padding + rowHeight + counterHeight + gap + markerHeight
+        If opts.DockEdge >= 2 Then
+            If opts.SidebarWidth > bandHeight Then bandHeight = opts.SidebarWidth
+        ElseIf opts.BandHeightMode = PI_EXACT_BAND And opts.SectionBlockHeight > 0 Then
+            bandHeight = opts.SectionBlockHeight
+            If opts.LayeredNavigation = 0 Then bandHeight = bandHeight + PI_BarClamp(opts.HardShadowOffset, 0, bandHeight / 2)
+        ElseIf opts.SectionBlockHeight > bandHeight Then
+            bandHeight = opts.SectionBlockHeight
+        End If
+        physicalBody = bandHeight
+        If opts.LayeredNavigation = 0 Then physicalBody = physicalBody - PI_BarClamp(opts.HardShadowOffset, 0, bandHeight / 3)
     End If
-    bandHeight = 2 * padding + rowHeight + PI_CounterRowHeight(opts) + gap + markerHeight
-    If opts.DockEdge >= 2 Then
-        If opts.SidebarWidth > bandHeight Then bandHeight = opts.SidebarWidth
-    Else
-        If opts.SectionBlockHeight > bandHeight Then bandHeight = opts.SectionBlockHeight
-    End If
+
+    If opts.BandHeightMode <> PI_PROPORTIONAL_BAND Or opts.PresetSize = 2 Or opts.DockEdge >= 2 Then Exit Sub
+    ' Grow from the chapter face, excluding its hard shadow, marker row and rail.
+    presetGrowth = 0.3 * physicalBody
+    physicalBody = physicalBody + presetGrowth
+    bandHeight = bandHeight + presetGrowth
+    reverse = (opts.SectionPlacement <> 0)
+    ' Large bottom-docked text is translated with its original reading order.
+    If opts.PresetSize = 0 And opts.DockEdge = 1 Then reverse = Not reverse
+    contentShift = 2 * presetGrowth / 3
+    If reverse Then contentShift = presetGrowth / 3
+    titleTop = titleTop + contentShift
+    dotsTop = dotsTop + contentShift
 End Sub
 
 Public Function PI_SectionBackground(opts As ProgressDotsOptions, ByVal state As Integer, _

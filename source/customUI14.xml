@@ -661,7 +661,7 @@
           <button id="btnRenderStats" label="上次生成统计" onAction="PI_ShowRenderStats" screentip="查看实际生成耗时和复用情况"/>
         </group>
         <group id="grpModernStyles" label="设计样式" autoScale="true">
-          <menu id="mnuModernStyles" label="样式预设" itemSize="normal" screentip="40 款导航预设，每款均有三种尺寸" supertip="展开预设后选择大号、中号或小号。大号沿用原预设尺寸。导航沿所选边铺满，保留侧栏宽度、显示绑定、绘制范围、均长模式、计数与密度。选择尺寸后，点击“预览”或“生成”。">
+          <menu id="mnuModernStyles" label="样式预设" itemSize="normal" screentip="40 款导航预设，每款均有三种尺寸" supertip="展开预设后选择大号、中号或小号。上下停靠时，小号章体高 13 pt，中号和大号比 11.4 版同款、同档的章体高 30%。导航沿所选边铺满，保留侧栏宽度、显示绑定、绘制范围、均长模式、计数与密度。选择尺寸后，点击“预览”或“生成”。">
             <menuSeparator id="sepStyle_universal_theme" title="通用"/>
             <menu id="btnStyle_universal_theme" label="通用主题" screentip="主题色标出当前栏，连续细轨上的粗游标定位当前页。">
               <button id="btnStyle_universal_theme_large" label="大号" tag="universal_theme" onAction="PI_ModernPreset"/>
@@ -932,9 +932,9 @@
         <group id="grpLayeredNavigation" label="层叠导航" autoScale="true">
           <checkBox id="cbxPanelShadow" label="独立章节投影" getPressed="PI_BandGetPressed" onAction="PI_BandOnToggle" screentip="为独立章节面应用轮廓投影，模糊和透明度由下方参数控制"/>
           <checkBox id="cbxLayeredNavigation" label="当前章连接整体横条" getPressed="PI_BandGetPressed" onAction="PI_BandOnToggle" screentip="启用与页面连续衔接的章节导航" supertip="在完整模式且背景覆盖进度开启时生效。当前章与整体连接条同色一体，连接条始终位于正文一侧；完整轮廓阴影裁至内容接面，正文侧不留阴影缝。章节名、页条和导航链接保持独立。"/>
-          <button id="btnLayeredNavigationPreset" label="应用层叠导航样式" onAction="PI_LayerPreset" screentip="应用深红当前章与统一浅灰非当前章的层叠样式" supertip="设置铺满页面的无缝同高章节、34 pt 色块、1 pt 全页连接条、整块投影、圆角进度及当前页光晕。背景字和左右渐变默认关闭。保留顶部位置、页码范围与章节均长或进度均长模式，随后点击预览或生成。"/>
+          <button id="btnLayeredNavigationPreset" label="应用层叠导航样式" onAction="PI_LayerPreset" screentip="应用深红当前章与统一浅灰非当前章的层叠样式" supertip="设置铺满页面的无缝同高章节、44.2 pt 大号章体、1 pt 全页连接条、整块投影、圆角进度及当前页光晕。背景字和左右渐变默认关闭。保留顶部位置、页码范围与章节均长或进度均长模式，随后点击预览或生成。"/>
           <editBox id="edtNavigationWidth" label="沿边长度 (pt)" getText="PI_LayerGetValue" onChange="PI_LayerSetValue" sizeString="0000.0" screentip="层叠导航沿当前边的总长度" supertip="输入 0 至 4032，0 按沿边两端留白自动铺开。上下停靠使用水平长度，左右侧栏使用竖向长度。正值从沿边起点分配并限制在页面边内。整体连接条不能短于导航。"/>
-          <editBox id="edtSectionBlockHeight" label="横向章节高度 (pt)" getText="PI_LayerGetValue" onChange="PI_LayerSetValue" sizeString="000.0" screentip="顶部或底部章节色块的共同高度" supertip="输入 0 至 200，默认 34。0 自动适应文字、留白与页条，正值也不会小于内容所需高度。左右停靠使用“侧栏宽度”控制共同厚度。"/>
+          <editBox id="edtSectionBlockHeight" label="横向章节高度 (pt)" getText="PI_LayerGetValue" onChange="PI_LayerSetValue" sizeString="000.0" screentip="顶部或底部章节色块的共同高度" supertip="输入 0 至 200 pt。应用预设后，这里显示横向章体的实际高度。输入其他值可手动调整，输入 0 则根据文字、留白与页标自动确定高度。左右停靠时使用“侧栏宽度”。"/>
           <editBox id="edtRailWidth" label="连接条长度 (pt)" getText="PI_LayerGetValue" onChange="PI_LayerSetValue" sizeString="0000.0" screentip="与当前章节连接的整体条长度" supertip="输入 0 至 4032。0 跟随导航总长，有效长度至少等于导航总长，最大为当前页面边的长度。围绕导航居中并限制在页面边内，始终连接当前章节。"/>
           <editBox id="edtRailThickness" label="连接条厚度 (pt)" getText="PI_LayerGetValue" onChange="PI_LayerSetValue" sizeString="000.0" screentip="整体连接条的厚度" supertip="输入 0.5 至 30 pt。所有预设的连接条默认均为 1 pt，适用于所有尺寸和停靠边。连接条位于章节与正文之间。"/>
           <editBox id="edtLayerShadowBlur" label="阴影柔化 (pt)" getText="PI_LayerGetValue" onChange="PI_LayerSetValue" sizeString="000.0" screentip="完整外轮廓投影的模糊半径" supertip="输入 0 至 20，默认 6。0 关闭所有层叠阴影。投影按原生外阴影生成，随后与底板一起裁切，底部横条下缘以外不保留阴影。章节与横条的连接处没有内部接缝。"/>

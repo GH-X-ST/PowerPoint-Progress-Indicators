@@ -8,8 +8,8 @@ PowerPoint Progress Indicators is a VBA add-in that turns your slide sections in
 
 | Edition | Release package | Add-in to install |
 | --- | --- | --- |
-| English | [Download EN.11.4](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.4/ProgressIndicators-EN.11.4.zip) | `ProgressIndicators_v1960_3264b_SB_EN11_4.ppam` |
-| Simplified Chinese | [Download CN.11.4](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.4/ProgressIndicators-CN.11.4.zip) | `ProgressIndicators_v1960_3264b_SB_CN11_4.ppam` |
+| English | [Download EN.11.5](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.5/ProgressIndicators-EN.11.5.zip) | `ProgressIndicators_v1960_3264b_SB_EN11_5.ppam` |
+| Simplified Chinese | [Download CN.11.5](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.5/ProgressIndicators-CN.11.5.zip) | `ProgressIndicators_v1960_3264b_SB_CN11_5.ppam` |
 
 Extract the ZIP for the language you want. The `.ppam` is the add-in. The matching `.pptm` is a presentation you can open in PowerPoint to inspect or edit the VBA project. [Earlier releases](https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases)
 
@@ -25,7 +25,9 @@ Extract the ZIP for the language you want. The `.ppam` is the add-in. The matchi
 2. Choose the top, bottom, left, or right edge of the slide. **Equal Sections** gives each nonempty section the same length. **Equal Slides** allocates section lengths in proportion to the number of slides that count toward progress.
 3. Click **Update Current Slide** to see the result on the current slide. Click **Generate** to apply it across the configured slide range.
 
-All 40 presets offer three sizes. Large keeps the preset's original section panel height. When docked at the top or bottom, Small uses a 13 pt section panel. In the top layout, the title box begins 3.5 pt below the panel's top edge, and a 1 pt gap separates the slide markers from the connecting strip. The bottom layout mirrors this arrangement. Each Medium panel is 4 pt shorter than in version 11.3, with its title centered vertically. Small uses 7 pt titles and markers half as tall as Large. Its first and last markers span the middle 90% of each section. Medium uses intermediate title and marker sizes. Left and right docking keep the configured sidebar width. When enabled, the connecting strip defaults to 1 pt for all three sizes on any edge. Dense oval markers change width along the section while keeping their height.
+All 40 presets offer three sizes. When docked at the top or bottom, Medium and Large panels are 30% taller than the same preset and size in 11.4. For every 10 pt of previous panel height, 2 pt goes on the title side and 1 pt goes on the marker side, between the markers and the connecting strip when enabled. For Crimson Layers, Medium increases from 16.5 to 21.45 pt and Large from 34 to 44.2 pt. Medium keeps its intermediate title and marker sizes.
+
+Small uses a 13 pt panel. In the top layout, the title box begins 3.5 pt below the panel's top edge, and a 1 pt gap separates the slide markers from the connecting strip. The bottom layout mirrors the top. Small uses 7 pt titles and markers half as tall as Large. Its first and last markers span the middle 90% of each section. Left and right docking keep the configured sidebar width. When enabled, the connecting strip defaults to 1 pt for all three sizes on any edge. Dense oval markers change width along the section while keeping their height.
 
 **Crimson Layers** uses Inter SemiBold for the current section and Inter Medium for the others. Install the [Inter font family](https://rsms.me/inter/) for the specified weights. The crimson strip and active chapter share one outline. Closer sections sit in front of more distant ones. Inactive slide markers have 70% transparency, and only the current slide marker glows.
 
@@ -47,7 +49,7 @@ The English VBA and Ribbon XML are generated in `rebuild/en/source/`. The Englis
 To produce the release add-in, use desktop PowerPoint to save the generated maintenance presentation as a `.ppam`. The script requires PowerPoint to be able to run macros in that presentation and writes to a new destination. Run it from the same PowerShell window.
 
 ```powershell
-$name = 'ProgressIndicators_v1960_3264b_SB_EN11_4'
+$name = 'ProgressIndicators_v1960_3264b_SB_EN11_5'
 $sourceDeck = (Resolve-Path "rebuild\$name.pptm").Path
 $releaseDir = Join-Path (Get-Location) 'rebuild\distribution'
 $ppam = Join-Path $releaseDir "$name.ppam"

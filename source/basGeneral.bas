@@ -57,6 +57,7 @@ Public gblMarkerKind As Integer
 Public gblPanelShadow As Integer
 Public gblPresetSize As Integer
 Public gblCrimsonType As Integer
+Public gblBandHeightMode As Integer
 Public gblFlatRuleMode As Integer
 Public gblFlatRuleWidth As Double
 Public gblFlatRuleColor As String
@@ -798,7 +799,10 @@ Private Function PI_ValidStoredConfig(ByVal config As String) As Boolean
     If Len(config) > 16384 Then Exit Function
     If InStr(config, vbCr) > 0 Or InStr(config, vbLf) > 0 Or InStr(config, vbTab) > 0 Then Exit Function
     fields = Split(config, " ")
-    If UBound(fields) <> 99 And UBound(fields) <> 101 Then Exit Function
+    Select Case UBound(fields)
+        Case 99, 101, 103, 104
+        Case Else: Exit Function
+    End Select
     If fields(0) <> gblIndicatorSettingsVersion Then Exit Function
     For index = 1 To UBound(fields)
         If Len(fields(index)) = 0 Then Exit Function
@@ -837,8 +841,10 @@ Private Function PI_ValidStoredConfig(ByVal config As String) As Boolean
                     Case 13
                         If Not IsArray(gblvarShapeListIDs) Then Exit Function
                         If number < 0 Or number >= UBound(gblvarShapeListIDs) Then Exit Function
-                    Case 14, 15, 17, 19 To 24, 28, 45, 47, 48, 56, 60, 64, 67, 79 To 82, 87, 89, 96, 101
+                    Case 14, 15, 17, 19 To 24, 28, 45, 47, 48, 56, 60, 64, 67, 79 To 82, 87, 89, 96, 101, 103
                         If number <> 0 And number <> 1 Then Exit Function
+                    Case 102, 104
+                        If number < 0 Or number > 2 Or number <> Fix(number) Then Exit Function
                     Case 33
                         If number < 0 Or number > 1584 Then Exit Function
                     Case 34

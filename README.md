@@ -43,10 +43,13 @@ Download the ZIP for the language you want on the PowerPoint ribbon. Both packag
 
 ### Make your first bar
 
-1. Open your presentation. If you haven't divided it into sections, right-click between two slide thumbnails, choose **Add Section**, and name the section. Repeat at each section break. For slide markers alone, you can leave the presentation unsectioned. [Organize slides into sections](https://support.microsoft.com/en-us/powerpoint/training/organize-your-powerpoint-slides-into-sections)
-2. On the **Progress Indicators** tab, open **Design > Design Presets > Layers > Crimson Layers** and choose **Large** to match the example at the top of this page. Select **Show All** to display both section titles and slide markers. **Sections Only** and **Icons Only** let you keep just one.
-3. Click **Preview**. PowerPoint draws the bar on up to three slides, starting with the first slide in the specified range where the bar should appear.
-4. Click **Generate** to draw the bars throughout that range, then save the presentation. Start the slide show and click a section title. It opens the first slide in that section that counts toward progress.
+1. **Add sections.** If your presentation already has sections, keep the ones you have. Otherwise, right-click between two slide thumbnails, choose **Add Section**, and enter a name. Repeat where each new section begins. [PowerPoint's guide to sections](https://support.microsoft.com/en-us/powerpoint/training/organize-your-powerpoint-slides-into-sections)
+2. **Choose a preset.** On the **Progress Indicators** tab, open **Design Presets** in the **Design** group. Under **Layers**, choose **Crimson Layers > Large**. In the **Generate** group, select **Show All** to include both section titles and slide markers. [See Crimson Layers in PowerPoint](#crimson-layers)
+3. **Generate the bar.** Click **Generate** to add the bar to the slides in the selected range, then save your presentation. Start the slide show and click another section's title to jump to the first slide in that section that counts toward progress.
+
+To try a preset before applying it to the whole range, click **Preview**. The preview covers up to three slides, starting at the beginning of the selected range and skipping slides where the bar is hidden. To try just the slide you're editing, choose **Slide Updates and Performance > Update Current Slide**.
+
+For section titles alone, choose **Sections Only**. For slide markers alone, choose **Icons Only**, which also works in presentations without sections.
 
 <a name="navigation-layout"></a>
 

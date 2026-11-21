@@ -661,7 +661,7 @@
           <button id="btnRenderStats" label="上次生成统计" onAction="PI_ShowRenderStats" screentip="查看实际生成耗时和复用情况"/>
         </group>
         <group id="grpModernStyles" label="设计样式" autoScale="true">
-          <menu id="mnuModernStyles" label="样式预设" itemSize="normal" screentip="40 款导航预设，每款均有三种尺寸" supertip="展开预设后选择大号、中号或小号。上下停靠时，小号章体高 13 pt（深红层叠为 16 pt），中号和大号比 11.4 版同款、同档的章体高 30%。导航沿所选边铺满，保留侧栏宽度、显示绑定、绘制范围、均长模式、计数与密度。选择尺寸后，点击“预览”或“生成”。">
+          <menu id="mnuModernStyles" label="样式预设" itemSize="normal" screentip="40 款导航预设，每款均有三种尺寸" supertip="展开预设后选择大号、中号或小号。上下停靠时，小号章体高 13 pt（深红层叠为 14.17 pt），中号和大号比 11.4 版同款、同档的章体高 30%。导航沿所选边铺满，保留侧栏宽度、显示绑定、绘制范围、均长模式、计数与密度。选择尺寸后，点击“预览”或“生成”。">
             <menuSeparator id="sepStyle_universal_theme" title="通用"/>
             <menu id="btnStyle_universal_theme" label="通用主题" screentip="主题色标出当前栏，连续细轨上的粗游标定位当前页。">
               <button id="btnStyle_universal_theme_large" label="大号" tag="universal_theme" onAction="PI_ModernPreset"/>
@@ -706,7 +706,7 @@
               <button id="btnStyle_serif_editorial_small" label="小号" tag="serif_editorial:small" onAction="PI_ModernPreset"/>
             </menu>
             <menuSeparator id="sepStyle_polyu_layered" title="层次"/>
-            <menu id="btnStyle_polyu_layered" label="深红层叠" screentip="深红当前章与连接条无缝相接。其他章节沿用轻盈层次的底色。当前页标发光，各章其余页标的透明度均为 85%，厚度为当前的 48%。圆角页标居中占章宽的 80%。上下停靠时，小号章体高 16 pt。">
+            <menu id="btnStyle_polyu_layered" label="深红层叠" screentip="深红当前章与连接条无缝相接。其他章节沿用轻盈层次的底色。当前页标发光，各章其余页标的透明度均为 85%，厚度为当前的 48%。圆角页标居中占章宽的 80%。上下停靠时，小号章体高 14.17 pt。">
               <button id="btnStyle_polyu_layered_large" label="大号" tag="polyu_layered" onAction="PI_ModernPreset"/>
               <button id="btnStyle_polyu_layered_medium" label="中号" tag="polyu_layered:medium" onAction="PI_ModernPreset"/>
               <button id="btnStyle_polyu_layered_small" label="小号" tag="polyu_layered:small" onAction="PI_ModernPreset"/>

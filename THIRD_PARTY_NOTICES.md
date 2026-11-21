@@ -6,6 +6,6 @@
 
 ## FatCow Farm-Fresh Web Icons
 
-© 2009–2014 FatCow Web Hosting. 上游作者说明，功能区的大部分图标取自 FatCow。CN.11.8 沿用了上游模板中嵌入的图标。FatCow 的 Farm-Fresh Web Icons 使用 **Creative Commons Attribution 3.0 United States (CC BY 3.0 US)** 许可。[FatCow 图标原页](http://www.fatcow.com/free-icons) · [许可全文](https://creativecommons.org/licenses/by/3.0/us/legalcode)
+© 2009–2014 FatCow Web Hosting. 上游作者说明，功能区的大部分图标取自 FatCow。CN.11.9 沿用了上游模板中嵌入的图标。FatCow 的 Farm-Fresh Web Icons 使用 **Creative Commons Attribution 3.0 United States (CC BY 3.0 US)** 许可。[FatCow 图标原页](http://www.fatcow.com/free-icons) · [许可全文](https://creativecommons.org/licenses/by/3.0/us/legalcode)
 
 FatCow 原网页说明，图标可用于个人及商业软件、网站和模板，并要求在软件或网站的致谢处链接图标来源。同一页还列明不得转售、再许可、出租、转让图标，或以其他方式提供图标供人使用。[FatCow 官网存档中的 Terms of Use](https://web.archive.org/web/20190416064342/https://www.fatcow.com/free-icons) · [图标包随附说明的镜像](https://raw.githubusercontent.com/gammasoft/fatcow/master/readme-fatcow.txt)

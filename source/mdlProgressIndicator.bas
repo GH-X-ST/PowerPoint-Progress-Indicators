@@ -200,7 +200,9 @@ End Type
 Private Const PI_PROPORTIONAL_BAND As Integer = 1
 Private Const PI_EXACT_BAND As Integer = 2
 Public Const PI_SMALL_BODY_HEIGHT As Double = 13
-Public Const PI_CRIMSON_SMALL_BODY_HEIGHT As Double = 16
+Public Const PI_CRIMSON_SMALL_BODY_HEIGHT As Double = 14.17
+Private Const PI_CRIMSON_SMALL_EXTRA_TITLE_PADDING As Double = 1 / 3
+Private Const PI_CRIMSON_SMALL_REVERSED_INK_SHIFT As Double = 2
 Private Const PI_CRIMSON_MARKER_SPAN As Double = 0.8
 Public Const PI_CRIMSON_NONCURRENT_PAGE_TRANSPARENCY As Integer = 85
 Private Const PI_INACTIVE_SEGMENT_HEIGHT As Double = 0.48
@@ -1050,9 +1052,15 @@ Sub DrawProgressBarOnSlide(slideNum As Long, _
                   titleBodyHeight = bodyHeight
                   If theOptions.CrimsonType = 1 And theOptions.BandHeightMode = 0 And _
                           bodyHeight = PI_CRIMSON_SMALL_BODY_HEIGHT Then
-                      ' Keep the text anchored to its outer edge as the gap to the markers grows.
+                      ' The glyphs stay upright when the marker row and title box swap sides.
                       titleBodyHeight = PI_SMALL_BODY_HEIGHT
-                      If theOptions.SectionPlacement <> 0 Then titleTop = titleTop + bodyHeight - titleBodyHeight
+                      If theOptions.SectionPlacement = 0 Then
+                          titleTop = titleTop + PI_CRIMSON_SMALL_EXTRA_TITLE_PADDING
+                          If theOptions.DockEdge = 1 Then titleTop = titleTop + PI_CRIMSON_SMALL_REVERSED_INK_SHIFT
+                      Else
+                          titleTop = titleTop + bodyHeight - titleBodyHeight - PI_CRIMSON_SMALL_EXTRA_TITLE_PADDING
+                          If theOptions.DockEdge = 0 Then titleTop = titleTop - PI_CRIMSON_SMALL_REVERSED_INK_SHIFT
+                      End If
                   End If
                   titleHeight = PI_BarClamp(theOptions.textHeight, 0, titleBodyHeight)
                   addedHeight = PI_BarClamp(titleBodyHeight - 10, 0, 3)

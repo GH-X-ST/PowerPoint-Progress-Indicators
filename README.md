@@ -9,7 +9,7 @@
   <sub><a href="https://github.com/AdamWilsonLab/progress_indicators">Upstream GitHub repository (AdamWilsonLab/progress_indicators)</a> | <a href="https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac">Olaf Nöhring's project page</a></sub>
 </p>
 
-<p align="center"><sub>PowerPoint for Windows &nbsp;|&nbsp; EN.11.8 / CN.11.8</sub></p>
+<p align="center"><sub>PowerPoint for Windows &nbsp;|&nbsp; EN.11.9 / CN.11.9</sub></p>
 
 <img src="docs/assets/native/crimson-layers.webp" alt="Five section tabs span the slide. Design is red, and its third marker glows white." width="100%" />
 
@@ -38,8 +38,8 @@ Download the ZIP for the language you want on the PowerPoint ribbon. Both packag
 
 | Download | File to open in PowerPoint |
 | --- | --- |
-| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.8/ProgressIndicators-EN.11.8.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/en-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/en-light.svg" /><img src="docs/assets/badges/en-light.svg" alt="Download the English edition (ZIP)" width="164" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_EN11_8.ppam` |
-| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.8/ProgressIndicators-CN.11.8.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/cn-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/cn-light.svg" /><img src="docs/assets/badges/cn-light.svg" alt="Download the Simplified Chinese edition (ZIP)" width="164" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_CN11_8.ppam` |
+| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.9/ProgressIndicators-EN.11.9.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/en-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/en-light.svg" /><img src="docs/assets/badges/en-light.svg" alt="Download the English edition (ZIP)" width="164" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_EN11_9.ppam` |
+| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.9/ProgressIndicators-CN.11.9.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/cn-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/cn-light.svg" /><img src="docs/assets/badges/cn-light.svg" alt="Download the Simplified Chinese edition (ZIP)" width="164" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_CN11_9.ppam` |
 
 1. Extract the ZIP. In PowerPoint for Windows, open **File > Options > Add-ins**.
 2. At the bottom of the dialog, set **Manage** to **PowerPoint Add-ins** and click **Go**.
@@ -80,12 +80,12 @@ With **Equal Sections**, each of the five sections below gets a fifth of the bar
 
 ### Choose a size and marker shape
 
-Each preset comes in **Small**, **Medium**, and **Large**. With a top or bottom bar, Small uses 7 pt titles. Its panel is 13 pt high in most presets and 16 pt in Crimson Layers, where the extra space separates letters such as g from the markers. The markers are half the height of the Large markers. They fill the middle 90% of the section in most presets. Crimson Layers uses the middle 80% at every size. For a left or right bar, adjust the sidebar width separately.
+Each preset comes in **Small**, **Medium**, and **Large**. With a top or bottom bar, Small uses 7 pt titles. Its panel is 13 pt high in most presets and about 14.17 pt in Crimson Layers. In the Design example below, the title starts 5 pt below the top edge, and the bottom of the g sits 1.5 pt above the solid part of the current marker. The markers are half the height of the Large markers. They fill the middle 90% of the section in most presets. Crimson Layers uses the middle 80% at every size. For a left or right bar, adjust the sidebar width separately.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/native/sizes-dark.webp" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/native/sizes-light.webp" />
-  <img src="docs/assets/native/sizes-light.webp" alt="Crimson Layers in Small (16 pt), Medium (21.45 pt), and Large (44.2 pt). Design is the current section in all three." width="100%" />
+  <img src="docs/assets/native/sizes-light.webp" alt="Crimson Layers in Small (14.17 pt), Medium (21.45 pt), and Large (44.2 pt). Design is the current section in all three." width="100%" />
 </picture>
 
 <details>
@@ -481,12 +481,12 @@ uv pip install --python .venv\Scripts\python.exe -r requirements-build.txt
 .\.venv\Scripts\python.exe build_package.py --language en --output-dir rebuild --report rebuild/package-validation.json
 ```
 
-The build creates `rebuild/ProgressIndicators_v1960_3264b_SB_EN11_8.pptm`. The English VBA and Ribbon XML are in `rebuild/en/source/` and the translated preset catalog is in `rebuild/en/styles.json`.
+The build creates `rebuild/ProgressIndicators_v1960_3264b_SB_EN11_9.pptm`. The English VBA and Ribbon XML are in `rebuild/en/source/` and the translated preset catalog is in `rebuild/en/styles.json`.
 
 To package the `.ppam`, continue in the same PowerShell window. This step uses desktop PowerPoint and needs permission to run the presentation's macros. Choose a new output file.
 
 ```powershell
-$name = 'ProgressIndicators_v1960_3264b_SB_EN11_8'
+$name = 'ProgressIndicators_v1960_3264b_SB_EN11_9'
 $sourceDeck = (Resolve-Path "rebuild\$name.pptm").Path
 $releaseDir = Join-Path (Get-Location) 'rebuild\distribution'
 $ppam = Join-Path $releaseDir "$name.ppam"

@@ -9,7 +9,7 @@
   <sub><a href="https://github.com/AdamWilsonLab/progress_indicators">上游 GitHub 仓库（AdamWilsonLab/progress_indicators）</a> · <a href="https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac">Olaf Nöhring 的项目页</a></sub>
 </p>
 
-<p align="center"><sub>Windows 桌面版 PowerPoint &nbsp;|&nbsp; CN.11.9 / EN.11.9</sub></p>
+<p align="center"><sub>Windows 桌面版 PowerPoint &nbsp;|&nbsp; CN.11.10 / EN.11.10</sub></p>
 
 <img src="docs/assets/native/crimson-layers.webp" alt="深红层叠进度条：当前在 Design 章的第 3 页，章名下方的第三个页标发亮。" width="100%" />
 
@@ -42,8 +42,8 @@
 
 | 下载 | 解压后在 PowerPoint 中选择 |
 | --- | --- |
-| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.9/ProgressIndicators-CN.11.9.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/cn-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/cn-light.svg" /><img src="docs/assets/badges/cn-light.svg" alt="下载 CN.11.9 压缩包" width="164" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_CN11_9.ppam` |
-| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.9/ProgressIndicators-EN.11.9.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/en-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/en-light.svg" /><img src="docs/assets/badges/en-light.svg" alt="下载 EN.11.9 压缩包" width="164" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_EN11_9.ppam` |
+| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/CN.11.10/ProgressIndicators-CN.11.10.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/cn-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/cn-light.svg" /><img src="docs/assets/badges/cn-light.svg" alt="下载 CN.11.10 压缩包" width="172" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_CN11_10.ppam` |
+| <a href="https://github.com/GH-X-ST/PowerPoint-Progress-Indicators/releases/download/EN.11.10/ProgressIndicators-EN.11.10.zip"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/en-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/en-light.svg" /><img src="docs/assets/badges/en-light.svg" alt="下载 EN.11.10 压缩包" width="172" /></picture></a> | `ProgressIndicators_v1960_3264b_SB_EN11_10.ppam` |
 
 1. 在 Windows 桌面版 PowerPoint 中打开 **文件 > 选项 > 加载项**。
 2. 在窗口底部的 **管理** 列表中选择 **PowerPoint 加载项**，点击 **转到**。如果列表里已启用旧版或另一种语言的版本，先取消勾选。
@@ -92,12 +92,12 @@
 
 ### 大、中、小号
 
-在预设名称下选择尺寸。以 **深红层叠** 为例，放在页面顶部或底部时，小号高约 14.17 pt，中号高 21.45 pt，大号高 44.2 pt。下图小号的 `Design` 距章体顶部 5 pt，字母 `g` 的下缘距当前页标的实心部分 1.5 pt。所有预设的小号都用 7 pt 的章名，页标厚度是同款大号的一半。大多数预设的小号页标两端各留 5% 的章宽，深红层叠的三种尺寸都各留 10%。
+在预设名称下选择尺寸。以 **深红层叠** 为例，放在页面顶部或底部时，小号高约 16.67 pt，中号高 21.45 pt，大号高 44.2 pt。下图小号的 `Design` 距章体顶部 7 pt，字母 `g` 的下缘距当前页标的实心部分 2 pt。所有预设的小号都用 7 pt 的章名，页标厚度是同款大号的一半。大多数预设的小号页标两端各留 5% 的章宽，深红层叠的三种尺寸都各留 10%。
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/native/sizes-dark.webp" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/native/sizes-light.webp" />
-  <img src="docs/assets/native/sizes-light.webp" alt="深红层叠横向放置。小号高 14.17 pt，中号高 21.45 pt，大号高 44.2 pt。" width="100%" />
+  <img src="docs/assets/native/sizes-light.webp" alt="深红层叠横向放置。小号高 16.67 pt，中号高 21.45 pt，大号高 44.2 pt。" width="100%" />
 </picture>
 
 <details>
@@ -501,10 +501,10 @@ VBA 模块、窗体和功能区 XML 在 `source/` 中。修改预设参数时，
 ```powershell
 uv venv --python 3.12 .venv
 uv pip install --python .venv\Scripts\python.exe -r requirements-build.txt
-.\.venv\Scripts\python.exe build_package.py --output-dir rebuild --version-token CN11_9 --report rebuild\package-validation.json
+.\.venv\Scripts\python.exe build_package.py --output-dir rebuild --version-token CN11_10 --report rebuild\package-validation.json
 ```
 
-输出文件是 `rebuild/ProgressIndicators_v1960_3264b_SB_CN11_9.pptm`。要得到可安装的 `.ppam`，用发布脚本调用 Windows 桌面版 PowerPoint 另存这份文稿。[中文版构建与发布说明](BUILD_zh-CN.txt)
+输出文件是 `rebuild/ProgressIndicators_v1960_3264b_SB_CN11_10.pptm`。要得到可安装的 `.ppam`，用发布脚本调用 Windows 桌面版 PowerPoint 另存这份文稿。[中文版构建与发布说明](BUILD_zh-CN.txt)
 
 <a id="license"></a>
 <a id="许可证与署名"></a>

@@ -200,8 +200,8 @@ End Type
 Private Const PI_PROPORTIONAL_BAND As Integer = 1
 Private Const PI_EXACT_BAND As Integer = 2
 Public Const PI_SMALL_BODY_HEIGHT As Double = 13
-Public Const PI_CRIMSON_SMALL_BODY_HEIGHT As Double = 14.17
-Private Const PI_CRIMSON_SMALL_EXTRA_TITLE_PADDING As Double = 1 / 3
+Public Const PI_CRIMSON_SMALL_BODY_HEIGHT As Double = 16.67
+Private Const PI_CRIMSON_SMALL_EXTRA_TITLE_PADDING As Double = 7 / 3
 Private Const PI_CRIMSON_SMALL_REVERSED_INK_SHIFT As Double = 2
 Private Const PI_CRIMSON_MARKER_SPAN As Double = 0.8
 Public Const PI_CRIMSON_NONCURRENT_PAGE_TRANSPARENCY As Integer = 85

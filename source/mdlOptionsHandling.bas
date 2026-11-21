@@ -233,7 +233,7 @@ Function DeserializeProgressOptions(s As String) As ProgressDotsOptions
                   If theOptions.PresetSize = 2 And theOptions.CrimsonType = 1 And _
                           theOptions.BandHeightMode = 0 Then
                       Select Case theOptions.SectionBlockHeight
-                          Case PI_SMALL_BODY_HEIGHT, 16
+                          Case PI_SMALL_BODY_HEIGHT, 16, 14.17
                               theOptions.SectionBlockHeight = PI_CRIMSON_SMALL_BODY_HEIGHT
                       End Select
                   End If
@@ -480,7 +480,7 @@ Sub InitializePIVersion()
           'Version for settings-format saved in presentation
 10        gblIndicatorSettingsVersion = "Version20231115_1200"
 20        gblProgramVersionBase = "1.960"   'this is checked at online version check, see cmdWebCheck_Click in frmHelp
-30        gblProgramVersion = gblProgramVersionBase & " CN.11.9 32b/64b" & " / Settings: " & gblIndicatorSettingsVersion
+30        gblProgramVersion = gblProgramVersionBase & " CN.11.10 32b/64b" & " / Settings: " & gblIndicatorSettingsVersion
           
 End Sub
 

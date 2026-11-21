@@ -1,19 +1,15 @@
 <p align="center"><a href="README.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/lang-zh-en-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/lang-zh-en-light.svg" /><img src="docs/assets/badges/lang-zh-en-light.svg" alt="阅读英文 README" height="24" /></picture></a><!--
 --><a href="README.zh-CN.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/lang-zh-zh-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/lang-zh-zh-light.svg" /><img src="docs/assets/badges/lang-zh-zh-light.svg" alt="当前为中文 README" height="24" /></picture></a></p>
 
-<h1 align="center">PowerPoint 演讲进度条</h1>
-
 <p align="center">
   <sub>本项目在 Olaf Nöhring 发布的 <strong>Progress Indicator 1.960</strong> 基础上开发并独立维护。</sub><br>
   <sub>这个 PowerPoint 加载项源自 Edward Loper 编写的 <em>Progress Dots</em> 宏，后来由 Adam M. Wilson 和 Olaf Nöhring 先后扩展。</sub><br>
   <sub><a href="https://github.com/AdamWilsonLab/progress_indicators">上游 GitHub 仓库（AdamWilsonLab/progress_indicators）</a> · <a href="https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac">Olaf Nöhring 的项目页</a></sub>
 </p>
 
-<p align="center"><sub>Windows 桌面版 PowerPoint &nbsp;|&nbsp; CN.11.10 / EN.11.10</sub></p>
+![PowerPoint Progress Indicators 封面，展示包含三个章节的导航栏](docs/assets/cover.png)
 
-<img src="docs/assets/native/crimson-layers.webp" alt="深红层叠进度条：当前在 Design 章的第 3 页，章名下方的第三个页标发亮。" width="100%" />
-
-<a id="关于"></a>
+## 关于
 
 这个加载项用 PowerPoint 的节名在幻灯片上生成一条可点击的导航栏。放映时，观众能看到当前章节，以及这一章讲到了哪一页。点击章名可以跳到该章，点击代表某一页的短线或圆点，就能直接翻到那张幻灯片。
 

@@ -1,19 +1,15 @@
 <p align="center"><a href="README.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/lang-en-en-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/lang-en-en-light.svg" /><img src="docs/assets/badges/lang-en-en-light.svg" alt="English README (current language)" height="24" /></picture></a><!--
 --><a href="README.zh-CN.md"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/badges/lang-en-zh-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="docs/assets/badges/lang-en-zh-light.svg" /><img src="docs/assets/badges/lang-en-zh-light.svg" alt="Switch to the Chinese README" height="24" /></picture></a></p>
 
-<h1 align="center">PowerPoint Progress Indicators</h1>
-
 <p align="center">
   <sub>This independent edition is based on <strong>Progress Indicator 1.960</strong>, released by Olaf Nöhring.</sub><br>
   <sub>Edward Loper wrote the original <em>Progress Dots</em> macro for PowerPoint, which Adam M. Wilson and Olaf Nöhring later extended.</sub><br>
   <sub><a href="https://github.com/AdamWilsonLab/progress_indicators">Upstream GitHub repository (AdamWilsonLab/progress_indicators)</a> | <a href="https://datenbank-projekt.de/projekte/progress-indicator-powerpoint-2010-2013-2016-32-and-64-bit-windows-mac">Olaf Nöhring's project page</a></sub>
 </p>
 
-<p align="center"><sub>PowerPoint for Windows &nbsp;|&nbsp; EN.11.10 / CN.11.10</sub></p>
+![PowerPoint Progress Indicators cover with a three-section navigation bar](docs/assets/cover.png)
 
-<img src="docs/assets/native/crimson-layers.webp" alt="Five section tabs span the slide. Design is red, and its third marker glows white." width="100%" />
-
-<a id="about"></a>
+## About
 
 Progress Indicators turns the section names in your PowerPoint presentation into a clickable navigation bar. During a slide show, the bar highlights the current section and your place within it. Click a section name to jump to that section, or click an individual slide marker to go straight to its slide.
 

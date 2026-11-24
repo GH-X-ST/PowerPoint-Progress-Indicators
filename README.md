@@ -19,7 +19,7 @@ The bar and its links are saved in the presentation. Anyone you send it to can u
 
 ## Contents
 
-- **Make a bar.** [First use](#tutorial) / [Position and size](#navigation-layout) / [Titles and colors](#section-design) / [Slide numbers and markers](#counts-and-density)
+- **Make a bar.** [Make your first bar](#make-your-first-bar) / [Position and size](#navigation-layout) / [Titles and colors](#section-design) / [Slide numbers and markers](#counts-and-density)
 - **Work with a presentation.** [Update or hide a bar](#updating-slides) / [Save styles and layout rules](#presentation-settings-and-rules) / [Preset gallery](#preset-gallery)
 - **Project details.** [Changes since 1.960](#upstream) / [Build from source](#build) / [License and credits](#license-and-credits)
 
@@ -47,7 +47,7 @@ Download the ZIP for the language you want on the PowerPoint ribbon. Both packag
 2. **Choose a preset.** On the **Progress Indicators** tab, open **Design Presets** in the **Design** group. Under **Layers**, choose **Crimson Layers > Large**. In the **Generate** group, select **Show All** to include both section titles and slide markers. [See Crimson Layers in PowerPoint](#crimson-layers)
 3. **Generate the bar.** Click **Generate** to add the bar to the slides in the selected range, then save your presentation. Start the slide show and click another section's title to jump to the first slide in that section that counts toward progress.
 
-To try a preset before applying it to the whole range, click **Preview**. The preview covers up to three slides, starting at the beginning of the selected range and skipping slides where the bar is hidden. To try just the slide you're editing, choose **Slide Updates and Performance > Update Current Slide**.
+To try a preset, click **Preview**. It draws the bar directly on up to three slides in the selected range, skipping slides where the bar is hidden. To try just the slide you're editing, choose **Slide Updates and Performance > Update Current Slide**.
 
 For section titles alone, choose **Sections Only**. For slide markers alone, choose **Icons Only**, which also works in presentations without sections.
 
@@ -59,7 +59,7 @@ For section titles alone, choose **Sections Only**. For slide markers alone, cho
 
 ### Choose an edge
 
-Use **Position and Visibility > Dock Edge** to place the bar along any edge. A sidebar keeps the section names horizontal and stacks the markers vertically. If a name needs more room, increase **Sidebar Width (pt)**. To run the bar from corner to corner, turn on **Design > Fill Dock Edge**. For an inset bar, set the margins in **Layout**.
+Use **Position and Visibility > Dock Edge** to place the bar along any edge. A sidebar keeps the section names horizontal and stacks the markers vertically. If a name needs more room, increase **Sidebar Width (pt)**. To fill the edge, click **Design > Fill Dock Edge**. This sets both margins to zero. To leave space at either end, adjust **Start Margin** or **End Margin** in **Layout**.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/native/docking-dark.webp" />
@@ -79,7 +79,7 @@ With **Equal Sections**, each of the five sections below gets a fifth of the bar
 
 ### Choose a size and marker shape
 
-Each preset comes in **Small**, **Medium**, and **Large**. With a top or bottom bar, Small uses 7 pt titles. Its panel is 13 pt high in most presets and about 16.67 pt in Crimson Layers. In the Design example below, the title starts 7 pt below the top edge, and the bottom of the g sits 2 pt above the solid part of the current marker. The markers are half the height of the Large markers. They fill the middle 90% of the section in most presets. Crimson Layers uses the middle 80% at every size. For a left or right bar, adjust the sidebar width separately.
+Open a preset's menu and choose **Small**, **Medium**, or **Large**. The image shows all three sizes of Crimson Layers on the same slide. For a left or right sidebar, adjust **Sidebar Width (pt)** separately.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/native/sizes-dark.webp" />
@@ -88,9 +88,13 @@ Each preset comes in **Small**, **Medium**, and **Large**. With a top or bottom 
 </picture>
 
 <details>
-<summary>Panel heights in version 11.5</summary>
+<summary>Panel heights and marker spacing</summary>
 
-In Crimson Layers, the three heights are 13, 21.45, and 44.2 pt. Medium and Large are 30% taller than the corresponding sizes in 11.4. For every 10 pt of the previous height, the title side gained 2 pt and the marker side gained 1 pt. To use the new dimensions in an older presentation, choose the preset and size again, then click **Generate**.
+- On a top or bottom bar, the Crimson Layers panels are about 16.67 pt tall in Small, 21.45 pt in Medium, and 44.2 pt in Large. Most other presets have a 13 pt Small panel.
+- Small uses 7 pt titles and markers half as thick as Large. In the Small example, the top of "Design" sits 7 pt below the panel edge. The bottom of the "g" clears the solid part of the current marker by 2 pt.
+- The row of markers spans the middle 80% of each Crimson Layers panel at all three sizes. In most other Small presets it spans 90%. Presets with a connecting strip use a 1 pt strip at all three sizes.
+
+To apply these dimensions to an existing bar, select the preset and size again, then click **Generate**.
 
 </details>
 
@@ -162,12 +166,12 @@ To mark the boundary between *every* pair of sections, use **Text and Lines > Se
 
 In **Section Panels**, set different transparencies for the current section, the sections you've covered, and those still to come. Enable **Two-Sided Gradient** to give the earlier and later sections different colors and let each fade toward the end of the bar.
 
-On a top bar, **Cropped Backdrop Text (Top) > Backdrop Text for Other Sections** repeats each inactive section's name behind its title. In the middle row, the large letters in Research and Results stop at the edge of their panels. Design keeps its solid red background. You can choose the background lettering's color, transparency, and scale (110% to 300%).
+On a top bar, **Cropped Backdrop Text (Top) > Backdrop Text for Other Sections** repeats each inactive section's name behind its title. In the middle row, the large letters stop at the edges of all four inactive panels. Design keeps its solid red background. You can choose the background lettering's color, transparency, and scale (110% to 300%).
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/native/surfaces-dark.webp" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/native/surfaces-light.webp" />
-  <img src="docs/assets/native/surfaces-light.webp" alt="Three bars show separate panel shadows, large cropped names behind Research and Results, and a gradient with teal before Design and brown after." width="100%" />
+  <img src="docs/assets/native/surfaces-light.webp" alt="Three bars show panel shadows, cropped lettering in all four sections around Design, and a gradient from teal before Design to brown after it." width="100%" />
 </picture>
 
 **Crimson Layers** joins the current section to a 1 pt strip. Where two sections meet, the one closer to the current section casts its shadow on the other. The current slide has a thicker marker with a glow. Every other slide marker is thin and 85% transparent, including the others in the current section. Earlier and later sections use the same gray backgrounds as **Light Layers**. To adjust the strip or soften the shadows, open **Layered Navigation**. To match the lettering in the screenshot, install Inter SemiBold for the current section and Inter Medium for the others on the computers used to edit and present the slides. [Inter fonts](https://rsms.me/inter/)
@@ -180,7 +184,7 @@ Turn on **Position and Visibility > Use Each Slide's Theme** if the bar should c
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/native/theme-dark.webp" />
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/native/theme-light.webp" />
-  <img src="docs/assets/native/theme-light.webp" alt="Two copies of Universal Theme showing how the same section titles and markers change color with the slide theme." width="100%" />
+  <img src="docs/assets/native/theme-light.webp" alt="Switching themes changes the Design panel from teal to slate gray. Its title and current slide marker stay white." width="100%" />
 </picture>
 
 </details>
@@ -189,7 +193,9 @@ Turn on **Position and Visibility > Use Each Slide's Theme** if the bar should c
 
 ## Slide numbers and long sections
 
-Slide 8 of a 14-slide talk can also be slide 3 of 5 in Design. To show both positions, choose **Counts and Density > Progress Count > Overall and Section Counts**. You can also show just the overall count, just the section count, or either as a percentage. Hidden, skipped, and repeated slides count according to your settings.
+Choose **Counts and Density > Progress Count > Overall and Section Counts** to show both positions under the current section title. In the example, `8 / 14` is the slide's place in the presentation and `3 / 5` is its place in Design. You can also show either count on its own or as a percentage.
+
+The count appears only when the section title is visible. If you're using **Icons Only**, switch to **Show All** to see it. Updating a selection of slides leaves the totals for the presentation and section intact.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/native/counts-dark.webp" />
@@ -224,7 +230,7 @@ For a single slide, choose **Slide Updates and Performance > Update Current Slid
 | What you want to do | Command |
 | --- | --- |
 | Remove a bar you plan to generate again | **Remove from Selected Slides** clears bars on the selected slides within the range. **Generate > Remove** clears every bar in the range. Both keep your settings. |
-| Leave the cover slide without a bar | Select the cover and choose **Hide on Selected Slides**. The cover still counts, and the bar stays hidden the next time you generate. Choose **Show on Selected Slides** to let the bar appear there again if the slide's layout and master allow it. |
+| Leave the cover slide without a bar | Select the cover and choose **Hide on Selected Slides**. This hides the bar immediately, even outside the current range. The slide still counts. **Show on Selected Slides** clears that setting and redraws the bar if the slide is in range and its display rules allow it. |
 | Leave a slide out of the count | Turn on **Exclude > Skipped/Repeated**, then choose **Current Slide > Skip** to remove its bar or **Repeat** to show the previous counted slide's progress. Neither advances the count. **Normal** clears the setting. |
 | Exclude slides hidden in PowerPoint | Turn on **Exclude > Hidden Slides**. |
 
@@ -238,13 +244,13 @@ If a long presentation takes time to update, turn on **Slide Updates and Perform
 
 When the bar looks right, choose **Settings > My Presentation Presets > Save Current Settings as a Presentation Preset** and enter a name. To use it later, open the named preset, click **Apply**, and generate the bars. Each presentation can store up to 32 presets.
 
-To take the current settings to another presentation, choose **Settings > Export** and save the `.txt` file. Open the other presentation and choose **Import**. PowerPoint applies the settings and updates the bars. Your list of saved presets and your layout rules stay with the original presentation.
+To use these settings in another presentation, choose **Settings > Export** and save the `.txt` file. In the other presentation, choose **Settings > Import** and open that file to update the bars. Your list of saved presets and your layout rules stay with the original presentation.
 
 ### Put the bar on content slides and leave it off the cover
 
-For one master or layout, turn off multiple rules. In Normal view, select a slide that uses the master or layout you want. Under **Position and Visibility > Single Visibility Rule**, choose **Use Current Slide Master** or **Use Current Slide Layout**. Only slides that share it will show the bar. Save the presentation as `.pptx` or `.pptm` to keep the rule.
+For just one cover, select the slide and choose **Hide on Selected Slides**. To control every slide that uses a particular layout or master, turn off multiple rules. In Normal view, select a slide that uses the master or layout you want. Under **Position and Visibility > Single Visibility Rule**, choose **Use Current Slide Master** or **Use Current Slide Layout**. Only slides that share it will show the bar. Save the presentation as `.pptx` or `.pptm` to keep the rule.
 
-If the cover and the content slides share a master, give the cover its own rule.
+If several content layouts share the cover's master, you can show the bar on that master and hide it on the cover layout.
 
 1. Set up the bar on a content slide. Under **Position and Visibility > Master and Layout Rules > Save a Rule for the Current Slide**, choose **Slide Master: Show with Current Style**.
 2. Select the cover slide. From the same menu, choose **Layout: Hide Indicators**.
@@ -257,7 +263,31 @@ The cover stays clear because its layout rule takes priority over its master. Hi
 
 ## Preset gallery
 
-These are all 40 presets on the same PowerPoint slide. In every example, Design is the current section and its third slide is on screen. The presets appear in the same order under **Design > Design Presets**.
+All 40 bars were generated on the same PowerPoint slide, the third slide in Design. The presets follow their order in **Design > Design Presets**. Compare the thin line in [Minimal Underline](#minimal-underline), the overlapping panels in [Crimson Layers](#crimson-layers), and the ticks in [Blueprint](#blueprint).
+
+<details>
+<summary>Jump to a preset by name</summary>
+
+| Group | Presets |
+| --- | --- |
+| General | [Universal Theme](#universal-theme) |
+| Rounded and Segmented | [Expressive Pills](#expressive-pills) · [Bento Segments](#bento-segments) · [Translucent Pills](#translucent-pills) · [Soft Minimal](#soft-minimal) |
+| Typography and Graphics | [Hard Offset](#hard-offset) · [Retro Terminal](#retro-terminal) · [Serif Editorial](#serif-editorial) |
+| Layers | [Crimson Layers](#crimson-layers) · [Light Layers](#light-layers) |
+| Minimal | [Minimal Underline](#minimal-underline) · [Minimal Overline](#minimal-overline) |
+| Tonal | [Soft Tones](#soft-tones) · [Solid Accent](#solid-accent) |
+| Soft Shadows and Outlines | [Soft Shadow Tabs](#soft-shadow-tabs) · [Fine Outlines](#fine-outlines) |
+| Editorial | [Numbered Editorial](#numbered-editorial) · [Monochrome Grid](#monochrome-grid) |
+| High Contrast | [High Contrast Light](#high-contrast-light) · [High Contrast Dark](#high-contrast-dark) |
+| Translucent | [Light Glass](#light-glass) · [Dark Glass](#dark-glass) |
+| Technical | [Dark Neon](#dark-neon) · [Blueprint](#blueprint) |
+| Gradients | [Duotone Gradient](#duotone-gradient) · [Distance Fade](#distance-fade) |
+| Materials and Hard Edges | [Warm Paper](#warm-paper) · [Hard-Edged Geometry](#hard-edged-geometry) |
+| Frames and Annotations | [Stage Windows](#stage-windows) · [Engineering Marks](#engineering-marks) · [Civic Corners](#civic-corners) · [Community Cells](#community-cells) |
+| Editorial and Archival | [Quiet Colophon](#quiet-colophon) · [Type Specimen Index](#type-specimen-index) · [Botanical Labels](#botanical-labels) · [Archive Labels](#archive-labels) |
+| Color Bands and Rhythm | [Coastal Bands](#coastal-bands) · [Swim Lanes](#swim-lanes) · [Newspaper Columns](#newspaper-columns) · [Cabinet Grid](#cabinet-grid) |
+
+</details>
 
 ### General
 
@@ -375,7 +405,7 @@ These are all 40 presets on the same PowerPoint slide. In every example, Design 
 
 #### Blueprint
 
-<img src="docs/assets/gallery/styles/blueprint.webp" alt="Blue crosshairs mark the corners of navy panels, with ticks of different lengths beneath the numbered titles." width="100%" />
+<img src="docs/assets/gallery/styles/blueprint.webp" alt="Blue crosshairs frame the navy panels. A white square marks the third slide in Design. Earlier slides have solid ticks and later slides have hollow ticks." width="100%" />
 
 ### Gradients
 
